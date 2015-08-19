@@ -1,0 +1,4 @@
+<h2>Most Populer Category</h2>
+{{#each products}}
+	<h3>{{@key}} - {{this}}</h3>
+{{/each}}
