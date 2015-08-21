@@ -14,7 +14,7 @@ exports.mostPopularCatagory = function(filepath){
               if(categoryMap[cat] > max) {
                 max = categoryMap[cat];
                 mostPopularCategory = {
-                 name : cat,
+                 Name : cat,
                  qty: max
               }
            }

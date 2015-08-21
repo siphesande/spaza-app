@@ -1,5 +1,9 @@
+<h1>Least Populer Categories</h1>
+<table class>
+	{{#each category}}
+		<tr>
+			<td width="75%"><h3>{{@key}} </td width="30%" > <td> {{this}}</h3> </td>
+		</tr>
+	{{/each}}
+</table>
 
-<h1>Least Populer Category</h1>
-{{#each category}}
-	<h3>{{@key}} : {{this}}</h3>
-{{/each}}

@@ -6,11 +6,15 @@ var leastPopulerP= require('./least_populer_product');
 var mostPplcategory = require('./most_populer_category');
 var leastPplcategory = require('./least_populer_catergory');
 var fs = require("fs"); 
+
 var app = express();
+
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
- 
+app.use(express.static('public'));
+
+
 app.get('/', function (req, res) {
   res.render('home');
 
@@ -42,7 +46,9 @@ app.get('/leastPopulerPrd', function (req, res) {
  app.get('/leastPopulerCategory', function (req, res) {
 	var categoryName = leastPplcategory.leastPopularCategory('./Nelisa Sales History.csv');
     res.render('leastPopulerCategory',{category : categoryName} );   
-});  
+}); 
+
+ 
 //start the server
 var server = app.listen(3000, function () {
 

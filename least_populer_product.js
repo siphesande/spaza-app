@@ -14,7 +14,7 @@ exports.leastPopularProduct = function(filepath){
               if(productMap[prod] < min) {
                 min = productMap[prod];
                 leastPopularProduct = {
-                 name : prod,
+                 Name : prod,
                  qty: min
                  
               }

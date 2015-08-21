@@ -1,4 +1,8 @@
 <h1>Categories</h1>
-{{#each category}}
-	<h3>{{@key}} : {{.}}</h3>
-{{/each}}
+<table class>
+	{{#each category}}
+		<tr>
+			<td width="75%"><h3>{{@key}} </td width="30%" > <td> {{this}}</h3> </td>
+		</tr>
+	{{/each}}
+</table>

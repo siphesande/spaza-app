@@ -1,0 +1,20 @@
+body{
+
+	background-color: #CCFFFF;
+}
+.button{
+
+	background-color: #99FF33;
+	
+	width: 150px;
+	height: 10px;
+}
+
+table {
+    border-collapse: separate;
+    width: 30%;
+    border: 1px solid #FFFFCC;
+}
+td {
+    border: 1px solid #FFFFCC;
+}

@@ -56,7 +56,7 @@ var fs  = require("fs");
               if(productMap[prop] > max) {
                 max = productMap[prop];
                 mostPopularProduct = {
-                 name : prop,
+                 Name : prop,
                  qty: max
               }
            }

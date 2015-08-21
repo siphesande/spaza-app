@@ -13,7 +13,7 @@ var itemsSold  = require("./categoryTotals");
               if(categoryMap[cat] < min) {
                 min = categoryMap[cat];
                 leastPopularCategory = {
-                 name : cat,
+                 Name : cat,
                  qty: min
               }
            }
