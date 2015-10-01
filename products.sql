@@ -1,0 +1,18 @@
+INSERT INTO Products(product_name, category_id) VALUES('Milk 1l', 4);
+INSERT INTO Products(product_name, category_id) VALUES('Imasi', 4);
+INSERT INTO Products(product_name, category_id) VALUES('Bread', 2);
+INSERT INTO Products(product_name, category_id) VALUES('Chakalaka Can',1);
+INSERT INTO Products(product_name, category_id) VALUES('Gold Dish Vegetable Curry Can',1);
+INSERT INTO Products(product_name, category_id) VALUES('Fanta 500ml',5);
+INSERT INTO Products(product_name, category_id) VALUES('Coke 500ml',5);
+INSERT INTO Products(product_name, category_id) VALUES('Cream Soda 500ml',5);
+INSERT INTO Products(product_name, category_id) VALUES('Iwisa Pap 5kg',2);
+INSERT INTO Products(product_name, category_id) VALUES('Top Class Soy Mice',1);
+INSERT INTO Products(product_name, category_id) VALUES('Shampoo 1 litre',3);
+INSERT INTO Products(product_name, category_id) VALUES('Soap Bar',3);
+INSERT INTO Products(product_name, category_id) VALUES('Bananas - loose',6);
+INSERT INTO Products(product_name, category_id) VALUES('Apples - loose',6);
+INSERT INTO Products(product_name, category_id) VALUES('Mixed Sweets 5s',8);
+INSERT INTO Products(product_name, category_id) VALUES('Heart Chocolates',8);
+INSERT INTO Products(product_name, category_id) VALUES('Rose (plastic)',7);
+INSERT INTO Products(product_name, category_id) VALUES('Valentine Cards',7);
