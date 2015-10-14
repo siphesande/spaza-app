@@ -4,13 +4,17 @@
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
-		connection.query('SELECT * from Products, Categories WHERE Products.category_id = Categories.category_id', [], function(err, results) {
-        if (err) return next(err);
-    		res.render( 'sphe', {
+		    connection.query('SELECT * from Products', [], function(err, results) {
+			connection.query('SELECT * from Categories', [], function(err, categories) {
+               if (err) return next(err);
+    		        res.render( 'sphe', {
 					no_products : results.length === 0,
 					products : results,
-    		});
-      });
+					categories: categories
+    		      });
+
+          });
+		});
 	});
 };
 
@@ -24,8 +28,9 @@ exports.add = function (req, res, next) {
 		var input = JSON.parse(JSON.stringify(req.body));
 		var data = {
       		product_name : input.product_name,
-  	};
-		connection.query('insert into Products set ?', data, function(err, results) {
+      		category_id :input.category_id
+  	    };      
+		connection.query('insert into Products set ?', data, function(err, results){
   		if (err) return next(err);
 			res.redirect('/products');
 		});

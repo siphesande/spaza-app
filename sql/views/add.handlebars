@@ -2,5 +2,12 @@
 
 <form action="/products/add" method="POST">
 	Description: <input type="text" name="product_name" value="{{product_name}}">
+	{{#categories}}
+	<select>
+     <option value="{{category_id}}">{{category_name}}</option>
+  
+   </select>
+
+{{/categories}}
 	<input type="submit">
 </form>
