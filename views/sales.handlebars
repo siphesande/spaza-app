@@ -1,0 +1,31 @@
+<h1>Add</h1>
+
+<form action="/sales/addSales" method="POST">
+
+    <select>
+     {{#products}}
+    <option value ="{{product_id}}">{{product_name}}</option>
+     {{/products}}
+   </select>
+    Quantity: <input type="number" name="qty" value ="{{qty}}">
+    Sales date: <input type="date" name="sale_date" value ="{{sale_date}}">
+    Price: <input type="number" name="price" value ="{{price}}">
+
+  
+
+   <input type="submit">
+</form>
+
+<h1>Sales</h1>
+{{#sales}}
+  <h2>{{product_name}}</h2>
+  <h2>{{price}}</h2>
+  <h2>{{qty}}</h2>
+  <h2>{{sale_date}}</h2>
+  <a href="/sales/edit/{{id}}">Edit</a>
+  <a href="/sales/delete/{{id}}">Delete</a>
+{{/sales}}
+
+{{#no_sales}}
+  <p>No products available yet. Add some above.</p>
+{{/no_sales}}
