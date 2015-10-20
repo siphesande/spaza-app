@@ -4,7 +4,7 @@ exports.show =function (req, res, next){
 
 		if (err) return next(err);
 		    connection.query('SELECT Products.product_name,Sales.sale_date,Sales.price,Sales.qty FROM Sales INNER JOIN Products ON Sales.product_id= Products.product_id ORDER BY Sales.sale_date',[], function(err, results){
-            connection.query('SELECT * FROM Products' , function(err, products){
+            connection.query('SELECT * from Products' ,[], function(err, products){
             	if (err) return next(err);
             	res.render('sales',{
             	no_sales : results.length === 0,
@@ -16,6 +16,9 @@ exports.show =function (req, res, next){
 		 });
 	});
 };
+exports.home =function(req, res){
+	res.render('home')
+}
 
 exports.showAdd = function (req, res){
 	res.render('addSales');
@@ -28,7 +31,7 @@ exports.addSales = function(req, res, next) {
 		var input = JSON.parse(JSON.stringify(req.body));
 		var data = {
 			
-			//product_id :input.product_id,
+			product_id :input.product_id,
 			qty :input.qty,
 			price :input.price,
 			sale_date:input.sale_date

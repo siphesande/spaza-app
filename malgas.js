@@ -51,15 +51,15 @@ app.get('/products/delete/:product_id', products.delete);
 
 
 
-//app.get('/',sales.home);
-// app.get('/d', sales.show);
+ app.get('/',sales.home);
+ app.get('/', sales.show);
  app.get('/sales', sales.show);
- //app.get('/sales/edit/:id', sales.get);
+ app.get('/sales/edit/:id', sales.getSales);
  app.post('/sales/update/:id', sales.update);
  app.get('/sales/addSales', sales.showAdd);
  app.post('/sales/addSales', sales.addSales);
 // //this should be a post but this is only an illustration of CRUD - not on good practices
-//app.get('/sales/delete/:id', products.delete);
+app.get('/sales/delete/:id', products.delete);
 
 
 

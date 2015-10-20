@@ -1,15 +1,16 @@
 <h1>Add</h1>
 
 <form action="/sales/addSales" method="POST">
+    Quantity: <input type="number" name="qty" value ="{{qty}}">
+    Sales date: <input type="date" name="sale_date" value ="{{sale_date}}">
+    Price: <input type="number" name="price" value ="{{price}}">
 
     <select>
      {{#products}}
     <option value ="{{product_id}}">{{product_name}}</option>
      {{/products}}
    </select>
-    Quantity: <input type="number" name="qty" value ="{{qty}}">
-    Sales date: <input type="date" name="sale_date" value ="{{sale_date}}">
-    Price: <input type="number" name="price" value ="{{price}}">
+    
 
   
 
@@ -29,3 +30,5 @@
 {{#no_sales}}
   <p>No products available yet. Add some above.</p>
 {{/no_sales}}
+
+
