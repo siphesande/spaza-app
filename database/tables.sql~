@@ -14,7 +14,8 @@ CREATE TABLE Products (
     product_name char(100),
     category_id int(42),
     primary key(id),
-    FOREIGN KEY(category_id) REFERENCES Categories(category_id)
+    FOREIGN KEY(category_id) REFERENCES Categories(category_id),
+    CONSTRAINT uc_product_name  UNIQUE (product_name)
 )ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `Suppliers`;

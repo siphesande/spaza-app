@@ -6,8 +6,8 @@
 		<label class="control-label col-xs-2">Products</label>
 		<div class="col-xs-10">	 
      			<select name="Id">
-    				{{#each products}}
-      					<option value = "{{Id}}">{{product_name}}</option>
+    				{{#each product}}
+      					<option value = "{{Id}}">{{Name}}</option>
     				{{/each}}
   			</select>
 		</div>
@@ -41,7 +41,7 @@
 </form>
 <h1>Sales</h1>
 {{#sales}}
-  <h2>{{product_name}}</h2>
+  <h2>{{Name}}</h2>
   <h2>{{Sales_price}}</h2>
   <h2>{{Qty}}</h2>
   <h2>{{Sales_date}}</h2>

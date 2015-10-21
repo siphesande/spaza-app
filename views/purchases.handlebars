@@ -1,0 +1,93 @@
+<h1>Add</h1>
+
+<!--<form action="/purchases/add" method="POST">
+	
+  QTY: <input type="text" name="Qty" value="{{Qty}}">
+  Purchase Date:<input type="date" name="Purchase_date" value="{{Purchase_date}}">
+  Purchase Price:<input type="number" name="Purchase_price"value="{{Purchase_price}}">
+  
+	
+	<select name="Product_Id">
+		{{#products}}
+     <option value="{{Id}}">{{product_name}}</option>
+      {{/products}}
+   </select>
+
+   <select name="Supplier_Id">
+    {{#suppliers}}
+     <option value="{{Id}}">{{supplier_name}}</option>
+      {{/suppliers}}
+   </select>
+
+<input type="submit">
+</form>-->
+
+
+
+<form action="purchases/add" method="POST" class="form-horizontal" >
+      
+  <div class="form-group">
+    <label class="control-label col-xs-2">Products</label>
+    <div class="col-xs-10">  
+          <select name="Id">
+            {{#each products}}
+                <option value = "{{Id}}">{{product_name}}</option>
+            {{/each}}
+        </select>
+    </div>
+  </div>
+
+   <div class= "form-group">
+     <label class="control-label col-xs-2">Suppliers</label>
+     <div class="col-xs-10">  
+        <select name="Id">
+          {{#each suppliers}}
+            <option value = "{{Id}}">{{supplier_name}}<option>
+          {{/each}}
+          </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="Amount" class="control-label col-xs-2">Qauntity</label>  
+     <div class="col-xs-5">
+      <input type="number" name="Qty" class="form-control" placeholder="Please Enter Sales Amount" required>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="number" class="control-label col-xs-2">Purchase Price</label>
+    <div class="col-xs-5">  
+          <input type="number" step="any" name="Purchase_price" placeholder="Please Enter Purchase Price" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="date" class="control-label col-xs-2">Purchase date </label>
+      <div class="col-xs-5">  
+            <input type="date" class="form-control" name="Purchase_date" placeholder="yyyy-mm-dd" required/>
+      </div>
+    
+    </div> 
+  <input type="submit" class="btn btn-primary" id="enter" onclick="myFunction()">  
+
+</form>
+
+
+<h1>Purchases</h1>
+{{#purchases}}
+  
+  <h2>{{supplier_name}}</h2>
+  <h2>{{product_name}}</h2>
+  <h2>{{Purchase_price}}</h2>
+  <h2>{{Qty}}</h2>
+  <h2>{{Purchase_date}}</h2>
+
+  <a href="/purchases/edit/{{Id}}">Edit</a>
+  <a href="/purchases/delete/{{Id}}">Delete</a>
+{{/purchases}}
+
+{{#no_purchases}}
+  <p>No purchases available yet. Add some above.</p>
+{{/no_purchases}}

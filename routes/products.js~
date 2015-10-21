@@ -1,10 +1,10 @@
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
-		    connection.query('SELECT * from Products ', [], function(err, results) {
+		    connection.query('SELECT * from Products', [], function(err, results) {
 			connection.query('SELECT * from Categories', [], function(err, categories) {
                if (err) return next(err);
-    		        res.render( 'products', {
+    		        res.render( 'sphe', {
 					no_products : results.length === 0,
 					products : results,
 					categories: categories
@@ -14,9 +14,9 @@ exports.show = function (req, res, next) {
 		});
 	});
 };
-//exports.home =function(req, res){
-	//res.render('home')
-//}
+exports.home =function(req, res){
+	res.render('home')
+}
 exports.showAdd = function(req, res){
 	res.render('add');
 }
@@ -27,7 +27,7 @@ exports.add = function (req, res, next) {
 		var input = JSON.parse(JSON.stringify(req.body));
 		var data = {
       		product_name : input.product_name,
-      		Category_Id :input.Category_Id
+      		category_id :input.category_id
   	    };      
 		connection.query('insert into Products set ?', data, function(err, results){
   		if (err) return next(err);
@@ -37,9 +37,9 @@ exports.add = function (req, res, next) {
 };
 
 exports.get = function(req, res, next){
-	var Id = req.params.Id;
+	var product_id = req.params.product_id;
 	req.getConnection(function(err, connection){
-		connection.query('SELECT * FROM Products WHERE Id = ?', [Id], function(err,rows){
+		connection.query('SELECT * FROM Products WHERE product_id = ?', [product_id], function(err,rows){
 			if(err) return next(err);
 			res.render('edit',{page_title:"Edit Customers - Node.js", data : rows[0]});
 		});
@@ -49,9 +49,9 @@ exports.get = function(req, res, next){
 exports.update = function(req, res, next){
 
 	var data = JSON.parse(JSON.stringify(req.body));
-    var Id = req.params.Id;
+    var product_id = req.params.product_id;
         req.getConnection(function(err, connection){
-			connection.query('UPDATE Products SET ? WHERE Id = ?', [data, Id], function(err, rows){
+			connection.query('UPDATE Products SET ? WHERE product_id = ?', [data, product_id], function(err, rows){
     			if (err) next(err);
           res.redirect('/products');
     		});
@@ -60,9 +60,9 @@ exports.update = function(req, res, next){
 };
 
 exports.delete = function(req, res, next){
-	var Id = req.params.Id;
+	var product_id = req.params.product_id;
 	req.getConnection(function(err, connection){
-		connection.query('DELETE FROM Products WHERE Id = ?', [Id], function(err,rows){
+		connection.query('DELETE FROM Products WHERE product_id = ?', [product_id], function(err,rows){
 			if(err) return next(err);
 			res.redirect('/products');
 		});

@@ -1,0 +1,27 @@
+<h1>Add</h1>
+
+<form action="/suppliers/add" method="POST">
+	Supplier: <input type="text" name="supplier_name" value="{{supplier_name}}">
+  
+	
+	<!--<select name="Category_Id">
+		{{#categories}}
+     <option value="{{Id}}">{{category_name}}</option>
+      {{/categories}}
+   </select>  -->
+
+
+	<input type="submit">
+</form>
+
+<h1>Suppliers</h1>
+{{#suppliers}}
+  
+  <h2>{{supplier_name}}</h2>
+  <a href="/suppliers/edit/{{Id}}">Edit</a>
+  <a href="/suppliers/delete/{{Id}}">Delete</a>
+{{/suppliers}}
+
+{{#no_products}}
+  <p>No products available yet. Add some above.</p>
+{{/no_products}}

@@ -1,0 +1,27 @@
+<h1>Add</h1>
+
+<form action="/categories/add" method="POST">
+	Category: <input type="text" name="category_name" value="{{category_name}}">
+  
+	
+	<!--<select name="Category_Id">
+		{{#categories}}
+     <option value="{{Id}}">{{category_name}}</option>
+      {{/categories}}
+   </select>  -->
+
+
+	<input type="submit">
+</form>
+
+<h1>Categories</h1>
+{{#categories}}
+  
+  <h2>{{category_name}}</h2>
+  <a href="/categories/edit/{{Id}}">Edit</a>
+  <a href="/categories/delete/{{Id}}">Delete</a>
+{{/categories}}
+
+{{#no_products}}
+  <p>No products available yet. Add some above.</p>
+{{/no_products}}

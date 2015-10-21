@@ -1,9 +1,11 @@
-INSERT INTO Categories(category_name) VALUES('Canned food');
-INSERT INTO Categories(category_name) VALUES('Carbohydrates food');
-INSERT INTO Categories(category_name) VALUES('Cosmetics products');
-INSERT INTO Categories(category_name) VALUES('Dairy products');
-INSERT INTO Categories(category_name) VALUES('Drinks & ice');
-INSERT INTO Categories(category_name) VALUES('Fruits products');
-INSERT INTO Categories(category_name) VALUES('Romantic gifts');
-INSERT INTO Categories(category_name) VALUES('Sweets products');
+INSERT INTO Categories (Name) VALUES ('Dairy');
+INSERT INTO Categories (Name) VALUES ('Bakery');
+INSERT INTO Categories (Name) VALUES ('Can Food');
+INSERT INTO Categories (Name) VALUES ('Beverages');
+INSERT INTO Categories (Name) VALUES ('Starch');
+INSERT INTO Categories (Name) VALUES ('Meat');
+INSERT INTO Categories (Name) VALUES ('Toiletries');
+INSERT INTO Categories (Name) VALUES ('Fruits');
+INSERT INTO Categories (Name) VALUES ('Candy');
+INSERT INTO Categories (Name) VALUES ('Extras');
 

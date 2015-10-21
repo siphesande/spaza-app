@@ -1,24 +1,24 @@
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
-		    connection.query('SELECT * from Products ', [], function(err, results) {
-			connection.query('SELECT * from Categories', [], function(err, categories) {
+		    
+			connection.query('SELECT * from Categories', [], function(err, results) {
                if (err) return next(err);
-    		        res.render( 'products', {
-					no_products : results.length === 0,
-					products : results,
-					categories: categories
+    		        res.render( 'categories', {
+					no_categories : results.length === 0,
+					//products : results,
+					categories: results
     		      });
 
-             });
-		});
-	});
+              });
+		 });
+	
 };
-//exports.home =function(req, res){
-	//res.render('home')
-//}
+exports.home =function(req, res){
+	res.render('home');
+}
 exports.showAdd = function(req, res){
-	res.render('add');
+	res.render('addCat');
 }
 
 exports.add = function (req, res, next) {
@@ -26,12 +26,12 @@ exports.add = function (req, res, next) {
 		if (err) return next(err);
 		var input = JSON.parse(JSON.stringify(req.body));
 		var data = {
-      		product_name : input.product_name,
-      		Category_Id :input.Category_Id
+      		category_name : input.category_name,
+      		Id :input.Id
   	    };      
-		connection.query('insert into Products set ?', data, function(err, results){
+		connection.query('insert into Categories set ?', data, function(err, results){
   		if (err) return next(err);
-			res.redirect('/products');
+			res.redirect('/categories');
 		});
 	});
 };
@@ -39,7 +39,7 @@ exports.add = function (req, res, next) {
 exports.get = function(req, res, next){
 	var Id = req.params.Id;
 	req.getConnection(function(err, connection){
-		connection.query('SELECT * FROM Products WHERE Id = ?', [Id], function(err,rows){
+		connection.query('SELECT * FROM Categories WHERE Id = ?', [Id], function(err,rows){
 			if(err) return next(err);
 			res.render('edit',{page_title:"Edit Customers - Node.js", data : rows[0]});
 		});
@@ -51,20 +51,20 @@ exports.update = function(req, res, next){
 	var data = JSON.parse(JSON.stringify(req.body));
     var Id = req.params.Id;
         req.getConnection(function(err, connection){
-			connection.query('UPDATE Products SET ? WHERE Id = ?', [data, Id], function(err, rows){
+			connection.query('UPDATE Categories SET ? WHERE Id = ?', [data, Id], function(err, rows){
     			if (err) next(err);
-          res.redirect('/products');
+          res.redirect('/categories');
     		});
 
     });
 };
 
 exports.delete = function(req, res, next){
-	var Id = req.params.Id;
+	var Id= req.params.Id;
 	req.getConnection(function(err, connection){
-		connection.query('DELETE FROM Products WHERE Id = ?', [Id], function(err,rows){
+		connection.query('DELETE FROM Categories WHERE Id = ?', [Id], function(err,rows){
 			if(err) return next(err);
-			res.redirect('/products');
+			res.redirect('/categories');
 		});
 	});
 };

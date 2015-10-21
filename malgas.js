@@ -6,12 +6,11 @@ var express = require('express'),
     myConnection = require('express-myconnection'),//express-my connection module
     bodyParser = require('body-parser'),
     products = require('./routes/products'),
-    sales = require('./routes/sales');
-    categories = require('./routes/categories')
+    sales = require('./routes/sales'),
+    categories = require('./routes/categories'),
+    suppliers = require('./routes/suppliers'),
+    purchases =  require('./routes/purchases');
 
-
-
-    
 var app = express();
 
 var dbOptions = {
@@ -19,7 +18,7 @@ var dbOptions = {
       user: 'root',
       password: '08386354',
       port: 3306,
-      database: 'spaza_app'
+      database: 'spaza'
 };
 
 //setup template handlebars as the template engine
@@ -41,35 +40,50 @@ function errorHandler(err, req, res, next) {
 }
 
 //setup the handlers
-app.get('/',products.home);
-app.get('/', products.show);
+app.get('/',function(req,res){res.render('index');});
 app.get('/products', products.show);
-app.get('/products/edit/:product_id', products.get);
-app.post('/products/update/:product_id', products.update);
+app.get('/products/edit/:Id', products.get);
+app.post('/products/update/:Id', products.update);
 app.get('/products/add', products.showAdd);
 app.post('/products/add', products.add);
 //this should be a post but this is only an illustration of CRUD - not on good practices
-app.get('/products/delete/:product_id', products.delete);
+app.get('/products/delete/:Id', products.delete);
 
 
 
 
 
- app.get('/',sales.home);
- app.get('/', sales.show);
+ 
  app.get('/sales', sales.show);
- app.get('/sales/edit/:id', sales.getSales);
- app.post('/sales/update/:id', sales.update);
- app.get('/sales/addSales', sales.showAdd);
- app.post('/sales/addSales', sales.addSales);
-// //this should be a post but this is only an illustration of CRUD - not on good practices
- app.get('/sales/delete/:id', products.delete);
+ app.post('/sales/add',sales.add);
+ app.get('/sales/edit/:Id', sales.getSales);
+ app.post('/sales/update/:Id', sales.update);
+ //app.get('/sales/addSales', sales.showAdd);
+ //this should be a post but this is only an illustration of CRUD - not on good practices
+ app.get('/sales/delete/:Id', sales.delete);
 
 
 
-app.get('/',categories.home);
-app.get('/',categories.show);
-app.get('/categories')
+
+app.get('/categories', categories.show);
+app.post('/categories/add', categories.add);
+app.get('/categories/edit:Id',categories.get);
+app.get('/categories/update/:Id',categories.update);
+app.get('/categories/delete/:Id', categories.delete);
+
+
+app.get('/purchases', purchases.show);
+app.post('/purchases/add',purchases.add);
+app.get('/purchases/edit:Id', purchases.get);
+app.get('/purchases/update/:Id', purchases.update);
+app.get('/purchases/delete/:Id', purchases.delete);
+
+
+app.get('/suppliers', suppliers.show);
+app.post('/suppliers/add',suppliers.add);
+app.get('/suppliers/edit:Id', suppliers.get);
+app.get('/suppliers/update/:Id', suppliers.update);
+app.get('/suppliers/delete/:Id', suppliers.delete);
 
 
 
@@ -81,5 +95,5 @@ var portNumber = process.env.CRUD_PORT_NR || 3000;
 
 //start everything up
 app.listen(portNumber, function () {
-    console.log('Create, Read, Update, and Delete (CRUD) example server listening on:', portNumber);
+console.log('Create, Read, Update, and Delete (CRUD) example server listening on:', portNumber);
 });
