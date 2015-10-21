@@ -1,0 +1,70 @@
+exports.show = function (req, res, next) {
+	req.getConnection(function(err, connection){
+		if (err) return next(err);
+		    connection.query('SELECT * from Products', [], function(err, results) {
+			
+               if (err) return next(err);
+    		        res.render( 'categories', {
+					no_products : results.length === 0,
+					categories : results,
+					
+    		      });
+
+             });
+		
+	
+};
+exports.home =function(req, res){
+	res.render('home')
+}
+exports.showAdd = function(req, res){
+	res.render('add');
+}
+
+exports.addCat = function (req, res, next) {
+	req.getConnection(function(err, connection){
+		if (err) return next(err);
+		var input = JSON.parse(JSON.stringify(req.body));
+		var data = {
+      		category_name : input.category_name,
+      		//category_id :input.category_id
+  	    };      
+		connection.query('insert into Categories set ?', data, function(err, results){
+  		if (err) return next(err);
+			res.redirect('/categories');
+		});
+	});
+};
+
+exports.get = function(req, res, next){
+	var product_id = req.params.product_id;
+	req.getConnection(function(err, connection){
+		connection.query('SELECT * FROM Categories WHERE id = ?', [id], function(err,rows){
+			if(err) return next(err);
+			res.render('edit',{page_title:"Edit Customers - Node.js", data : rows[0]});
+		});
+	});
+};
+
+exports.update = function(req, res, next){
+
+	var data = JSON.parse(JSON.stringify(req.body));
+    var product_id = req.params.product_id;
+        req.getConnection(function(err, connection){
+			connection.query('UPDATE Categories SET ? WHERE id = ?', [data, id], function(err, rows){
+    			if (err) next(err);
+          res.redirect('/categories');
+    	});
+
+    });
+};
+
+exports.delete = function(req, res, next){
+	var product_id = req.params.product_id;
+	req.getConnection(function(err, connection){
+		connection.query('DELETE FROM Categories WHERE id = ?', [id], function(err,rows){
+			if(err) return next(err);
+			res.redirect('/categories');
+		});
+	});
+};

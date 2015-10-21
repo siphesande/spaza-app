@@ -43,7 +43,7 @@ exports.addSales = function(req, res, next) {
      });
 };
 exports.getSales = function (req,res, next){
-	var id = req.params.id;
+	var id = req.params.Id;
 	req.getConnection(function(err,connection){
 		connection.query('SELECT * FROM Sales WHERE id = ?',[id], function (err,rows){
 			if (err) return next(err);
@@ -54,7 +54,7 @@ exports.getSales = function (req,res, next){
  exports.update = function(req, res,next){
 
  	var data = JSON.parse(JSON.stringify(req.body));
- 	var id = req.params.id;
+ 	var id = req.params.Id;
  	    req.getConnection(function(err,connection){
  	    	connection.query('UPDATE Sales SET ? WHERE id = ?',[data, id], function(err, rows){
  	    		if(err) next(err);
@@ -65,9 +65,9 @@ exports.getSales = function (req,res, next){
 
  exports.delete = function(req, res, next){
 
- 	var id = req.params.id;
+ 	var id = req.params.Id;
  	req.getConnection(function(err, connection){
- 		connection.query('DELETE FROM Sales WHERE id = ?', [id],function(err,rows){
+ 		connection.query('DELETE FROM Sales WHERE Id = ?', [Id],function(err,rows){
  			if(err) return next(err);
  			res.redirect('/sales');
  		});

@@ -7,7 +7,11 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     products = require('./routes/products'),
     sales = require('./routes/sales');
+    categories = require('./routes/categories')
 
+
+
+    
 var app = express();
 
 var dbOptions = {
@@ -59,10 +63,13 @@ app.get('/products/delete/:product_id', products.delete);
  app.get('/sales/addSales', sales.showAdd);
  app.post('/sales/addSales', sales.addSales);
 // //this should be a post but this is only an illustration of CRUD - not on good practices
-app.get('/sales/delete/:id', products.delete);
+ app.get('/sales/delete/:id', products.delete);
 
 
 
+app.get('/',categories.home);
+app.get('/',categories.show);
+app.get('/categories')
 
 
 
