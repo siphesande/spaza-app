@@ -1,10 +1,52 @@
-<h1>Edit</h1>
+<!---<h1>Edit Sale</h1>
 {{#data}}
 <form action="/sales/update/{{Id}}" method = "POST">
-	Description:<input type="text" name="Name" value="{{Name}}">
+	Description:<input type="text" name="product_name" value="{{product_name}}">
 	<input type="submit">
 </form>
-{{/data}}
+{{/data}}--><h1>EDIT</h1>
+
+<form action="sales/add" method="POST" class="form-horizontal" >
+      
+	<!--<div class="form-group">
+		<label class="control-label col-xs-2">Products</label>
+		<div class="col-xs-5">	 
+     			<select name="Id">
+    				{{#each products}}
+      					<option value = "{{Id}}">{{product_name}}</option>
+    				{{/each}}
+  			</select>
+		</div>
+
+	</div>-->
+
+</div>
+
+	<div class="form-group">
+		<label for="Amount" class="control-label col-xs-2">Qauntity</label>	 
+		 <div class="col-xs-5">
+			<input type="number" name="Qty" class="form-control" placeholder="Please Enter Sales Amount" required>
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="number" class="control-label col-xs-2">Price</label>
+		<div class="col-xs-5">	 
+     			<input type="number" step="any" name="Sales_price" placeholder="Please Enter Sales Price" required>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="date" class="control-label col-xs-2">Date</label>
+			<div class="col-xs-5">	 
+     				<input type="date" class="form-control" name="Sales_date" placeholder="yyyy-mm-dd" required/>
+			</div>
+		
+		</div> 
+ 	<input type="submit" class="btn btn-primary" id="enter" onclick="myFunction()">  
+
+</form>
 
 
 

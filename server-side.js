@@ -55,29 +55,30 @@ app.get('/products/delete/:Id', products.delete);
  app.get('/sales/edit/:Id', sales.getSales);
  app.post('/sales/update/:Id', sales.update);
  //app.get('/sales/addSales', sales.showAdd);
- //this should be a post but this is only an illustration of CRUD - not on good practices
+ 
  app.get('/sales/delete/:Id', sales.delete);
 
 
 
 
 app.get('/categories', categories.show);
+app.get('/categories/add', categories.showAdd);
 app.post('/categories/add', categories.add);
-app.get('/categories/edit:Id',categories.get);
+app.get('/categories/edit/:Id', categories.get);
 app.get('/categories/update/:Id',categories.update);
 app.get('/categories/delete/:Id', categories.delete);
 
 
 app.get('/purchases', purchases.show);
 app.post('/purchases/add',purchases.add);
-app.get('/purchases/edit:Id', purchases.get);
+app.get('/purchases/edit/:Id', purchases.get);
 app.get('/purchases/update/:Id', purchases.update);
 app.get('/purchases/delete/:Id', purchases.delete);
 
 
 app.get('/suppliers', suppliers.show);
 app.post('/suppliers/add',suppliers.add);
-app.get('/suppliers/edit:Id', suppliers.get);
+app.get('/suppliers/edit/:Id', suppliers.get);
 app.get('/suppliers/update/:Id', suppliers.update);
 app.get('/suppliers/delete/:Id', suppliers.delete);
 

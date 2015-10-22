@@ -5,7 +5,7 @@ exports.show = function (req, res, next) {
 			connection.query('SELECT * from Suppliers', [], function(err, results) {
                if (err) return next(err);
     		        res.render( 'suppliers', {
-					no_categories : results.length === 0,
+					no_suppliers : results.length === 0,
 					//products : results,
 					suppliers: results
     		      });

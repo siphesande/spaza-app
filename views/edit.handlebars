@@ -2,7 +2,27 @@
 
 {{#data}}
 <form action="/products/update/{{Id}}" method="POST">
-	Description: <input type="text" name="product_name" value="{{product_name}}">	
-	<input type="submit">
+	Product: <input type="text" name="product_name" value="{{product_name}}">	
+	
+	<select name="category_Id" >
+    <option value="{{category_Id}}">{{category_name}}</option>
+  
+   </select>  
+
+<select class="selectpicker" data-style="btn-primary">
+    <option value="{{category_Id}}">{{category_name}}</option>
+ </select>
+
+<select class="selectpicker" data-style="btn-inverse">
+     <option value="{{category_Id}}">{{category_name}}</option>
+  </select>
+
+  <select class="selectpicker" multiple data-max-options="2">
+    <option>Mustard</option>
+    <option>Ketchup</option>
+    <option>Relish</option>
+  </select>
+
+   <input type="submit">
 </form>
 {{/data}}
