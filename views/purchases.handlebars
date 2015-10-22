@@ -1,29 +1,4 @@
 <h1>Add</h1>
-
-<!--<form action="/purchases/add" method="POST">
-	
-  QTY: <input type="text" name="Qty" value="{{Qty}}">
-  Purchase Date:<input type="date" name="Purchase_date" value="{{Purchase_date}}">
-  Purchase Price:<input type="number" name="Purchase_price"value="{{Purchase_price}}">
-  
-	
-	<select name="Product_Id">
-		{{#products}}
-     <option value="{{Id}}">{{product_name}}</option>
-      {{/products}}
-   </select>
-
-   <select name="Supplier_Id">
-    {{#suppliers}}
-     <option value="{{Id}}">{{supplier_name}}</option>
-      {{/suppliers}}
-   </select>
-
-<input type="submit">
-</form>-->
-
-
-
 <form action="purchases/add" method="POST" class="form-horizontal" >
       
   <div class="form-group">
@@ -91,3 +66,27 @@
 {{#no_purchases}}
   <p>No purchases available yet. Add some above.</p>
 {{/no_purchases}}
+
+
+
+<!--<form action="/purchases/add" method="POST">
+  
+  QTY: <input type="text" name="Qty" value="{{Qty}}">
+  Purchase Date:<input type="date" name="Purchase_date" value="{{Purchase_date}}">
+  Purchase Price:<input type="number" name="Purchase_price"value="{{Purchase_price}}">
+  
+  
+  <select name="Product_Id">
+    {{#products}}
+     <option value="{{Id}}">{{product_name}}</option>
+      {{/products}}
+   </select>
+
+   <select name="Supplier_Id">
+    {{#suppliers}}
+     <option value="{{Id}}">{{supplier_name}}</option>
+      {{/suppliers}}
+   </select>
+
+<input type="submit">
+</form>-->
