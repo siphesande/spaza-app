@@ -5,7 +5,11 @@ app = Flask(__name__)
 def mobile():
 
 
-	return render_template('mobile.html')
+	return render_template('mobile.html',
+		                    MTN_Pay_Per_Second= {"Peak SMS Rates" : "R 0.50",
+		                                         "Call Rates In Network" : "R 0.70",
+		                                         "Call Rates Other Network" :"R 0.79"}
+
    
 
 if __name__ == "__main__":

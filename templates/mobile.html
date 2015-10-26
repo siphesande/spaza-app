@@ -26,7 +26,13 @@
            <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">MTN<span class="caret"></span></a>
            <ul class="dropdown-menu">
-            <li><a href="#">MTN Pay Per Second</a></li>
+            <li><a href="#">MTN Pay Per Second</a>{% if MTN_Pay_Per_Second %}
+              <hi style = "color: red;">Hello, {{MTN_Pay_Per_Second}}!</hi>
+            {% else %}
+              <hi> Not available!<hi>
+              {% endif %}
+
+            </li>
             <li><a href="#">MTN Zone Per Second</a></li>
               </ul>
         </li>

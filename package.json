@@ -11,6 +11,7 @@
   "dependencies": {
     "express": "~4.13.3",
     "express-handlebars": "~2.0.1",
-    "mysql": "~2.9.0"
+    "mysql": "~2.9.0",
+    "body-parser":"~1.12.0"
   }
 }
