@@ -15,13 +15,24 @@
 </form>
 
 <h1>Suppliers</h1>
+<table class = "table" id = "Categories">
+  </tr>
+       <th>Supplier Id</th>
+       <th>Supplier Name</th>
+  </tr>
 {{#suppliers}}
-  
-  <h2>{{supplier_name}}</h2>
-  <a href="/suppliers/edit/{{Id}}">Edit</a>
-  <a href="/suppliers/delete/{{Id}}">Delete</a>
+  <tr>
+  <th>{{Id}}</th>
+  <th>{{supplier_name}}</th>
+  <td><a href="/suppliers/edit/{{Id}}">Edit</a></td>
+  <td><a href="/suppliers/delete/{{Id}}">Delete</a></td>
+</tr>
 {{/suppliers}}
 
 {{#no_suppliers}}
   <p>No products available yet. Add some above.</p>
 {{/no_suppliers}}
+
+</table>
+
+

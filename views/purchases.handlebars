@@ -51,23 +51,31 @@
 
 
 <h1>Purchases</h1>
+<table class = "table" id = "Purchase">
+  <tr>
+     <th>Supplier Name</th>
+     <th>Product Name</th>
+     <th>Purchase Price</th>
+     <th>Qty</th>
+     <th>Purchase Date<th>
+</tr>
 {{#purchases}}
-  
-  <h2>{{supplier_name}}</h2>
-  <h2>{{product_name}}</h2>
-  <h2>{{Purchase_price}}</h2>
-  <h2>{{Qty}}</h2>
-  <h2>{{Purchase_date}}</h2>
-
-  <a href="/purchases/edit/{{Id}}">Edit</a>
-  <a href="/purchases/delete/{{Id}}">Delete</a>
+  <tr>
+  <th>{{supplier_name}}</th>
+  <th>{{product_name}}</th>
+  <th>{{Purchase_price}}</th>
+  <th>{{Qty}}</th>
+  <th>{{Purchase_date}}</th>
+ </tr>
+  <td><a href="/purchases/edit/{{Id}}">Edit</a></td>
+  <td><a href="/purchases/delete/{{Id}}">Delete</a></td>
 {{/purchases}}
 
 {{#no_purchases}}
   <p>No purchases available yet. Add some above.</p>
 {{/no_purchases}}
 
-
+</table>
 
 <!--<form action="/purchases/add" method="POST">
   
@@ -90,3 +98,6 @@
 
 <input type="submit">
 </form>-->
+
+
+

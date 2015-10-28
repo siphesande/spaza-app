@@ -40,17 +40,25 @@
 
 </form>
 <h1>Sales</h1>
+<table class = "table" id = "Sales">
+	<tr>
+     <th>Product Id</th>
+     <th>Product Name</th>
+     <th>Category Name</th>
+</tr>
 {{#sales}}
-  <h2>{{product_name}}</h2>
-  <h2>{{Sales_price}}</h2>
-  <h2>{{Qty}}</h2>
-  <h2>{{Sales_date}}</h2>
-  <a href="/sales/edit/{{Id}}">Edit</a>
-  <a href="/sales/delete/{{Id}}">Delete</a>
+<tr>
+  <th>{{product_name}}</th>
+  <th>{{Sales_price}}</th>
+  <th>{{Qty}}</th>
+  <th>{{Sales_date}}</th>
+  <td><a href="/sales/edit/{{Id}}">Edit</a></td>
+  <td><a href="/sales/delete/{{Id}}">Delete</a></td>
+</tr>
 {{/sales}}
 
 {{#no_sales}}
   <p>No sale available yet. Add some above.</p>
 {{/no_sales}}
 
-
+</tables>

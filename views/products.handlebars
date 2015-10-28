@@ -15,16 +15,26 @@
 </form>
 
 <h1>Products</h1>
+<table class = "table" id = "Products List">
+
+<tr>
+     <th>Product Id</th>
+     <th>Product Name</th>
+     <th>Category Name</th>
+</tr>
 {{#products}}
-  <h2>{{product_name}}</h2>
-  <h2>{{category_name}}</h2>
-  <a href="/products/edit/{{Id}}">Edit</a>
-  <a href="/products/delete/{{Id}}">Delete</a>
+  <tr>
+  <td>{{Id}}
+  <td>{{product_name}}</td>
+  <td>{{category_name}}</td>
+ <td> <a href="/products/edit/{{Id}}">Edit</a></td>
+ <td> <a href="/products/delete/{{Id}}">Delete</a></td>
+
+  <tr>
 {{/products}}
 
 {{#no_products}}
   <p>No products available yet. Add some above.</p>
 {{/no_products}}
 
-
-
+</table>

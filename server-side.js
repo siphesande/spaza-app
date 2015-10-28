@@ -10,7 +10,7 @@ var express = require('express'),
     categories = require('./routes/categories'),
     suppliers = require('./routes/suppliers'),
     purchases =  require('./routes/purchases');
-
+    
 var app = express();
 
 var dbOptions = {
@@ -81,6 +81,9 @@ app.post('/suppliers/add',suppliers.add);
 app.get('/suppliers/edit/:Id', suppliers.get);
 app.get('/suppliers/update/:Id', suppliers.update);
 app.get('/suppliers/delete/:Id', suppliers.delete);
+
+
+
 
 
 

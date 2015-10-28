@@ -17,13 +17,13 @@ def MTN_Pay_Per_Second():
 
 		                                         })
 
-@app.route("/plan1")	                        
+@app.route("/mtn_plan2")	                        
 def MTN_zone():
- return render_template('plan1.html',
-	                    MTN_Zone_Per_Second={"Peak SMS Rates" : "R 0.75",
-		                                         "Call Rates In Network" : "R 2.50",
-		                                         "Call Rates Other Network" : "R 2.50",
-		                                         "Data Per MB" : "R 2.00"
+    return render_template('plan2.html',
+	                       MTN_Zone_Per_Second={"Peak SMS Rates" : "R 0.75",
+		                                        "Call Rates In Network" : "R 2.50",
+		                                        "Call Rates Other Network" : "R 2.50",
+		                                        "Data Per MB" : "R 2.00"
 		                                         })	       
 
    

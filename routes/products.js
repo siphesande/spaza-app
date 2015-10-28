@@ -1,11 +1,11 @@
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
-		    connection.query('SELECT * from Products ', [], function(err, results) {
-			connection.query('SELECT * from Categories', [], function(err, categories) {
+		    connection.query('SELECT Products.Id, Products.product_name, Categories.category_name FROM Products INNER JOIN Categories ON Categories.Id = Products.Category_Id ORDER BY Id LIMIT 0 , 30', [], function(err, results) {
+			connection.query('SELECT * FROM Categories', [], function(err, categories) {
                if (err) return next(err);
     		        res.render( 'products', {
-					no_products : results.length === 0,
+					no_products :results.length === 0,
 					products : results,
 					categories: categories
     		      });
@@ -40,8 +40,10 @@ exports.get = function(req, res, next){
 	var Id = req.params.Id;
 	req.getConnection(function(err, connection){
 		connection.query('SELECT * FROM Products WHERE Id = ?', [Id], function(err,rows){
+		connection.query('SELECT Products.Id, Products.product_name, Categories.category_name FROM Products INNER JOIN Categories ON Categories.Id = Products.Category_Id ORDER BY Id LIMIT 0 , 30', [], function(err, categories) {	
 			if(err) return next(err);
 			res.render('edit',{page_title:"Edit Customers - Node.js", data : rows[0]});
+		});
 		});
 	});
 };
