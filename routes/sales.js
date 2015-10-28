@@ -8,7 +8,7 @@ exports.show =function (req, res, next){
             connection.query('SELECT * from Products',[], function(err, products){
             	if (err) return next(err);
             	res.render('sales',{
-            	// no_sales : results.length === 0,
+            	no_sales : results.length === 0,
             	sales : results,
             	products : products
             	});
@@ -17,9 +17,9 @@ exports.show =function (req, res, next){
 		 });
 	});
 };
-exports.home =function(req, res){
-	res.render('home')
-}
+//exports.home =function(req, res){
+	//res.render('home')
+//}
 
 exports.showAdd = function (req, res){
 	res.render('addSales');
@@ -82,11 +82,25 @@ exports.getSales = function (req,res, next){
  	});
  }
 
+ exports.mostPopurPrd =function (req, res, next){
 
+    req.getConnection(function(err, connection){
 
+        if (err) return next(err);
+            //connection.query('SELECT Qty AS AmtSold ,Sales_date, Sales_price, product_name from Sales s INNER JOIN Products p ON s.Product_Id = p.Id ORDER BY Sales_date DESC',[], function(err, results){
+            
+            connection.query('SELECT * from Products',[], function(err, most){
+                if (err) return next(err);
+                res.render('mostPopurPrd',{
+                no_sales : results.length === 0,
+                
+                most : most
+               
+            });
 
-
-
+         });
+    });
+};
 
 
 

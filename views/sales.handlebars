@@ -37,15 +37,15 @@
 		
 		</div> 
  	<input type="submit" class="btn btn-primary" id="enter" onclick="myFunction()">  
-
 </form>
+
 <h1>Sales</h1>
-<table class = "table" id = "Sales">
+<table class ="table" id = "Sales">
 	<tr>
      <th>Product Id</th>
      <th>Product Name</th>
      <th>Category Name</th>
-</tr>
+   </tr>
 {{#sales}}
 <tr>
   <th>{{product_name}}</th>
@@ -60,5 +60,4 @@
 {{#no_sales}}
   <p>No sale available yet. Add some above.</p>
 {{/no_sales}}
-
 </tables>

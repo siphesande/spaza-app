@@ -46,6 +46,7 @@ app.get('/products/edit/:Id', products.get);
 app.post('/products/update/:Id', products.update);
 app.get('/products/add', products.showAdd);
 app.post('/products/add', products.add);
+app.get('/products/mostPopulerPrd', products.mostPopulerPrd);
 //this should be a post but this is only an illustration of CRUD - not on good practices
 app.get('/products/delete/:Id', products.delete);
 
@@ -91,9 +92,9 @@ app.get('/suppliers/delete/:Id', suppliers.delete);
 app.use(errorHandler);
 
 //configure the port number using and environment number
-var portNumber = process.env.CRUD_PORT_NR || 3000;
+var portNumber = process.env.CRUD_PORT_NR || 3001;
 
 //start everything up
-app.listen(portNumber, function () {
+app.listen(portNumber, function (){
 console.log('Create, Read, Update, and Delete (CRUD) spaza-app server listening on:', portNumber);
 });

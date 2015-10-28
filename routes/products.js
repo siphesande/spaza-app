@@ -40,10 +40,10 @@ exports.get = function(req, res, next){
 	var Id = req.params.Id;
 	req.getConnection(function(err, connection){
 		connection.query('SELECT * FROM Products WHERE Id = ?', [Id], function(err,rows){
-		connection.query('SELECT Products.Id, Products.product_name, Categories.category_name FROM Products INNER JOIN Categories ON Categories.Id = Products.Category_Id ORDER BY Id LIMIT 0 , 30', [], function(err, categories) {	
+			
 			if(err) return next(err);
 			res.render('edit',{page_title:"Edit Customers - Node.js", data : rows[0]});
-		});
+		
 		});
 	});
 };
@@ -70,3 +70,18 @@ exports.delete = function(req, res, next){
 		});
 	});
 };
+exports.mostPopulerPrd =function (req, res, next){
+    var id = req.params.Id;
+    req.getConnection(function(err, connection){
+
+        connection.query('SELECT Products.product_name, Products.Id, SUM( Sales.qty ) AS qty FROM Sales INNER JOIN Products ON Sales.product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Products.product_name ORDER BY qty DESC LIMIT 1 ',[], function(err, results){
+                if (err) return next(err);
+                res.render('mostPopulerPrd',{
+                    most : results
+               
+            });
+
+         });
+    });
+};
+
