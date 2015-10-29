@@ -41,7 +41,7 @@ exports.get = function(req, res, next){
 	req.getConnection(function(err, connection){
 		connection.query('SELECT * FROM Categories WHERE Id = ?', [Id], function(err,rows){
 			if(err) return next(err);
-			res.render('editCategories',{page_title:"Edit Customers - Node.js", data : rows[0]});
+			res.render('editCategories',{page_title:"Edit Categories - Node.js", data : rows[0]});
 		});
 	});
 };
@@ -53,10 +53,9 @@ exports.update = function(req, res, next){
         req.getConnection(function(err, connection){
 			connection.query('UPDATE Categories SET ? WHERE Id = ?', [data, Id], function(err, rows){
     			if (err) next(err);
-          res.redirect('/categories');
+                res.redirect('/categories');
     		});
-
-    });
+        });
 };
 
 exports.delete = function(req, res, next){
@@ -68,3 +67,33 @@ exports.delete = function(req, res, next){
 		});
 	});
 };
+
+exports.mostPopulerCat =function (req, res, next){
+    var id = req.params.Id;
+    req.getConnection(function(err, connection){
+
+        connection.query('SELECT Categories.Id,Categories.category_name, sum( Sales.qty ) AS TotalQty FROM Sales INNER JOIN Products ON Sales.product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Categories.category_name ORDER BY TotalQty DESC LIMIT  1;',[], function(err, results){
+                if (err) return next(err);
+                res.render('mostPopulerCat',{
+                most : results
+               
+            });
+
+         });
+    });
+};
+
+exports.leastPopulerCat =function (req, res, next){
+    var id = req.params.Id;
+    req.getConnection(function(err, connection){
+        connection.query('SELECT Categories.Id,Categories.category_name, sum( Sales.qty ) AS TotalQty FROM Sales INNER JOIN Products ON Sales.product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Categories.category_name ORDER BY TotalQty ASC LIMIT  1;',[], function(err, results){
+                if (err) return next(err);
+                res.render('leastPopulerCat',{
+                least : results
+               
+            });
+
+         });
+    });
+};
+

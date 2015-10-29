@@ -4,7 +4,7 @@ exports.show =function (req, res, next){
 
 		if (err) return next(err);
 		    //connection.query('SELECT Qty AS AmtSold ,Sales_date, Sales_price, product_name from Sales s INNER JOIN Products p ON s.Product_Id = p.Id ORDER BY Sales_date DESC',[], function(err, results){
-            connection.query('SELECT Sales.Id,Products.product_name, Sales.Sales_date,Sales.qty,Sales.Sales_price FROM Sales INNER JOIN Products ON Sales.Product_Id = Products.Id ORDER BY Sales.Sales_date',[],function(err, results){
+            connection.query('SELECT Sales.Id,Products.product_name,Sales.Qty, Sales.Sales_date,Sales.qty,Sales.Sales_price FROM Sales INNER JOIN Products ON Sales.Product_Id = Products.Id ORDER BY Sales.Sales_date DESC',[],function(err, results){
             connection.query('SELECT * from Products',[], function(err, products){
             	if (err) return next(err);
             	res.render('sales',{

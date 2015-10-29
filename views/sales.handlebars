@@ -44,10 +44,13 @@
 	<tr>
      <th>Product Id</th>
      <th>Product Name</th>
-     <th>Category Name</th>
+     <th>Sales Price</th>
+     <th>Quantity</th>
+     <th>Sales Date</th>
    </tr>
 {{#sales}}
 <tr>
+  <th>{{Id}}</th>
   <th>{{product_name}}</th>
   <th>{{Sales_price}}</th>
   <th>{{Qty}}</th>
@@ -60,4 +63,5 @@
 {{#no_sales}}
   <p>No sale available yet. Add some above.</p>
 {{/no_sales}}
+
 </tables>
