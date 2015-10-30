@@ -1,4 +1,4 @@
-<h1>Edit Product</h1>
+<h2>Edit Product</h2>
 
 {{#data}}
 <form action="/products/update/{{Id}}" method="POST">	
@@ -8,12 +8,12 @@
 	
 	<select name="Category_Id">
       {{#category}}
-     <option value="{{Category_Id}}">{{category_name}}</option>
+     <option value="{{Id}}">{{category_name}}</option>
        {{/category}}
     </select>
    
 
- <input type="submit">
+ <input type="submit" class="btn btn-success" id="enter" onclick="myFunction()">  
 
  </form>
 

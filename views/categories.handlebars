@@ -1,20 +1,20 @@
-<h1>Add</h1>
+<h2>Add Category</h2>
 
 <form action="/categories/add" method="POST">
 	Category: <input type="text" name="category_name" value="{{category_name}}">
   
-	
+	<input type="submit" class="btn btn-success" id="enter" onclick="myFunction()">  
 	<!--<select name="Category_Id">
 		{{#categories}}
      <option value="{{Id}}">{{category_name}}</option>
       {{/categories}}
-   </select>  -->
+   </select>  
 
 
-	<input type="submit">
+	<input type="submit">-->
 </form>
 
-<h1>Categories</h1>
+<h2>Categories</h2>
 <table class = "table" id = "Categories">
   </tr>
        <th>Category Id</th>

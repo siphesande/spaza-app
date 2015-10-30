@@ -1,11 +1,11 @@
-<h1>Add</h1>
+<h2>Add Purchases</h2>
 
 <form action="purchases/add" method="POST" class="form-horizontal" >
       
   <div class="form-group">
     <label class="control-label col-xs-2">Products</label>
     <div class="col-xs-10">  
-          <select name="Id">
+          <select name="Product_Id">
             {{#each products}}
                 <option value = "{{Id}}">{{product_name}}</option>
             {{/each}}
@@ -16,7 +16,7 @@
    <div class= "form-group">
      <label class="control-label col-xs-2">Suppliers</label>
      <div class="col-xs-10">  
-        <select name="Id">
+        <select name="Supplier_Id">
           {{#each suppliers}}
             <option value = "{{Id}}">{{supplier_name}}<option>
           {{/each}}
@@ -27,7 +27,7 @@
   <div class="form-group">
     <label for="Amount" class="control-label col-xs-2">Qauntity</label>  
      <div class="col-xs-5">
-      <input type="number" name="Qty" class="form-control" placeholder="Please Enter Sales Amount" required>
+      <input type="number" name="Qty" value="{{Qty}}"class="form-control" placeholder="Please Enter  Amount" required>
     </div>
   </div>
 
@@ -35,7 +35,7 @@
   <div class="form-group">
     <label for="number" class="control-label col-xs-2">Purchase Price</label>
     <div class="col-xs-5">  
-          <input type="number" step="any" name="Purchase_price" placeholder="Please Enter Purchase Price" required>
+          <input type="number" step="any" name="Purchase_price" value="{{Purchase_price}}"placeholder="Please Enter Purchase Price" required>
     </div>
   </div>
 
@@ -46,24 +46,26 @@
       </div>
     
     </div> 
-  <input type="submit" class="btn btn-primary" id="enter" onclick="myFunction()">  
+  <input type="submit" class="btn btn-success" id="enter" onclick="myFunction()">  
 
 </form>
 
 
-<h1>Purchases</h1>
+<h2>Purchases</h2>
 <table class = "table" id = "Purchase">
   <tr>
-     <th>Supplier Name</th>
+     
      <th>Product Name</th>
+     <th>Supplier Name</th>
      <th>Purchase Price</th>
-     <th>Qty</th>
+     <th>Quantity</th>
      <th>Purchase Date<th>
 </tr>
 {{#purchases}}
   <tr>
-  <th>{{supplier_name}}</th>
+
   <th>{{product_name}}</th>
+  <th>{{supplier_name}}</th>
   <th>{{Purchase_price}}</th>
   <th>{{Qty}}</th>
   <th>{{Purchase_date}}</th>

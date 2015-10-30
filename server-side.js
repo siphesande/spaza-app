@@ -78,6 +78,7 @@ app.get('/purchases', purchases.show);
 app.post('/purchases/add',purchases.add);
 app.get('/purchases/edit/:Id', purchases.get);
 app.post('/purchases/update/:Id', purchases.update);
+//app.get('/purchases/updete/:Id')
 app.get('/purchases/delete/:Id', purchases.delete);
 
 
