@@ -30,6 +30,7 @@ exports.add = function (req, res, next) {
   	    };      
 		connection.query('insert into Products set ?', data, function(err, results){
   		if (err) return next(err);
+  		console.log("Error inserting : %s ",err );
 			res.redirect('/products');
 		});
 	});
@@ -41,24 +42,25 @@ exports.get = function(req, res, next){
 		connection.query('SELECT * FROM Products WHERE Id = ?', [Id], function(err,rows){
 		connection.query('SELECT * FROM Categories', [], function(err, results) {	
 			if(err) return next(err);
+            console.log(results);
 			res.render('edit',{page_title:"Edit Products - Node.js", 
 			data : rows[0],
 			category : results
 
-
+   
 			});
 		 });
 
-		});
-	});
+	   });
+   });
 };
 
 exports.update = function(req, res, next){
 
 	var data = JSON.parse(JSON.stringify(req.body));
     var Id = req.params.Id;
-        req.getConnection(function(err, connection){
-			connection.query('UPDATE Products SET ? WHERE Id = ?', [data, Id], function(err, rows){
+    req.getConnection(function(err, connection){
+			connection.query('UPDATE Products SET ? WHERE Id = ?',[data, Id], function(err, rows){
     			if (err) return next(err);
                 res.redirect('/products');
     		});

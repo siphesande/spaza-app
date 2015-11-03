@@ -3,11 +3,14 @@
 <form action="/sales/update/{{Id}}" method = "POST">
 	Description:<input type="text" name="product_name" value="{{product_name}}">
 	<input type="submit">
-</form>
-{{/data}}--><h1>EDIT Sale</h1>
+</form>{
+{{/data}}-->
+
+
+<h1>EDIT Sale</h1>
 {{#data}}
 <form action="/sales/update/{{Id}}" method = "POST" class="form-horizontal" >
- </div>
+ 
 
 	<div class="form-group">
 		<label for="number" class="control-label col-xs-2">Qauntity</label>	 
@@ -31,10 +34,28 @@
 			</div>
 		
 		</div> 
+
+
+     
+     {{/data}}
+     <div class="form-group">
+		<label class="control-label col-xs-2">Products</label>
+		<div class="col-xs-5">	 
+     			<select name="Product_Id">
+    				{{#each product}}
+      					<option value ="{{Id}}">{{product_name}}</option>
+    				{{/each}}
+  			</select>
+		</div>
+
+	</div>
+
+
  	<input type="submit" class="btn btn-success" id="enter" onclick="myFunction()">  
 
 </form>
-{{/data}}
+
+
 
 
 

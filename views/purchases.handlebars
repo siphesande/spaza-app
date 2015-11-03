@@ -70,8 +70,10 @@
   <th>{{Qty}}</th>
   <th>{{Purchase_date}}</th>
  </tr>
-  <td><a href="/purchases/edit/{{Id}}">Edit</a></td>
-  <td><a href="/purchases/delete/{{Id}}">Delete</a></td>
+  <td> <a href="/purchases/edit/{{Id}}" class ="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+ <td><a href="/purchases/delete/{{Id}}" class="btn btn-danger">
+    <span class="glyphicon glyphicon-remove"></span> Delete 
+    </a></td>
 {{/purchases}}
 
 {{#no_purchases}}

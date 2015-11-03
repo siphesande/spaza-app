@@ -52,14 +52,14 @@ exports.update = function(req, res, next){
     var Id = req.params.Id;
         req.getConnection(function(err, connection){
 			connection.query('UPDATE Categories SET ? WHERE Id = ?', [data, Id], function(err, rows){
-    			if (err) next(err);
+    			if (err) return next(err);
                 res.redirect('/categories');
     		});
         });
 };
 
 exports.delete = function(req, res, next){
-	var Id= req.params.Id;
+	var Id = req.params.Id;
 	req.getConnection(function(err, connection){
 		connection.query('DELETE FROM Categories WHERE Id = ?', [Id], function(err,rows){
 			if(err) return next(err);

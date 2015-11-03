@@ -1,7 +1,21 @@
 <h1>Edit Category</h1>
-{{#data}}
+<!--
 <form action="/categories/update/{{Id}}" method = "POST">
 	Category:<input type="text" name="category_name" value="{{category_name}}">
 	<input type="submit" class="btn btn-primary" id="enter" onclick="myFunction()">  
 </form>
+-->
+
+
+{{#data}}
+<form action="/categories/update/{{Id}}" method="POST" class="form-inline" >
+ 	<div class="form-group">
+		<label for="text" class="control-label col-lg-3">Category</label>	 
+		 <div class="col-lg-9">
+			<input type="text" name="category_name" value="{{category_name}}" class="form-control" placeholder="Please Enter Category name" required>
+		</div>
+	</div>
+<input type="submit" class="btn btn-primary" id="enter" onclick="myFunction()">  
+
+</form>	
 {{/data}}

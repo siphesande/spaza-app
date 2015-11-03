@@ -15,23 +15,27 @@
 </form>
 
 <h2>Suppliers</h2>
-<table class = "table" id = "Categories">
+<table class ="table" id = "suppliers">
   </tr>
        <th>Supplier Id</th>
        <th>Supplier Name</th>
   </tr>
 {{#suppliers}}
-  <tr>
+<tr>
   <th>{{Id}}</th>
   <th>{{supplier_name}}</th>
-  <td><a href="/suppliers/edit/{{Id}}">Edit</a></td>
-  <td><a href="/suppliers/delete/{{Id}}">Delete</a></td>
+  <td><a href="/suppliers/edit/{{Id}}" class ="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+  </td>
+  <td><a href="/suppliers/delete/{{Id}}" class="btn btn-danger">
+     <span class="glyphicon glyphicon-remove"></span> Delete 
+     </a>
+   </td>
 </tr>
 {{/suppliers}}
 
-{{#no_suppliers}}
+<!-- {{#no_suppliers}}
   <p>No products available yet. Add some above.</p>
-{{/no_suppliers}}
+{{/no_suppliers}} -->
 
 </table>
 

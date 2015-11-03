@@ -1,5 +1,44 @@
+<form action="products/add" method="POST" class="form-inline" >
+  <div class="form-group">
+    <label for="text" class="control-label col-lg-3">Product</label>   
+     <div class="col-lg-5">
+      <input type="text" name="product_name" value="{{product_name}}" class="form-control" placeholder="Please Enter product name" required>
+    </div>
+  </div>
 
-<h2>Add Product</h2>
+<div class="form-group">
+    <label class="control-label col-lg-3">Category</label>
+    <div class="col-lg-3">   
+          <select name="Category_Id">
+           {{#categories}}
+                <option value = "{{Id}}">{{category_name}}</option>
+            {{/categories}}
+        </select>
+    </div>
+
+  </div>
+
+  <!--<a href="/products/add" class="btn btn-success">
+    <span class="glyphicon glyphicon-remove"></span>Submit 
+    </a></td>-->
+
+  
+
+<input type ="submit" class="btn btn-success" id="enter" onclick="myFunction()">  
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+<!--<h2>Add Product</h2>
 
 <form action="/products/add" method="POST">
 	Description: <input type="text" name="product_name" value="{{product_name}}">
@@ -12,7 +51,7 @@
    <input type="submit" class="btn btn-success" id="enter" onclick="myFunction()">  
 
 	<!--<input type="submit">-->
-</form>
+
 
 <h2>Products</h2>
 <table class = "table" id = "Products List">
@@ -27,10 +66,11 @@
   <td>{{Id}}
   <td>{{product_name}}</td>
   <td>{{category_name}}</td>
- <td> <a href="/products/edit/{{Id}}">Edit</a></td>
- <td> <a href="/products/delete/{{Id}}">Delete</a></td>
-
-  <tr>
+ <td> <a href="/products/edit/{{Id}}" class ="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+ <td><a href="/products/delete/{{Id}}" class="btn btn-danger">
+    <span class="glyphicon glyphicon-remove"></span> Delete 
+    </a></td>
+<tr>
 {{/products}}
 
 {{#no_products}}

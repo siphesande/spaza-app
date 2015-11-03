@@ -65,21 +65,20 @@ exports.update = function(req, res,next){
 
  	var data = JSON.parse(JSON.stringify(req.body));
  	var id = req.params.Id;
- 	    req.getConnection(function(err,connection){
- 	    	connection.query('UPDATE Purchases SET ? WHERE Id = ?',[data, id], function(err, rows){
- 	    		if(err) return next(err);
- 	    		res.redirect('/purchases');
- 	    	});
+ 	req.getConnection(function(err,connection){
+ 	    connection.query('UPDATE Purchases SET ? WHERE Id = ?',[data, id], function(err, rows){
+ 	      if(err) return next(err);
+ 	    	res.redirect('/purchases');
  	    });
+ 	});
 };
 
 exports.delete = function(req, res, next){
-
- 	var id = req.params.Id;
+  var id = req.params.Id;
  	req.getConnection(function(err, connection){
- 		connection.query('DELETE FROM Purchases WHERE Id = ?', [id],function(err,rows){
- 			if(err) return next(err);
- 			res.redirect('/purchases');
- 		});
- 	});
+ 		 connection.query('DELETE FROM Purchases WHERE Id = ?', [id],function(err,rows){
+ 			 if(err) return next(err);
+ 			 res.redirect('/purchases');
+ 		   });
+ 	 });
  }

@@ -42,7 +42,7 @@ exports.showAdd = function (req, res){
                              //sold :input.Qty
                 };
             connection.query('insert into Sales set ?', data, function(err, results) {
-                    if (err)
+                    if (err) return next(err);
                             console.log("Error inserting : %s ",err );
 
                     res.redirect('/sales');
@@ -54,9 +54,15 @@ exports.getSales = function (req,res, next){
 	var id = req.params.Id;
 	req.getConnection(function(err,connection){
 		connection.query('SELECT * FROM Sales WHERE id = ?',[id], function (err,rows){
+            connection.query('SELECT * from Products',[], function(err, product){
 			if (err) return next(err);
-			res.render('editSales' ,{page_title:"Edit Customers - Node.js", data : rows[0]});
-		});
+			res.render('editSales',{page_title:"Edit Sales - Node.js", 
+            data : rows[0],
+            product : product
+ 
+            });
+        });
+	});
 	});
 };
  exports.update = function(req, res,next){
@@ -65,7 +71,7 @@ exports.getSales = function (req,res, next){
  	var id = req.params.Id;
  	    req.getConnection(function(err,connection){
  	    	connection.query('UPDATE Sales SET ? WHERE Id = ?',[data, id], function(err, rows){
- 	    		if(err) next(err);
+ 	    		if(err)return next(err);
  	    		res.redirect('/sales');
  	        });
  	    });
@@ -93,7 +99,6 @@ exports.getSales = function (req,res, next){
                 if (err) return next(err);
                 res.render('mostPopurPrd',{
                 no_sales : results.length === 0,
-                
                 most : most
                
             });

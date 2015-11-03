@@ -40,8 +40,6 @@
 </form>
 
 <h2>Sales</h2>
-
-
 <table class ="table" id = "Sales">
 	<tr>
      <th>Product Id</th>
@@ -58,8 +56,10 @@
   <th>{{Qty}}</th>
   <th>{{Sales_date}}</th>
 </tr>
-  <td><a href="/sales/edit/{{Id}}">Edit</a></td>
-  <td><a href="/sales/delete/{{Id}}">Delete</a></td>
+  <td> <a href="/sales/edit/{{Id}}" class ="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+ <td><a href="/sales/delete/{{Id}}" class="btn btn-danger">
+    <span class="glyphicon glyphicon-remove"></span> Delete 
+    </a></td>
 
 {{/sales}}
 
