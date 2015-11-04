@@ -4,7 +4,7 @@
       
 	<div class="form-group">
 		<label class="control-label col-xs-2">Products</label>
-		<div class="col-xs-5">	 
+		<div class="col-xs-3">	 
      			<select name="Id">
     				{{#each products}}
       					<option value = "{{Id}}">{{product_name}}</option>
@@ -14,24 +14,24 @@
 
 	</div>
 
-	<div class="form-group">
-		<label for="Amount" class="control-label col-xs-2">Qauntity</label>	 
-		 <div class="col-xs-5">
+	<div class="form-group form-group-sm">
+		<label for="Amount" class="control-label col-xs-3">Qauntity</label>	 
+		 <div class="col-xs-3">
 			<input type="number" name="Qty" value="{{Qty}}" class="form-control" placeholder="Please Enter Sales Amount" required>
 		</div>
 	</div>
 
 
-	<div class="form-group">
-		<label for="number" class="control-label col-xs-2">Price</label>
-		<div class="col-xs-5">	 
-     			<input type="number" step="any" name="Sales_price" value="{{Sales_price}}" placeholder="Please Enter Sales Price" required>
-		</div>
+	<div class="form-group form-group-sm">
+		<label for="number" class="control-label col-xs-3">Price</label>
+		  <div class="col-xs-3">	 
+     			<input type="number" step="any" name="Sales_price" value ="{{Sales_price}}" class="form-control" placeholder="Please Enter Sales Price" required>
+		 </div>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group form-group-sm">
 		<label for="date" class="control-label col-xs-2">Date</label>
-			<div class="col-xs-5">	 
+			<div class="col-xs-3">	 
      				<input type="date" class="form-control" name="Sales_date" value="{{Sales_date}}" placeholder="yyyy-mm-dd" required/>
 			</div>
 		

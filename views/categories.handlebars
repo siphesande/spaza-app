@@ -1,13 +1,24 @@
 <h2>Add Category</h2>
   
-
+<form action="categories/add" method="POST" class="form-inline" >
+      
+<div class="form-group form-group-sm">
+    <label for="text" class="control-label col-xs-3">Categories:</label>
+      <div class="col-xs-3">   
+          <input type="text" step="any" name="category_name" value ="{{category_name}}" class="form-control" placeholder="Enter category name" required>
+     </div>
 </div>
 
-
-<form action="/categories/add" method="POST">
-	Category: <input type="text" name="category_name" value="{{category_name}}">
   
-	<input type="submit" class="btn btn-success" id="enter" onclick="myFunction()">  
+  <input type="submit" class="btn btn-success" id="enter" onclick="myFunction()">  
+</form>
+
+
+
+<!-- <form action="/categories/add" method="POST">
+	Category:<input type="text" name="category_name" value="{{category_name}}">
+  
+	<input type="submit" class="btn btn-success" id="enter" onclick="myFunction()">   -->
 	<!--<select name="Category_Id">
 		{{#categories}}
      <option value="{{Id}}">{{category_name}}</option>

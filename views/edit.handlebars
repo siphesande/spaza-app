@@ -22,9 +22,9 @@
 <form action="/products/update/{{Id}}" method = "POST" class="form-horizontal">
  </div>
 
-	<div class="form-group">
+	<div class="form-group form-group-sm">
 		<label for="text" class="control-label col-xs-2">Product</label>
-			<div class="col-xs-5">	 
+			<div class="col-xs-3">	 
      				<input type="text" class="form-control" name="product_name" placeholder="Edit product" required/>
 			</div>
 		
@@ -33,7 +33,7 @@
 
 	<div class="form-group">
 		<label for="number" class="control-label col-xs-2">Category Name</label>
-		<div class="col-xs-5">
+		<div class="col-xs-3">
 
 			<select name="Category_Id">
                     {{#category}}
