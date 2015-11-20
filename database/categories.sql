@@ -1,11 +1,11 @@
-INSERT INTO Categories (Name) VALUES ('Dairy');
-INSERT INTO Categories (Name) VALUES ('Bakery');
-INSERT INTO Categories (Name) VALUES ('Can Food');
-INSERT INTO Categories (Name) VALUES ('Beverages');
-INSERT INTO Categories (Name) VALUES ('Starch');
-INSERT INTO Categories (Name) VALUES ('Meat');
-INSERT INTO Categories (Name) VALUES ('Toiletries');
-INSERT INTO Categories (Name) VALUES ('Fruits');
-INSERT INTO Categories (Name) VALUES ('Candy');
-INSERT INTO Categories (Name) VALUES ('Extras');
+INSERT INTO Categories (category_name) VALUES ('Dairy');
+INSERT INTO Categories (category_name) VALUES ('Bakery');
+INSERT INTO Categories (category_name) VALUES ('Can Food');
+INSERT INTO Categories (category_name) VALUES ('Beverages');
+INSERT INTO Categories (category_name) VALUES ('Starch');
+INSERT INTO Categories (category_name) VALUES ('Meat');
+INSERT INTO Categories (category_name) VALUES ('Toiletries');
+INSERT INTO Categories (category_name) VALUES ('Fruits');
+INSERT INTO Categories (category_name) VALUES ('Candy');
+INSERT INTO Categories (category_name) VALUES ('Extras');
 

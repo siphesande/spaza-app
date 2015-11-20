@@ -1,14 +1,15 @@
 <form action="products/add" method="POST" class="form-inline" >
   <div class="form-group form-group-sm">
-    <label for="text" class="control-label col-lg-3">Product</label>   
-     <div class="col-lg-3">
+
+    <label for="text" class="control-label col-xs-3">Product:</label>   
+     <div class="col-xs-3">
       <input type="text" name="product_name" value="{{product_name}}" class="form-control" placeholder="Please Enter product name" required>
     </div>
   </div>
 
 <div class="form-group">
-    <label class="control-label col-lg-3">Category</label>
-    <div class="col-lg-3">   
+    <label class="control-label col-xs-3">Category:</label>
+    <div class="col-xs-3">   
           <select name="Category_Id">
            {{#categories}}
                 <option value = "{{Id}}">{{category_name}}</option>

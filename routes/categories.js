@@ -1,19 +1,17 @@
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
-		    
-			connection.query('SELECT * from Categories', [], function(err, results) {
+		    connection.query('SELECT * from Categories', [], function(err, results) {
                if (err) return next(err);
-    		        res.render( 'categories', {
-					no_categories : results.length === 0,
+    		   res.render( 'categories', {
+			   no_categories : results.length === 0,
 					//products : results,
-					categories: results
-    		      });
-
-              });
-		 });
+			   categories: results
+    		   });
+           });
+	});
 	
-};
+}
 exports.home =function(req, res){
 	res.render('home');
 }
@@ -30,11 +28,11 @@ exports.add = function (req, res, next) {
       		Id :input.Id
   	    };      
 		connection.query('insert into Categories set ?', data, function(err, results){
-  		if (err) return next(err);
+  		    if (err) return next(err);
 			res.redirect('/categories');
 		});
 	});
-};
+}
 
 exports.get = function(req, res, next){
 	var Id = req.params.Id;
@@ -44,11 +42,10 @@ exports.get = function(req, res, next){
 			res.render('editCategories',{page_title:"Edit Categories - Node.js", data : rows[0]});
 		});
 	});
-};
+}
 
 exports.update = function(req, res, next){
-
-	var data = JSON.parse(JSON.stringify(req.body));
+    var data = JSON.parse(JSON.stringify(req.body));
     var Id = req.params.Id;
         req.getConnection(function(err, connection){
 			connection.query('UPDATE Categories SET ? WHERE Id = ?', [data, Id], function(err, rows){
@@ -56,7 +53,7 @@ exports.update = function(req, res, next){
                 res.redirect('/categories');
     		});
         });
-};
+}
 
 exports.delete = function(req, res, next){
 	var Id = req.params.Id;
@@ -66,34 +63,34 @@ exports.delete = function(req, res, next){
 			res.redirect('/categories');
 		});
 	});
-};
+}
 
 exports.mostPopulerCat =function (req, res, next){
     var id = req.params.Id;
     req.getConnection(function(err, connection){
 
         connection.query('SELECT Categories.Id,Categories.category_name, sum( Sales.qty ) AS TotalQty FROM Sales INNER JOIN Products ON Sales.product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Categories.category_name ORDER BY TotalQty DESC LIMIT  1;',[], function(err, results){
-                if (err) return next(err);
-                res.render('mostPopulerCat',{
-                most : results
+             if (err) return next(err);
+             res.render('mostPopulerCat',{
+             most : results
                
             });
 
-         });
+        });
     });
-};
+}
 
 exports.leastPopulerCat =function (req, res, next){
     var id = req.params.Id;
     req.getConnection(function(err, connection){
         connection.query('SELECT Categories.Id,Categories.category_name, sum( Sales.qty ) AS TotalQty FROM Sales INNER JOIN Products ON Sales.product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Categories.category_name ORDER BY TotalQty ASC LIMIT  1;',[], function(err, results){
-                if (err) return next(err);
-                res.render('leastPopulerCat',{
+            if (err) return next(err);
+            res.render('leastPopulerCat',{
                 least : results
                
             });
 
-         });
+        });
     });
-};
+}
 

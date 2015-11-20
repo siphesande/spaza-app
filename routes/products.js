@@ -5,14 +5,14 @@ exports.show = function (req, res, next) {
 			connection.query('SELECT * FROM Categories', [], function(err, categories) {
         	if (err) return next(err);
 			res.render( 'products', {
-					no_products :results.length === 0,
-					products : results,
-					categories: categories
+			    no_products :results.length === 0,
+				products : results,
+				 categories: categories
 			    });
 	        });
 		});
 	});
-};
+}
 //exports.home =function(req, res){
 	//res.render('home')
 //}
@@ -29,31 +29,28 @@ exports.add = function (req, res, next) {
       		Category_Id :input.Category_Id
   	    };      
 		connection.query('insert into Products set ?', data, function(err, results){
-  		if (err) return next(err);
-  		console.log("Error inserting : %s ",err );
+  		    if (err) return next(err);
+  		    console.log("Error inserting : %s ",err );
 			res.redirect('/products');
 		});
 	});
-};
+}
 
 exports.get = function(req, res, next){
 	var Id = req.params.Id;
 	req.getConnection(function(err, connection){
 		connection.query('SELECT * FROM Products WHERE Id = ?', [Id], function(err,rows){
-		connection.query('SELECT * FROM Categories', [], function(err, results) {	
-			if(err) return next(err);
-            console.log(results);
-			res.render('edit',{page_title:"Edit Products - Node.js", 
-			data : rows[0],
-			category : results
-
-   
-			});
-		 });
-
-	   });
-   });
-};
+		    connection.query('SELECT * FROM Categories', [], function(err, results) {	
+			    if(err) return next(err);
+                console.log(results);
+			    res.render('edit',{page_title:"Edit Products - Node.js", 
+			    data : rows[0],
+			    category : results
+                });
+		    });
+        });
+    });
+}
 
 exports.update = function(req, res, next){
 
@@ -66,7 +63,7 @@ exports.update = function(req, res, next){
     		});
 
     });
-};
+}
 
 exports.delete = function(req, res, next){
 	var Id = req.params.Id;
@@ -76,33 +73,31 @@ exports.delete = function(req, res, next){
 			res.redirect('/products');
 		});
 	});
-};
+}
 exports.mostPopulerPrd =function (req, res, next){
     var id = req.params.Id;
     req.getConnection(function(err, connection){
 
         connection.query('SELECT Products.product_name, Products.Id,Categories.category_name, SUM( Sales.qty ) AS qty FROM Sales INNER JOIN Products ON Sales.product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Products.product_name ORDER BY qty DESC LIMIT 1 ',[], function(err, results){
-                if (err) return next(err);
-                res.render('mostPopulerPrd',{
-                most : results
-               
-            });
+             if (err) return next(err);
+             res.render('mostPopulerPrd',{
+             most : results
+             });
 
-         });
+        });
     });
-};
+}
 
 exports.leastPopulerPrd =function (req, res, next){
     var id = req.params.Id;
     req.getConnection(function(err, connection){
         connection.query('SELECT Products.product_name, Products.Id,Categories.category_name, SUM( Sales.qty ) AS qty FROM Sales INNER JOIN Products ON Sales.product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Products.product_name ORDER BY qty ASC LIMIT 1 ',[], function(err, results){
-                if (err) return next(err);
-                res.render('leastPopulerPrd',{
-                least : results
-               
+            if (err) return next(err);
+            res.render('leastPopulerPrd',{
+            least : results
             });
 
-         });
+        });
     });
-};
+}
 

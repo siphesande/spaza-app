@@ -7,47 +7,51 @@
 {{/data}}-->
 
 
-<h1>EDIT Sale</h1>
-{{#data}}
+<h1>EDIT Sales</h1>
+{{#sale}}
 <form action="/sales/update/{{Id}}" method = "POST" class="form-horizontal" >
  
 
 	<div class="form-group form-group-sm">
-		<label for="number" class="control-label col-xs-2">Qauntity</label>	 
+		<label for="number" class="control-label col-xs-2">Qauntity :</label>	 
 		 <div class="col-xs-3">
-			<input type="number" name="Qty" class="form-control" placeholder="Please Enter Sales Amount" required>
+			<input type="number" name="Qty"  value ="{{Qty}}"  class="form-control"/>
 		</div>
 	</div>
 
 
 	<div class="form-group form-group-sm">
-		<label for="number" class="control-label col-xs-2">Price</label>
+		<label for="number" class="control-label col-xs-2">Price :</label>
 		<div class="col-xs-3">	 
-     			<input type="number" step="any" name="Sales_price" placeholder="Please Enter Sales Price" required>
+     			<input type="number" step="any" name="Sales_price" value ="{{Sales_price}}"  class="form-control"/>
 		</div>
 	</div>
 
 	<div class="form-group form-group-sm">
-		<label for="date" class="control-label col-xs-2">Date</label>
+		<label for="date" class="control-label col-xs-2">Date :</label>
 			<div class="col-xs-3">	 
-     				<input type="date" class="form-control" name="Sales_date" placeholder="yyyy-mm-dd" required/>
+     				<input type="date"  name="Sales_date" value ="{{Sales_date}}"  class="form-control"/>
 			</div>
 		
-		</div> 
+	</div> 
 
 
-     
-     {{/data}}
+     {{/sale}}
      <div class="form-group">
 		<label class="control-label col-xs-2">Products</label>
-		<div class="col-xs-5">	 
-     			<select name="Product_Id">
-    				{{#each product}}
-      					<option value ="{{Id}}">{{product_name}}</option>
-    				{{/each}}
+		<div class="col-xs-10">
+              <select name="Product_Id">
+    				{{#each products}}
+
+                	{{#if selectedProduct }}
+	 		    <option value = "{{Id}}" selected="true" >{{Name}}</option>
+		    	{{else}}
+  				<option value = "{{Id}}" >{{Name}}</option>
+			{{/if}}
+
+            {{/each}}
   			</select>
 		</div>
-
 	</div>
 
 

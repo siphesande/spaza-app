@@ -1,18 +1,16 @@
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
-		    
-			connection.query('SELECT * from Suppliers', [], function(err, results) {
+		    connection.query('SELECT * from Suppliers', [], function(err, results) {
                if (err) return next(err);
-    		        res.render( 'suppliers', {
-					no_suppliers : results.length === 0,
-					//products : results,
-					suppliers: results
+    		       res.render( 'suppliers', {
+				   no_suppliers : results.length === 0,
+				   //products : results,
+				   suppliers: results
     		      });
 
-              });
-		 });
-	
+            });
+	});
 };
 exports.home =function(req, res){
 	res.render('home');
@@ -34,7 +32,7 @@ exports.add = function (req, res, next) {
 			res.redirect('/suppliers');
 		});
 	});
-};
+}
 
 exports.get = function(req, res, next){
 	var Id = req.params.Id;
@@ -44,7 +42,7 @@ exports.get = function(req, res, next){
 			res.render('editSupplier',{page_title:"Edit Customers - Node.js", data : rows[0]});
 		});
 	});
-};
+}
 
 exports.update = function(req, res, next){
 
@@ -57,7 +55,7 @@ exports.update = function(req, res, next){
     		});
 
        });
-};
+}
 
 exports.delete = function(req, res, next){
 	var Id= req.params.Id;
@@ -67,4 +65,4 @@ exports.delete = function(req, res, next){
 			res.redirect('/suppliers');
 		});
 	});
-};
+}

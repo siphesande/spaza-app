@@ -3,7 +3,7 @@
 <form action="sales/add" method="POST" class="form-horizontal" >
       
 	<div class="form-group">
-		<label class="control-label col-xs-2">Products</label>
+		<label class="control-label col-xs-2">Products :</label>
 		<div class="col-xs-3">	 
      			<select name="Id">
     				{{#each products}}
@@ -15,7 +15,7 @@
 	</div>
 
 	<div class="form-group form-group-sm">
-		<label for="Amount" class="control-label col-xs-3">Qauntity</label>	 
+		<label for="Amount" class="control-label col-xs-3">Qauntity :</label>	 
 		 <div class="col-xs-3">
 			<input type="number" name="Qty" value="{{Qty}}" class="form-control" placeholder="Please Enter Sales Amount" required>
 		</div>
@@ -23,14 +23,14 @@
 
 
 	<div class="form-group form-group-sm">
-		<label for="number" class="control-label col-xs-3">Price</label>
+		<label for="number" class="control-label col-xs-3">Price :</label>
 		  <div class="col-xs-3">	 
      			<input type="number" step="any" name="Sales_price" value ="{{Sales_price}}" class="form-control" placeholder="Please Enter Sales Price" required>
 		 </div>
 	</div>
 
 	<div class="form-group form-group-sm">
-		<label for="date" class="control-label col-xs-2">Date</label>
+		<label for="date" class="control-label col-xs-2">Date :</label>
 			<div class="col-xs-3">	 
      				<input type="date" class="form-control" name="Sales_date" value="{{Sales_date}}" placeholder="yyyy-mm-dd" required/>
 			</div>
@@ -55,12 +55,13 @@
   <th>{{Sales_price}}</th>
   <th>{{Qty}}</th>
   <th>{{Sales_date}}</th>
-</tr>
-  <td> <a href="/sales/edit/{{Id}}" class ="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
- <td><a href="/sales/delete/{{Id}}" class="btn btn-danger">
-    <span class="glyphicon glyphicon-remove"></span> Delete 
-    </a></td>
 
+
+  <td ><a href="/sales/edit/{{Id}}" class ="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+ <td ><a href="/sales/delete/{{Id}}" class="btn btn-danger">
+    <span class="glyphicon glyphicon-remove"></span> Delete 
+    </a></td >
+</tr>
 {{/sales}}
 
 {{#no_sales}}

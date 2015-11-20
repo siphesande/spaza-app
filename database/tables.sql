@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS `Categories`;
 CREATE TABLE Categories (
-    id int not null auto_increment,
+    Id int not null auto_increment,
     category_name char(100),
-    primary key(id),
+    primary key(Id),
     CONSTRAINT uc_category_name  UNIQUE (category_name)
     #CONSTRAINT Categories_unique UNIQUE (catagory_name)
 )ENGINE=InnoDB;
@@ -10,41 +10,41 @@ CREATE TABLE Categories (
 
 DROP TABLE IF EXISTS `Products`;
 CREATE TABLE Products (
-    id int not null auto_increment,
+    Id int not null auto_increment,
     product_name char(100),
-    category_id int(42),
-    primary key(id),
-    FOREIGN KEY(category_id) REFERENCES Categories(category_id)
+    Category_Id int(42),
+    primary key(Id),
+    FOREIGN KEY(Category_Id) REFERENCES Categories(Category_Id)
 )ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `Suppliers`;
 create table Suppliers (
-     id int not null auto_increment,
+     Id int not null auto_increment,
      supplier_name char(100),
-     primary key(id),
+     primary key(Id),
      CONSTRAINT uc_supplier_name  UNIQUE (supplier_name)
 )ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `Purchases`;
 CREATE TABLE Purchases (
-    id int not null auto_increment,   
-    qty int(42),
-    purchase_date date,
-    cost_price decimal(42,2),
-    supplier_id int(42),
-    FOREIGN KEY (supplier_id) REFERENCES Suppliers(supplier_id),
-    product_id int(42),
-    FOREIGN KEY (product_id) REFERENCES Products(product_id),
-    primary key(id)
+    Id int not null auto_increment,   
+    Qty int(42),
+    Purchase_date date,
+    Purchase_price decimal(42,2),
+    Supplier_Id int(42),
+    FOREIGN KEY (Supplier_Id) REFERENCES Suppliers(Id),
+    Product_Id int(42),
+    FOREIGN KEY (Product_Id) REFERENCES Products(Id),
+    primary key(Id)
 )ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `Sales`;
 CREATE TABLE  Sales (
-    id int not null auto_increment,
-    qty int(42),
-    price int(42),
-    sale_date DATE,
-    product_id int(42),
-    FOREIGN KEY (product_id) REFERENCES Products(product_id),
-    primary key(id)
+    Id int not null auto_increment,
+    Qty int(42),
+    Sales_price int(42),
+    Sales_date DATE,
+    Product_Id int(42),
+    FOREIGN KEY (Product_Id) REFERENCES Products(Id),
+    primary key(Id)
 )ENGINE=InnoDB;
