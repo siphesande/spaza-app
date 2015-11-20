@@ -18,7 +18,7 @@ var dbOptions = {
       user: 'root',
       password: '08386354',
       port: 3306,
-      database: 'spaza'
+      database: 'spaza_app'
 };
 
 //setup template handlebars as the template engine
