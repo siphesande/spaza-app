@@ -14,7 +14,7 @@ CREATE TABLE Products (
     product_name char(100),
     Category_Id int(42),
     primary key(Id),
-    FOREIGN KEY(Category_Id) REFERENCES Categories(Category_Id)
+    FOREIGN KEY(Category_Id) REFERENCES Categories(Id)
 )ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `Suppliers`;
