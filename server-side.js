@@ -14,7 +14,7 @@ var express = require('express'),
 var app = express();
 
 var dbOptions = {
-      host: 'siphesande.projectcodex.co',
+      host: 'localhost',
       user: 'root',
       password: '08386354',
       port: 3306,
