@@ -1,0 +1,8 @@
+<h1>Edit</h1>
+{{#data}}
+<form action="/user/edit/{{Id}}" method="POST">
+	Username: <input type="text" name="username" value="{{username}}">	
+	<input type="submit">
+
+</form>
+{{/data}}

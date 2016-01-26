@@ -5,12 +5,23 @@ var express = require('express'),
     mysql = require('mysql'),//node-mysql module
     myConnection = require('express-myconnection'),//express-my connection module
     bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
+    myConnection = require('express-myconnection'),
+    session = require('express-session'),
+    cookieSession =require('cookie-session'),
+    bcrypt = require('bcrypt-nodejs'),
+   // bcrypt = require('bcrypt'),
+    request = require('request'),
     products = require('./routes/products'),
     sales = require('./routes/sales'),
     categories = require('./routes/categories'),
     suppliers = require('./routes/suppliers'),
-    purchases =  require('./routes/purchases');
-    
+    purchases =  require('./routes/purchases'),
+    loggin = require('./routes/login'),
+    register = require('./routes/Users'),
+    usrs =require('./routes/Users');
+  
+  
 var app = express();
 
 var dbOptions = {
@@ -33,6 +44,91 @@ app.use(myConnection(mysql, dbOptions, 'single'));
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(session({ 
+
+secret : '08386354', resave : true,   saveUninitialized: true, cookie: { maxAge: 60000*15 }}));
+
+var fs = require('fs');
+
+app.use(function(req, res, next){
+  console.log('middleware!');
+  //proceed to the next middleware component
+  next();
+});
+
+ var contains = function(str, part){
+   return str.indexOf(part) !== -1;
+};
+
+var checkUser = function(req, res, next){
+  console.log("path : " + req.path);
+  if (req.session.user){
+
+    var pathNeedsAdminRights = contains(req.path, "add") || 
+          contains(req.path, "edit") || 
+          contains("delete");
+
+    if(pathNeedsAdminRights && req.session.role !== "Admin"){
+      //why is there are error
+      res.send(500, "ACCESS DENIED");
+    }
+
+    return next();
+  }
+
+
+  // the user is not logged in redirect them to the login page
+  res.redirect('/');
+};
+
+
+// app.get('/users', function(req, res){
+//   var userData = userService.getUserData();
+//   res.render('users', userData)
+// });
+
+ app.get('/', function(req, res){
+  res.render('login', {layout: false});
+});
+
+
+app.post('/home', loggin.login);
+
+app.get('/home', function (req, res) {
+    res.render('login', {layout: false})
+});
+
+app.get('/login', function (req, res) {
+  res.render('login');
+});
+
+ app.get('/signup', function(req, res){
+  res.render('signup', {layout: false})
+});
+
+
+  app.get('/signup', function(req, res){
+      app.post('/signup', function(req, res){
+    var user = JSON.parse(JSON.stringify(req.body));
+    if(user.password === user.confirm_password){
+      if(user[user.username] === undefined){
+        user[user.username] = user.password;
+        res.redirect('/');
+      }
+    }
+    res.render('signup');
+});
+  });
+  app.get('/signup', register.get);
+  app.post('/signup', register.add);
+
+
+
+ 
+
+
 
 function errorHandler(err, req, res, next) {
   res.status(500);
@@ -87,6 +183,23 @@ app.post('/suppliers/add',suppliers.add);
 app.get('/suppliers/edit/:Id', suppliers.get);
 app.post('/suppliers/update/:Id', suppliers.update);
 app.get('/suppliers/delete/:Id', suppliers.delete);
+
+//these are the logout
+  
+
+app.get('/logout', function(req, res){
+  delete req.session.user;
+  res.redirect('/');
+  
+});
+
+ app.get('/signup/edit/:id', register.get);
+ app.post('/signUp/update/:id', register.update);
+ app.post('/signup/add', register.add);
+ //this should be a post but this is only an illustration of CRUD - not on good practices
+ app.get('/signup/delete/:id', register.delete);
+
+
 
 
 app.use(errorHandler);

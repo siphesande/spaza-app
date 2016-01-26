@@ -9,6 +9,8 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "bcrypt":"*",
+    
     "express": "~4.13.3",
     "express-handlebars": "~2.0.1",
     "mysql": "~2.9.0",
