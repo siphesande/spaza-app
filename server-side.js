@@ -12,6 +12,7 @@ var express = require('express'),
     bcrypt = require('bcrypt-nodejs'),
    // bcrypt = require('bcrypt'),
     request = require('request'),
+    //These are my routes
     products = require('./routes/products'),
     sales = require('./routes/sales'),
     categories = require('./routes/categories'),
@@ -20,7 +21,7 @@ var express = require('express'),
     loggin = require('./routes/login'),
     register = require('./routes/Users'),
     usrs =require('./routes/Users');
-  
+    
   
 var app = express();
 
@@ -48,7 +49,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({ 
 
-secret : '08386354', resave : true,   saveUninitialized: true, cookie: { maxAge: 60000*15 }}));
+secret : 's.malgas91', resave : true,   saveUninitialized: true, cookie: { maxAge: 60000*15 }}));
 
 var fs = require('fs');
 
@@ -89,9 +90,9 @@ var checkUser = function(req, res, next){
 //   res.render('users', userData)
 // });
 
- app.get('/', function(req, res){
-  res.render('login', {layout: false});
-});
+//  app.get('/', function(req, res){
+//   res.render('login', {layout: false});
+// });
 
 
 app.post('/home', loggin.login);
@@ -146,6 +147,8 @@ app.get('/products/mostPopulerPrd', products.mostPopulerPrd);
 app.get('/products/leastPopulerPrd', products.leastPopulerPrd);
 //this should be a post but this is only an illustration of CRUD - not on good practices
 app.get('/products/delete/:Id', products.delete);
+
+app.get('/products/EarningsPro', products.EarningsPro);
 
 
 app.get('/sales', sales.show); 

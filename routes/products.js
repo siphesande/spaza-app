@@ -101,3 +101,20 @@ exports.leastPopulerPrd =function (req, res, next){
     });
 }
 
+exports.EarningsPro = function(req, res, next){
+	req.getConnection(function(error, connection){
+		if(error){
+			return next(error);
+		}
+
+		connection.query('select Products.product_name, SUM(Sales.SaleS_price * Sales.Qty) as earningPerProduct from Sales inner join Products on Sales.product_Id = Products.Id group by product_name order by SUM(Sales.Sales_price) DESC;', [], function(error, results) {
+			if (error) {
+				return next(error);
+			}
+			console.log(results);
+			res.render('Earnings', {
+			EarningsPerProd : results
+			});
+		});
+	});
+};
