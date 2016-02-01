@@ -3,10 +3,9 @@
 var express = require('express'),
     exphbs  = require('express-handlebars'),
     mysql = require('mysql'),//node-mysql module
-    myConnection = require('express-myconnection'),//express-my connection module
+    myConnection = require('express-myconnection'),//Connect/Express middleware that auto provides mysql connections 
     bodyParser = require('body-parser'),
-    cookieParser = require('cookie-parser'),
-    myConnection = require('express-myconnection'),
+    //cookieParser = require('cookie-parser'), 
     session = require('express-session'),
     cookieSession =require('cookie-session'),
     bcrypt = require('bcrypt-nodejs'),
@@ -40,13 +39,13 @@ app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/public'));
 
 //setup middleware
-app.use(myConnection(mysql, dbOptions, 'single'));
+app.use(myConnection(mysql, dbOptions, 'single'));//Connect/Express middleware provides a consistent API for MySQL connections during request/response life cycle
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
-app.use(bodyParser.json())
+
 app.use(bodyParser.json());
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(session({ 
 
 secret : 's.malgas91', resave : true,   saveUninitialized: true, cookie: { maxAge: 60000*15 }}));
@@ -170,7 +169,7 @@ app.post('/categories/update/:Id',categories.update);
 app.get('/categories/mostPopulerCat', categories.mostPopulerCat);
 app.get('/categories/leastPopulerCat', categories.leastPopulerCat);
 app.get('/categories/delete/:Id', categories.delete);
-
+app.get('/categories/EarningsCateg', categories.EarningsCateg);
 
 
 app.get('/purchases', purchases.show);

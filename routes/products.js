@@ -107,7 +107,7 @@ exports.EarningsPro = function(req, res, next){
 			return next(error);
 		}
 
-		connection.query('select Products.product_name, SUM(Sales.SaleS_price * Sales.Qty) as earningPerProduct from Sales inner join Products on Sales.product_Id = Products.Id group by product_name order by SUM(Sales.Sales_price) DESC;', [], function(error, results) {
+		connection.query('select Products.product_name, SUM(Sales.Sales_price * Sales.Qty) as earningPerProduct from Sales inner join Products on Sales.product_Id = Products.Id group by product_name order by SUM(Sales.Sales_price) DESC;', [], function(error, results) {
 			if (error) {
 				return next(error);
 			}

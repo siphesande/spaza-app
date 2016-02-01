@@ -94,3 +94,21 @@ exports.leastPopulerCat =function (req, res, next){
     });
 }
 
+exports.EarningsCateg = function(req, res, next){
+	req.getConnection(function(error, connection){
+		if(error){
+			return next(error);
+		}
+
+		connection.query('SELECT Categories.category_name, SUM(Sales.Qty*Sales.Sales_price) AS Total FROM Sales INNER JOIN Products ON Sales.Product_Id = Products.Id INNER JOIN Categories ON Products.Category_Id = Categories.Id GROUP BY Categories.category_name ORDER BY Total DESC;', [], function(error, results) {
+			if (error) {
+				return next(error);
+			}
+			console.log(results);
+			res.render('EarningsCatego', {
+				EarningsPerCatego : results
+			});
+		});
+	});		
+};
+
