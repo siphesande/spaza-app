@@ -48,7 +48,7 @@ app.use(bodyParser.json());
 //app.use(cookieParser());
 app.use(session({ 
 
-secret : 's.malgas91', resave : true,   saveUninitialized: true, cookie: { maxAge: 60000*15 }}));
+secret : 'a4f8071f-c873-4447-8ee2', resave : true,   saveUninitialized: true, cookie: { maxAge:2628000000 }}));
 
 var fs = require('fs');
 
@@ -84,14 +84,9 @@ var checkUser = function(req, res, next){
 };
 
 
-// app.get('/users', function(req, res){
-//   var userData = userService.getUserData();
-//   res.render('users', userData)
-// });
 
-//  app.get('/', function(req, res){
-//   res.render('login', {layout: false});
-// });
+
+
 
 
 app.post('/home', loggin.login);
@@ -132,8 +127,11 @@ app.get('/login', function (req, res) {
 
 function errorHandler(err, req, res, next) {
   res.status(500);
-  res.render('error', { error: err });
+  res.render('error', 
+    { error: err 
+    });
 }
+app.use(errorHandler);
 
 //setup the handlers
 app.get('/',function(req,res){res.render('index');});
@@ -204,7 +202,7 @@ app.get('/logout', function(req, res){
 
 
 
-app.use(errorHandler);
+
 //configure the port number using and environment number
 var portNumber = process.env.CRUD_PORT_NR || 3001;
 
