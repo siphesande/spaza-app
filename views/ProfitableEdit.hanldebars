@@ -1,0 +1,8 @@
+<h1>Edit</h1>
+
+{{#Profitables}}
+<form action="/Profitables/edit/{{Id}}" method="POST">
+	Description: <input type="text" name="description" value="{{Profitables}}">	
+     <input type="submit">
+</form>
+{{/Profitables}}

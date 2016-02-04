@@ -118,3 +118,22 @@ exports.EarningsPro = function(req, res, next){
 		});
 	});
 };
+
+exports.Profits = function(req, res, next){
+	req.getConnection(function(error, connection){
+		if(error){
+			return next(error);
+
+		};
+		connection.query('SELECT Products.product_name, SUM(Sales.qty * Sales.sales_price) FROM Sales WHERE Sales.product_id = Products.product_id) - SUM(Purchases.qty * Purchases.cost_price) FROM Purchases WHERE Purchases.product_id = Products.product_id)AS profits GROUP BY Products.product_name ORDER BY profits DESC;',[], function(error, results){
+			if(error) {
+				return next(error);
+			}
+			console.log(results);
+			res.render('ProfitsProduct', {
+			ProfitsProduct : results
+
+			});
+		});
+	});
+};

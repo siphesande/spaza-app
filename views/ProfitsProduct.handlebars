@@ -1,0 +1,18 @@
+<table class="table">
+	<tr>
+                <th>stock_item</th>
+                <th>sales_price</th>
+                <th>cost</th>
+              
+        </tr>
+{{#profitable}}
+        <tr>
+        		<td>{{stock_item}}</td>
+        		<td>{{sales_price}}</td> 
+        		<td>{{cost}}</td> 
+        <td><button><a href="/Profitables/edit/{{Id}}">Edit</a></button></td>
+                <td><button><a href="/Profitables/delete/{{Id}}">Delete</a></button></td>
+        </tr>
+{{/profitable}}
+</table>
+</div>

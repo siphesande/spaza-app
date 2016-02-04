@@ -146,6 +146,7 @@ app.get('/products/leastPopulerPrd', products.leastPopulerPrd);
 app.get('/products/delete/:Id', products.delete);
 
 app.get('/products/EarningsPro', products.EarningsPro);
+app.get('/products/Profits', products.Profits)
 
 
 app.get('/sales', sales.show); 
