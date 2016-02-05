@@ -104,20 +104,7 @@ app.get('/login', function (req, res) {
 });
 
 
-  app.get('/signup', function(req, res){
-      app.post('/signup', function(req, res){
-    var user = JSON.parse(JSON.stringify(req.body));
-    if(user.password === user.confirm_password){
-      if(user[user.username] === undefined){
-        user[user.username] = user.password;
-        res.redirect('/');
-      }
-    }
-    res.render('signup');
-});
-  });
-  app.get('/signup', register.get);
-  app.post('/signup', register.add);
+  
 
 
 
@@ -194,6 +181,22 @@ app.get('/logout', function(req, res){
   
 });
 
+
+app.get('/signup', function(req, res){
+      app.post('/signup', function(req, res){
+    var user = JSON.parse(JSON.stringify(req.body));
+    if(user.password === user.confirm_password){
+      if(user[user.username] === undefined){
+        user[user.username] = user.password;
+        res.redirect('/');
+      }
+    }
+    res.render('signup');
+  });
+});
+app.get('/signup', register.get);
+app.post('/signup', register.add);
+  
  app.get('/signup/edit/:id', register.get);
  app.post('/signUp/update/:id', register.update);
  app.post('/signup/add', register.add);
