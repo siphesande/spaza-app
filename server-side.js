@@ -5,11 +5,11 @@ var express = require('express'),
     mysql = require('mysql'),//node-mysql module
     myConnection = require('express-myconnection'),//Connect/Express middleware that auto provides mysql connections 
     bodyParser = require('body-parser'),
-    //cookieParser = require('cookie-parser'), 
+    cookieParser = require('cookie-parser'), 
     session = require('express-session'),
     cookieSession =require('cookie-session'),
-    bcrypt = require('bcrypt-nodejs'),
-   // bcrypt = require('bcrypt'),
+    //bcrypt = require('bcrypt-nodejs'),
+    bcrypt = require('bcrypt'),
     request = require('request'),
     //These are my routes
     products = require('./routes/products'),

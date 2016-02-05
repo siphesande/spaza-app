@@ -1,5 +1,5 @@
-//var bcrypt = require('bcrypt');
-var bcrypt = require('bcrypt-nodejs');
+var bcrypt = require('bcrypt');
+//var bcrypt = require('bcrypt-nodejs');
 exports.usser = function (req, res, next) {
 	req.getConnection(function(error, connection){
 		var Administrator = req.session.role === "Admin"
