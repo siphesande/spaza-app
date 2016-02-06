@@ -19,7 +19,7 @@ var express = require('express'),
     purchases =  require('./routes/purchases'),
     loggin = require('./routes/login'),
     register = require('./routes/Users'),
-    usrs =require('./routes/Users');
+    usrs = require('./routes/Users');
     
   
 var app = express();
@@ -83,11 +83,10 @@ var checkUser = function(req, res, next){
   res.redirect('/');
 };
 
-
-
-
-
-
+app.get('/users', function(req, res){
+  var userData = userService.getUserData();
+  res.render('users', userData)
+});
 
 app.post('/home', loggin.login);
 
@@ -106,16 +105,10 @@ app.get('/login', function (req, res) {
 
   
 
-
-
- 
-
-
-
 function errorHandler(err, req, res, next) {
   res.status(500);
-  res.render('error', 
-    { error: err 
+  res.render('error', { 
+    error: err 
     });
 }
 app.use(errorHandler);
@@ -173,7 +166,14 @@ app.post('/suppliers/update/:Id', suppliers.update);
 app.get('/suppliers/delete/:Id', suppliers.delete);
 
 //these are the logout
-  
+//who is the user??
+app.get('/user',  usrs.usser);
+app.get('/user/add',  usrs.usser);
+app.get('/user/edit/:Id', usrs.get);
+app.get('/user/edit/:Id', usrs.update);
+app.post('/user/update/:Id',  usrs.update);
+app.post('/user/add', usrs.add);
+app.get('/user/delete/:Id',usrs.delete);  
 
 app.get('/logout', function(req, res){
   delete req.session.user;
@@ -184,6 +184,9 @@ app.get('/logout', function(req, res){
 
 app.get('/signup', function(req, res){
       app.post('/signup', function(req, res){
+        if(error){
+          return next(error);
+        }
     var user = JSON.parse(JSON.stringify(req.body));
     if(user.password === user.confirm_password){
       if(user[user.username] === undefined){
@@ -198,7 +201,7 @@ app.get('/signup', register.get);
 app.post('/signup', register.add);
   
  app.get('/signup/edit/:id', register.get);
- app.post('/signUp/update/:id', register.update);
+ app.post('/signup/update/:id', register.update);
  app.post('/signup/add', register.add);
  //this should be a post but this is only an illustration of CRUD - not on good practices
  app.get('/signup/delete/:id', register.delete);
