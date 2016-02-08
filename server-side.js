@@ -94,6 +94,12 @@ app.get('/home', function (req, res) {
     res.render('login', {layout: false})
 });
 
+app.get('/', function(req, res) {
+    res.render('login', {
+      layout: false,
+    });
+});
+
 app.get('/login', function (req, res) {
   res.render('login');
 });
@@ -101,9 +107,6 @@ app.get('/login', function (req, res) {
  app.get('/signup', function(req, res){
   res.render('signup', {layout: false})
 });
-
-
-  
 
 function errorHandler(err, req, res, next) {
   res.status(500);
@@ -205,10 +208,6 @@ app.post('/signup', register.add);
  app.post('/signup/add', register.add);
  //this should be a post but this is only an illustration of CRUD - not on good practices
  app.get('/signup/delete/:id', register.delete);
-
-
-
-
 
 //configure the port number using and environment number
 var portNumber = process.env.CRUD_PORT_NR || 3001;

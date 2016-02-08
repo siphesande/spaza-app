@@ -123,7 +123,7 @@ exports.Profits = function(req, res, next){
 			return next(error);
 
 		};
-		connection.query('SELECT product_name, SUM(Purchase_price*Purchases.Qty) as purchased_at, SUM(Sales_price*Sales.Qty) as made, SUM((Sales_price*Sales.Qty) - (Purchase_price*Purchases.Qty)) AS profit from Purchases INNER JOIN Products ON Purchases.Product_Id = Products.Id INNER JOIN Sales ON Sales.Product_Id = Products.Id GROUP BY product_name ORDER BY profit',[], function(error, results){
+		connection.query('SELECT product_name, SUM(Purchase_price*Purchases.Qty) as purchased_at, SUM(Sales_price*Sales.Qty) as made, SUM((Purchase_price*Purchases.Qty) - (Sales_price*Sales.Qty)) AS profit from Purchases INNER JOIN Products ON Purchases.Product_Id = Products.Id INNER JOIN Sales ON Sales.Product_Id = Products.Id GROUP BY product_name ORDER BY profit DESC',[], function(error, results){
 			if(error) {
 				return next(error);
 			}
@@ -135,3 +135,4 @@ exports.Profits = function(req, res, next){
 		});
 	});
 };
+//(Purchase_price*Purchases.Qty)
