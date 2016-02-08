@@ -83,16 +83,10 @@ var checkUser = function(req, res, next){
   res.redirect('/');
 };
 
-app.get('/users', function(req, res){
-  var userData = userService.getUserData();
-  res.render('users', userData)
-});
 
 app.post('/home', loggin.login);
 
-app.get('/home', function (req, res) {
-    res.render('login', {layout: false})
-});
+
 
 app.get('/', function(req, res) {
     res.render('login', {
