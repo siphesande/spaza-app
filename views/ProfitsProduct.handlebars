@@ -1,17 +1,15 @@
 <table class="table">
 	<tr>
-                <th>product name</th>
-                
-                <th>profit</th>
+                <th>Product Name</th>
+                <th>Profits</th>
               
         </tr>
 {{#ProfitsProduct}}
         <tr>
-        		<td>{{product_name}}</td>
-        		
-        		<td>{{profit}}</td> 
-        <td><button><a href="/Profitables/edit/{{Id}}">Edit</a></button></td>
-                <td><button><a href="/Profitables/delete/{{Id}}">Delete</a></button></td>
+            <td>{{product_name}}</td>
+            <td>{{profit}}</td> 
+            <td><button><a href="/Profitables/edit/{{Id}}">Edit</a></button></td>
+            <td><button><a href="/Profitables/delete/{{Id}}">Delete</a></button></td>
         </tr>
 {{/ProfitsProduct}}
 </table>
