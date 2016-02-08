@@ -84,9 +84,12 @@ var checkUser = function(req, res, next){
 };
 
 
+
 app.post('/home', loggin.login);
 
-
+app.get('/home', function (req, res) {
+    res.render('main', {layout: false})
+});
 
 app.get('/', function(req, res) {
     res.render('login', {
