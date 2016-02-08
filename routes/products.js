@@ -13,9 +13,7 @@ exports.show = function (req, res, next) {
 		});
 	});
 }
-//exports.home =function(req, res){
-	//res.render('home')
-//}
+
 exports.showAdd = function(req, res){
 	res.render('add');
 }
@@ -125,7 +123,7 @@ exports.Profits = function(req, res, next){
 			return next(error);
 
 		};
-		connection.query('SELECT Products.product_name, SUM(Sales.qty * Sales.sales_price) FROM Sales WHERE Sales.product_id = Products.product_id) - SUM(Purchases.qty * Purchases.cost_price) FROM Purchases WHERE Purchases.product_id = Products.product_id)AS profits GROUP BY Products.product_name ORDER BY profits DESC;',[], function(error, results){
+		connection.query('SELECT product_name, SUM(Purchase_price*Purchases.Qty) as purchased_at, SUM(Sales_price*Sales.Qty) as made, SUM((Sales_price*Sales.Qty) - (Purchase_price*Purchases.Qty)) AS profit from Purchases INNER JOIN Products ON Purchases.Product_Id = Products.Id INNER JOIN Sales ON Sales.Product_Id = Products.Id GROUP BY product_name ORDER BY profit',[], function(error, results){
 			if(error) {
 				return next(error);
 			}

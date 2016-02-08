@@ -5,16 +5,13 @@ exports.show = function (req, res, next) {
                if (err) return next(err);
     		   res.render( 'categories', {
 			   no_categories : results.length === 0,
-					//products : results,
 			   categories: results
     		   });
            });
 	});
 	
 }
-exports.home =function(req, res){
-	res.render('home');
-}
+
 exports.showAdd = function(req, res){
 	res.render('addCat');
 }

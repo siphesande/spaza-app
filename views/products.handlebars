@@ -18,13 +18,6 @@
     </div>
 
   </div>
-
-  <!--<a href="/products/add" class="btn btn-success">
-    <span class="glyphicon glyphicon-remove"></span>Submit 
-    </a></td>-->
-
-  
-
 <input type ="submit" class="btn btn-success" id="enter" onclick="myFunction()">  
 
 </form>
@@ -64,13 +57,11 @@
 </tr>
 {{#products}}
   <tr>
-  <td>{{Id}}
+  <td>{{Id}}</td>
   <td>{{product_name}}</td>
   <td>{{category_name}}</td>
- <td> <a href="/products/edit/{{Id}}" class ="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
- <td><a href="/products/delete/{{Id}}" class="btn btn-danger">
-    <span class="glyphicon glyphicon-remove"></span> Delete 
-    </a></td>
+ <td> <a href="/products/edit/{{Id}}" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+ <td> <a href="/products/delete/{{Id}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
 <tr>
 {{/products}}
 
