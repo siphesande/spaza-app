@@ -62,26 +62,26 @@ app.use(function(req, res, next){
    return str.indexOf(part) !== -1;
 };
 
-// var checkUser = function(req, res, next){
-//   console.log("path : " + req.path);
-//   if (req.session.user){
+var checkUser = function(req, res, next){
+  console.log("path : " + req.path);
+  if (req.session.user){
 
-//     var pathNeedsAdminRights = contains(req.path, "add") || 
-//           contains(req.path, "edit") || 
-//           contains("delete");
+    var pathNeedsAdminRights = contains(req.path, "add") || 
+          contains(req.path, "edit") || 
+          contains("delete");
 
-//     if(pathNeedsAdminRights && req.session.role !== "Admin"){
-//       //why is there are error
-//       res.send(500, "ACCESS DENIED");
-//     }
+    if(pathNeedsAdminRights && req.session.role !== "Admin"){
+      //why is there are error
+      res.send(500, "ACCESS DENIED");
+    }
 
-//     return next();
-//   }
+    return next();
+  }
 
 
-//   // the user is not logged in redirect them to the login page
-//   res.redirect('/');
-// };
+  // the user is not logged in redirect them to the login page
+  res.redirect('/');
+};
 
 
 
