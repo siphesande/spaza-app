@@ -19,6 +19,43 @@ exports.usser = function (req, res, next) {
 			});
 	});
 };
+// exports.add = function(req, res, next) {
+//         req.getConnection(function(err, connection) {
+//             if (err) {
+//                 return next(err);
+//             }
+
+//             var input = JSON.parse(JSON.stringify(req.body));
+//             var data = {
+//                 username: input.username,
+//                 password: input.password,
+//                 role: 'View'
+
+//             };
+//             //bcrypt the password===
+//              bcrypt.genSalt(10, function(err, salt) {
+//                 bcrypt.hash(input.password, salt, function(err, hash) {
+//                     // Store hash in your password DB. 
+//                     data.password = hash;
+//                     connection.query('insert into users set ?', data, function(err, users) {
+//                         user = users[0]; 
+//                         if(input.username === user.username){
+//                           res.redirect('/signup',{msg: "Username already taken, try again!"});
+//                         }
+//                         if (err)
+//                             console.log("Error inserting : %s ", err);
+
+//                         res.redirect('/?status=user_created');
+                       
+//                     });
+//                 });
+//             });
+          
+
+
+//         });
+
+//     };
 
 exports.add = function (req, res, next) {
 	req.getConnection(function(err, connection){
@@ -43,7 +80,9 @@ exports.add = function (req, res, next) {
 		        console.log(hash.length)
 
 		        data.password = hash;
-		        connection.query('insert into users set ?', data, function(err, results) {
+		        connection.query('insert into users set ?', data, function(err, users) {
+	                 
+                       
 		        	if (err)
 		        		console.log("Error inserting : %s ", err);
 
@@ -53,6 +92,7 @@ exports.add = function (req, res, next) {
 		});
 	});
 };
+
 
 exports.get = function(req, res, next){
 	var Id = req.params.Id;

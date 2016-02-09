@@ -1,14 +1,15 @@
-<!-- {{#isAdmin}} -->
+
 <table class="table">
 
     <tr>
-        <th>username</th>
+        <th>Username</th>
         <th>Role</th>
     </tr>
-    {{#USer}}
+  
 
         <tr>
             <form action="/user/update/{{Id}}" method="post">
+              {{#each User}}
                 <td>{{username}}</td>
 
                 <td>{{role}}</td>
@@ -26,6 +27,9 @@
             <td><button><a href="/user/delete/{{Id}}">Delete</a></button> </td>
         </tr>
 
-    {{/USer}} 
+    {{/each}}
 </table>
-<!-- {{/isAdmin}} -->
+
+{{#action}}
+<h1 id="user"> You are not Authorised to view this page!</h1>
+{{/action}} 

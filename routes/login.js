@@ -29,7 +29,7 @@ exports.login = function(req, res, next){
 			    		console.log(pass);
 			    		//console.log(Admin);
 			    	} else {
-			    		 res.redirect('/home');
+			    		 res.redirect('/');
 			    	
 			    	};
 				//});
