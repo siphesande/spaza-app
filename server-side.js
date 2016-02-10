@@ -180,8 +180,6 @@ app.get('/logout', function(req, res){
   res.redirect('/');
   
 });
-
-
 app.get('/signup', function(req, res){
 app.post('/signup', function(req, res){
     var user = JSON.parse(JSON.stringify(req.body));
