@@ -136,3 +136,5 @@ exports.Profits = function(req, res, next){
 	});
 };
 //(Purchase_price*Purchases.Qty)
+
+
