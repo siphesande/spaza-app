@@ -116,7 +116,6 @@ exports.EarningsPro = function(req, res, next){
 		});
 	});
 };
-
 exports.Profits = function(req, res, next){
 	req.getConnection(function(error, connection){
 		if(error){
