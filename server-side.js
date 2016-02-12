@@ -50,7 +50,7 @@ app.use(session({
 
 secret : 'a4f8071f-c873-4447-8ee2', resave : true,   saveUninitialized: true, cookie: { maxAge:2628000000 }}));
 
-var fs = require('fs');
+
 
 app.use(function(req, res, next){
   console.log('middleware!');
@@ -166,7 +166,7 @@ app.post('/suppliers/update/:Id', suppliers.update);
 app.get('/suppliers/delete/:Id', suppliers.delete);
 
 //these are the logout
-//who is the user??
+// to show the user??
 app.get('/user',  usrs.usser);
 app.get('/user/add',  usrs.usser);
 app.get('/user/edit/:Id', usrs.get);
