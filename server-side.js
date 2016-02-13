@@ -11,7 +11,7 @@ var express = require('express'),
     //bcrypt = require('bcrypt-nodejs'),
     bcrypt = require('bcrypt'),
     request = require('request'),
-    //These are my routes
+    //These are my routes:
     products = require('./routes/products'),
     sales = require('./routes/sales'),
     categories = require('./routes/categories'),
@@ -31,7 +31,6 @@ var dbOptions = {
       port: 3306,
       database: 'spaza_app'
 };
-
 //setup template handlebars as the template engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
