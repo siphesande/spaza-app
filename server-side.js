@@ -114,6 +114,7 @@ app.use(errorHandler);
 
 //setup the handlers
 app.get('/',function(req,res){res.render('index');});
+//products.js
 app.get('/products', products.show);
 app.get('/products/edit/:Id', products.get);
 app.post('/products/update/:Id', products.update);
@@ -127,17 +128,14 @@ app.get('/products/delete/:Id', products.delete);
 app.get('/products/EarningsPro', products.EarningsPro);
 app.get('/products/Profits', products.Profits)
 
-
+// sales.js
 app.get('/sales', sales.show); 
 app.post('/sales/add',sales.add);
 app.get('/sales/edit/:Id', sales.getSales);
 app.post('/sales/update/:Id', sales.update);
-//app.get('/sales/addSales', sales.showAdd);
 app.get('/sales/delete/:Id', sales.delete);
 
-
-
-
+// to get,add,update and delete categories
 app.get('/categories', categories.show);
 app.get('/categories/add', categories.showAdd);
 app.post('/categories/add', categories.add);
@@ -149,7 +147,7 @@ app.get('/categories/leastPopulerCat', categories.leastPopulerCat);
 app.get('/categories/delete/:Id', categories.delete);
 app.get('/categories/EarningsCateg', categories.EarningsCateg);
 
-
+//purchases.js
 app.get('/purchases', purchases.show);
 app.post('/purchases/add',purchases.add);
 app.get('/purchases/edit/:Id', purchases.get);
@@ -157,7 +155,7 @@ app.post('/purchases/update/:Id', purchases.update);
 //app.get('/purchases/updete/:Id')
 app.get('/purchases/delete/:Id', purchases.delete);
 
-
+//suppliers.js
 app.get('/suppliers', suppliers.show);
 app.post('/suppliers/add',suppliers.add);
 app.get('/suppliers/edit/:Id', suppliers.get);
