@@ -76,16 +76,12 @@ var checkUser = function(req, res, next){
 
     return next();
   }
-
-
   // the user is not logged in redirect them to the login page
   res.redirect('/');
 };
 
 
-
 app.post('/home', loggin.login);
-
 app.get('/home', function (req, res) {
     res.render('main', {layout: false})
 });
@@ -106,7 +102,8 @@ app.get('/login', function (req, res) {
 
 function errorHandler(err, req, res, next) {
   res.status(500);
-  res.render('error', { 
+  res.render('error', 
+     { 
     error: err 
     });
 }
