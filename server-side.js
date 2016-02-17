@@ -21,9 +21,7 @@ var express = require('express'),
     register = require('./routes/Users'),
     usrs = require('./routes/Users');
     
-  
 var app = express();
-
 var dbOptions = {
       host: 'localhost',
       user: 'root',
