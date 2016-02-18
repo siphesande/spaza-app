@@ -93,6 +93,43 @@ exports.add = function (req, res, next) {
 	});
 };
 
+ exports.adminSignup = function(req, res, next) {
+        req.getConnection(function(err, connection) {
+            if (err) {
+                return next(err);
+            }
+
+            var input = JSON.parse(JSON.stringify(req.body));
+            var data = {
+                username: input.username,
+                password: input.password,
+                role: input.key,
+            };
+
+            admin = 'Admin';
+
+            //bcrypt the password ===
+            bcrypt.genSalt(10, function(err, salt) {
+                bcrypt.hash(input.password, salt, function(err, hash) {
+                    // Store hash in your password DB. 
+                    data.password = hash;
+                    connection.query('insert into users set ?', data, function(err, results) {
+                        if (err)
+                            console.log("Error inserting : %s ", err);
+                         if(input.key == admin){                      
+
+                        res.redirect('/?status=user_created');
+                        }
+                       else{
+                           res.redirect('/admin_signup');
+                          }
+                    });
+                });
+            });
+        });
+
+    };
+
 
 exports.get = function(req, res, next){
 	var Id = req.params.Id;

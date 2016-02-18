@@ -189,10 +189,14 @@ app.get('/signup', register.get);
 app.post('/signup', register.add);
   
  //app.get('/signup/edit/:id', register.get);
- app.post('/signup/update/:id', register.update);
- app.post('/signup/add', register.add);
+app.post('/signup/update/:id', register.update);
+app.post('/signup/add', register.add);
  //this should be a post but this is only an illustration of CRUD - not on good practices
- app.get('/signup/delete/:id', register.delete);
+app.get('/signup/delete/:id', register.delete);
+//signup as Adiministrator
+app.get('/admin_signup', function(req, res, next){
+        res.render('admin_signup');
+});  
 
 //configure the port number using and environment number
 var portNumber = process.env.CRUD_PORT_NR || 3001;
