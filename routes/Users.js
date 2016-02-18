@@ -13,7 +13,7 @@ exports.usser = function (req, res, next) {
 			if (error) return next(error);
 				res.render( 'User', {
 					USer: results,
-					isAdmin : Administrator,
+					Admin : Administrator,
 					action : user
 				});
 			});
