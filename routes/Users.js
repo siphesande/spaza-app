@@ -117,7 +117,7 @@ exports.add = function (req, res, next) {
                             console.log("Error inserting : %s ", err);
                          if(input.key == admin){                      
 
-                        res.redirect('/?status=user_created');
+                        res.redirect('/User');
                         }
                        else{
                            res.redirect('/admin_signup');

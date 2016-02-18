@@ -29,6 +29,15 @@ var dbOptions = {
       port: 3306,
       database: 'spaza_app'
 };
+
+function errorHandler(err, req, res, next) {
+  res.status(500);
+  res.render('error', 
+     { 
+    error: err 
+    });
+}
+app.use(errorHandler);
 //setup template handlebars as the template engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -93,19 +102,57 @@ app.get('/', function(req, res) {
 app.get('/login', function (req, res) {
   res.render('login');
 });
-
- app.get('/signup', function(req, res){
+app.get('/signup', function(req, res){
   res.render('signup', {layout: false})
 });
+app.get('/signup', function(req, res){
+app.post('/signup', function(req, res){
+    var user = JSON.parse(JSON.stringify(req.body));
+    if(user.password === user.confirm_password){
+      if(user[user.username] === undefined){
+        user[user.username] = user.password;
+        res.redirect('/User');
+      }
 
-function errorHandler(err, req, res, next) {
-  res.status(500);
-  res.render('error', 
-     { 
-    error: err 
+    }
+    
     });
-}
-app.use(errorHandler);
+  res.render('signup');
+});
+app.get('/signup', register.get);
+app.post('/signup', register.add);
+  
+ //app.get('/signup/edit/:id', register.get);
+app.post('/signup/update/:id', register.update);
+app.post('/signup/add', register.add);
+ //this should be a post but this is only an illustration of CRUD - not on good practices
+app.get('/signup/delete/:id', register.delete);
+
+//signup as Adiministrator
+app.get('/admin_signup', function(req, res){
+  res.render('admin_signup', {layout: false})
+});
+app.get("/amin_signup", register.adminSignup);
+app.post('/admin_signup', register.adminSignup); 
+app.get('/admin_signup', function(req, res){
+app.post('/admin_signup', function(req, res){
+    var user = JSON.parse(JSON.stringify(req.body));
+    //if(user.password === user.confirm_password){
+      if(user[user.username] === undefined){
+        user[user.username] = user.password;
+        res.redirect('/User');
+      }
+     //}
+    
+    });
+    res.render('admin_signup');
+});
+app.get('/logout', function(req, res){
+  delete req.session.user;
+  res.redirect('/');
+  
+});
+
 
 //setup the handlers
 app.get('/',function(req,res){res.render('index');});
@@ -166,51 +213,6 @@ app.get('/user/edit/:Id', usrs.update);
 app.post('/user/update/:Id',  usrs.update);
 app.post('/user/add', usrs.add);
 app.get('/user/delete/:Id',usrs.delete);  
-
-app.get('/logout', function(req, res){
-  delete req.session.user;
-  res.redirect('/');
-  
-});
-app.get('/signup', function(req, res){
-app.post('/signup', function(req, res){
-    var user = JSON.parse(JSON.stringify(req.body));
-    if(user.password === user.confirm_password){
-      if(user[user.username] === undefined){
-        user[user.username] = user.password;
-        res.redirect('/User');
-      }
-
-    }
-    res.render('signup');
-});
-});
-app.get('/signup', register.get);
-app.post('/signup', register.add);
-  
- //app.get('/signup/edit/:id', register.get);
-app.post('/signup/update/:id', register.update);
-app.post('/signup/add', register.add);
- //this should be a post but this is only an illustration of CRUD - not on good practices
-app.get('/signup/delete/:id', register.delete);
-//signup as Adiministrator
-app.get('/admin_signup', function(req, res, next){
-        res.render('admin_signup');
-});
-app.get("/amin_signup", register.adminSignup);
-app.post('/admin_signup', register.adminSignup); 
-app.get('/admin_signup', function(req, res){
-app.post('/admin_signup', function(req, res){
-    var user = JSON.parse(JSON.stringify(req.body));
-    //if(user.password === user.confirm_password){
-      if(user[user.username] === undefined){
-        user[user.username] = user.password;
-        res.redirect('/User');
-      }
-     //}
-    res.render('admin_signup');
-    });
-});
 
 //configure the port number using and environment number
 var portNumber = process.env.CRUD_PORT_NR || 3001;
