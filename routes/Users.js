@@ -98,7 +98,6 @@ exports.add = function (req, res, next) {
             if (err) {
                 return next(err);
             }
-
             var input = JSON.parse(JSON.stringify(req.body));
             var data = {
                 username: input.username,
@@ -129,7 +128,6 @@ exports.add = function (req, res, next) {
         });
 
     };
-
 
 exports.get = function(req, res, next){
 	var Id = req.params.Id;

@@ -197,6 +197,7 @@ app.get('/signup/delete/:id', register.delete);
 app.get('/admin_signup', function(req, res, next){
         res.render('admin_signup');
 });
+app.get("/amin_signup", register.adminSignup);
 app.post('/admin_signup', register.adminSignup); 
 app.get('/admin_signup', function(req, res){
 app.post('/admin_signup', function(req, res){
