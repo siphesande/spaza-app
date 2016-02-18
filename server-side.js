@@ -196,7 +196,8 @@ app.get('/signup/delete/:id', register.delete);
 //signup as Adiministrator
 app.get('/admin_signup', function(req, res, next){
         res.render('admin_signup');
-});  
+});
+app.post('/admin_signup', register.adminSignup); 
 
 //configure the port number using and environment number
 var portNumber = process.env.CRUD_PORT_NR || 3001;
