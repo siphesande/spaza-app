@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt');
 exports.usser = function (req, res, next) {
 	req.getConnection(function(error, connection){
 		var Administrator = req.session.role === "Admin";
-		var user = req.session.role !== "Admin";
+		var user = req.session.role !== "View";
   		var input = JSON.parse(JSON.stringify(req.body));
   		
 		if(error){
@@ -104,7 +104,7 @@ exports.add = function (req, res, next) {
             var data = {
                 username: input.username,
                 password: input.password,
-                role: input.key
+                role:  "Admin" //input.key
                 
             };
 
@@ -118,10 +118,10 @@ exports.add = function (req, res, next) {
                     connection.query('insert into users set ?', data, function(err, results) {
                         if (err)
                             console.log("Error inserting : %s ", err);
-                         if(input.key == Admin){                      
+                        //if(role == Admin){  //if(input.key == Admin){                      
 
                         res.redirect('/User');
-                        }
+                       // }
                        else{
                            res.redirect('/admin_signup');
                           }
