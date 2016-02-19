@@ -134,19 +134,19 @@ app.get('/admin_signup', function(req, res){
 });
 app.get("/amin_signup", register.adminSignup);
 app.post('/admin_signup', register.adminSignup); 
-app.get('/admin_signup', function(req, res){
-app.post('/admin_signup', function(req, res){
-    var user = JSON.parse(JSON.stringify(req.body));
-    //if(user.password === user.confirm_password){
-      if(user[user.username] === undefined){
-        user[user.username] = user.password;
-        res.redirect('/User');
-      }
-     //}
+// app.get('/admin_signup', function(req, res){
+// app.post('/admin_signup', function(req, res){
+//     var user = JSON.parse(JSON.stringify(req.body));
+//     //if(user.password === user.confirm_password){
+//       if(user[user.username] === undefined){
+//         user[user.username] = user.password;
+//         res.redirect('/User');
+//       }
+//      //}
     
-    });
-    res.render('admin_signup');
-});
+//     });
+//     res.render('admin_signup');
+// });
 app.get('/logout', function(req, res){
   delete req.session.user;
   res.redirect('/');
