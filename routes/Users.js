@@ -141,7 +141,7 @@ exports.add = function (req, res, next) {
                 if (err) {
                     console.log("Error Updating : %s ", err);
                 }
-                res.redirect('/users');
+                res.redirect('/User');
             });
 
         });
@@ -155,7 +155,7 @@ exports.notAdmin = function(req, res, next) {
                 if (err) {
                     console.log("Error Updating : %s ", err);
                 }
-                res.redirect('/users');
+                res.redirect('/User');
             });
 
         });
