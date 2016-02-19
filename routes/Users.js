@@ -17,7 +17,7 @@ exports.usser = function (req, res, next) {
 					action : user
 				});
 			});
-	});
+	   });
 };
 // exports.add = function(req, res, next) {
 //         req.getConnection(function(err, connection) {
