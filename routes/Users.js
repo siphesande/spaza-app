@@ -122,9 +122,9 @@ exports.add = function (req, res, next) {
 
                         res.redirect('/User');
                        // }
-                       else{
-                           res.redirect('/admin_signup');
-                          }
+                       // else{
+                       //     res.redirect('/admin_signup');
+                       //    }
                     });
                 });
             });
