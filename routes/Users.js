@@ -131,6 +131,37 @@ exports.add = function (req, res, next) {
         });
 
     };
+//updating a user
+ exports.admin = function(req, res, next) {
+
+        var data = JSON.parse(JSON.stringify(req.body));
+        var id = req.params.Id;
+        req.getConnection(function(err, connection) {
+            connection.query('UPDATE Users SET role = "admin" WHERE ID = ?', id, function(err, rows) {
+                if (err) {
+                    console.log("Error Updating : %s ", err);
+                }
+                res.redirect('/users');
+            });
+
+        });
+    };
+exports.notAdmin = function(req, res, next) {
+
+        var data = JSON.parse(JSON.stringify(req.body));
+        var id = req.params.Id;
+        req.getConnection(function(err, connection) {
+            connection.query('UPDATE Users SET role = "View" WHERE ID = ?', id, function(err, rows) {
+                if (err) {
+                    console.log("Error Updating : %s ", err);
+                }
+                res.redirect('/users');
+            });
+
+        });
+    };
+
+
 
 exports.get = function(req, res, next){
 	var Id = req.params.Id;
