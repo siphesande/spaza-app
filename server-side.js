@@ -64,9 +64,7 @@ app.use(function(req, res, next){
   next();
 });
 
- var contains = function(str, part){
-   return str.indexOf(part) !== -1;
-};
+ 
 
 var checkUser = function(req, res, next){
   console.log("path : " + req.path);
