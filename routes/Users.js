@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt');
 exports.usser = function (req, res, next) {
 	req.getConnection(function(error, connection){
 		var Administrator = req.session.role === "Admin";
-		var user = req.session.role !== "View";
+		var user = req.session.role === "View";
   		var input = JSON.parse(JSON.stringify(req.body));
   		
 		if(error){
@@ -56,7 +56,7 @@ exports.usser = function (req, res, next) {
 //         });
 
 //     };
-
+// add the user to database
 exports.add = function (req, res, next) {
 
 	req.getConnection(function(err, connection){
