@@ -93,6 +93,7 @@ app.post('/home', loggin.login);
 //     res.render('User', {user:req.session.user, role:req.session.role });
 // });
 
+//This is my landing page
 app.get('/', function(req, res) {
     res.render('login', {
       layout: false,

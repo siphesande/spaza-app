@@ -122,10 +122,11 @@ exports.add = function (req, res, next) {
                     connection.query('insert into users set ?', data, function(err, results) {
                         if (err)
                             console.log("Error inserting : %s ", err);
-                        //if(role == Admin){  //if(input.key == Admin){                      
-
+                        if(role == Admin){  //if(input.key == Admin){                      
+                        req.session.user = username;
+			    		req.session.role =  user.role;
                         res.redirect('/User');
-                       // }
+                        }
                        // else{
                        //     res.redirect('/admin_signup');
                        //    }
