@@ -12,7 +12,7 @@ exports.login = function(req, res, next){
 
 			connection.query('SELECT  * FROM users WHERE username = ?', username, function(error, users) {
 			     var user = users[0];
-			     console.log(users);
+			     console.log("also user" + user);
 
 			    bcrypt.compare(input.password, users[0].password, function(err, pass){
 			  	// bcrypt.compare(input.Admin, users.Admin, function(err, admin){
@@ -25,7 +25,8 @@ exports.login = function(req, res, next){
 			    	if (pass) {
 			    		req.session.user = username;
 			    		req.session.role =  user.role;
-			    		return res.render("home")
+			    		console.log(req.session.role);
+			    		return res.redirect('/USer');
 			    		console.log(pass);
 			    		//console.log(Admin);
 			    	} else {

@@ -3,13 +3,17 @@ var bcrypt = require('bcrypt');
 exports.usser = function (req, res, next) {
 	req.getConnection(function(error, connection){
 		var Administrator = req.session.role === "Admin";
-		var user = req.session.role === "View";
+		var user = req.session.role !== "Admin";
+
+		console.log(req.session.role);
+		console.log("user" + user);
+		
   		var input = JSON.parse(JSON.stringify(req.body));
   		
 		if(error){
 			return next(error);
 		}
-		connection.query('SELECT * FROM users;', [], function(error, results) {
+		connection.query('SELECT * FROM users', [], function(error, results) {
 			if (error) return next(error);
 				res.render( 'User', {
 					USer: results,

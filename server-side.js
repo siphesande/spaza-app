@@ -89,15 +89,17 @@ var checkUser = function(req, res, next){
 
 
 app.post('/home', loggin.login);
-app.get('/home', function (req, res) {
-    res.render('home', {layout: false})
-});
+// app.get('/home', function (req, res) {
+//     res.render('User', {user:req.session.user, role:req.session.role });
+// });
 
 app.get('/', function(req, res) {
     res.render('login', {
       layout: false,
     });
 });
+
+app.get('/file',usrs.usser);
 
 app.get('/login', function (req, res) {
   res.render('login');
