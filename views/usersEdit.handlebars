@@ -2,9 +2,9 @@
 <h1> You are: {{user}} [{{role}}]</h1>
 <h1>Edit :</h1>
 {{#data}}
-<form action="/usersEdit/{{Id}}" method="POST">
+<form action="/user/update/{{Id}}" method="POST">
 	Username: <input type="text" name="username" value="{{username}}">	
-	<input type="submit">
+<input type="submit">
 
 </form>
 {{/data}}

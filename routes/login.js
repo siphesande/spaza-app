@@ -28,14 +28,14 @@ exports.login = function(req, res, next){
 			    		console.log(req.session.role);
 			    		return res.redirect('/home');
 			    		console.log(pass);
-			    		//console.log(Admin);
+			    		
 			    	} else {
 			    		 res.redirect('/');
 			    	
 			    	};
 				//});
 			  	});
-			});
+			  });
 		    });
   		};
 

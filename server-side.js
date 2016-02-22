@@ -66,24 +66,6 @@ app.use(function(req, res, next){
 
  
 
-var checkUser = function(req, res, next){
-  console.log("path : " + req.path);
-  if (req.session.user){
-
-    var pathNeedsAdminRights = contains(req.path, "add") || 
-          contains(req.path, "edit") || 
-          contains("delete");
-
-    if(pathNeedsAdminRights && req.session.role !== "Admin"){
-      //why is there are error
-      res.send(500, "ACCESS DENIED");
-    }
-
-    return next();
-  }
-  // the user is not logged in redirect them to the login page
-  res.redirect('/');
-};
 
 
 app.post('/home', loggin.login);
@@ -112,7 +94,7 @@ app.post('/signup', function(req, res){
     if(user.password === user.confirm_password){
       if(user[user.username] === undefined){
         user[user.username] = user.password;
-        res.redirect('/User');
+        res.redirect('/home');
       }
 
     }
@@ -135,30 +117,55 @@ app.get('/admin_signup', function(req, res){
 });
 app.get("/amin_signup", register.adminSignup);
 app.post('/admin_signup', register.adminSignup); 
-// app.get('/admin_signup', function(req, res){
-// app.post('/admin_signup', function(req, res){
-//     var user = JSON.parse(JSON.stringify(req.body));
-//     //if(user.password === user.confirm_password){
-//       if(user[user.username] === undefined){
-//         user[user.username] = user.password;
-//         res.redirect('/User');
-//       }
-//      //}
+app.get('/admin_signup', function(req, res){
+app.post('/admin_signup', function(req, res){
+    var user = JSON.parse(JSON.stringify(req.body));
+    //if(user.password === user.confirm_password){
+      if(user[user.username] === undefined){
+        user[user.username] = user.password;
+        res.redirect('/home');
+      }
+     //}
     
-//     });
-//     res.render('admin_signup');
-// });
+    });
+    res.render('admin_signup');
+});
 app.get('/logout', function(req, res){
   delete req.session.user;
   res.redirect('/');
   
 });
 
+var contains = function(str, part){
+   return str.indexOf(part) !== -1;
+};
+
+var checkUser = function(req, res, next){
+  console.log("path : " + req.path);
+  if (req.session.user){
+
+    var pathNeedsAdminRights = contains(req.path, "add") || 
+          contains(req.path, "edit") || 
+          contains("delete");
+
+    if(pathNeedsAdminRights && req.session.role !== "Admin"){
+      //why is there are error
+      res.send(500, "ACCESS DENIED");
+    }
+
+    return next();
+  }
+
+
+  // the user is not logged in redirect them to the login page
+  res.redirect('/');
+};
+
 
 //setup the handlers
 app.get('/',function(req,res){res.render('index');});
 //products.js
-app.get('/products', products.show);//show products to the screen
+app.get('/products',checkUser, products.show);//show products to the screen
 app.get('/products/edit/:Id', products.get);
 app.post('/products/update/:Id', products.update);
 app.get('/products/add', products.showAdd);
@@ -179,19 +186,18 @@ app.post('/sales/update/:Id', sales.update);
 app.get('/sales/delete/:Id', sales.delete);
 
 // to get,add,update and delete categories
-app.get('/categories', categories.show);
+app.get('/categories', checkUser,categories.show);
 app.get('/categories/add', categories.showAdd);
 app.post('/categories/add', categories.add);
 app.get('/categories/edit/:Id', categories.get);
 app.post('/categories/update/:Id',categories.update);
-
+app.get('/categories/delete/:Id', categories.delete);
 app.get('/categories/mostPopulerCat', categories.mostPopulerCat);
 app.get('/categories/leastPopulerCat', categories.leastPopulerCat);
-app.get('/categories/delete/:Id', categories.delete);
 app.get('/categories/EarningsCateg', categories.EarningsCateg);
 
 //purchases.js
-app.get('/purchases', purchases.show);
+app.get('/purchases',checkUser, purchases.show);
 app.post('/purchases/add',purchases.add);
 app.get('/purchases/edit/:Id', purchases.get);
 app.post('/purchases/update/:Id', purchases.update);
@@ -199,7 +205,7 @@ app.post('/purchases/update/:Id', purchases.update);
 app.get('/purchases/delete/:Id', purchases.delete);
 
 //suppliers.js
-app.get('/suppliers', suppliers.show);
+app.get('/suppliers',checkUser, suppliers.show);
 app.post('/suppliers/add',suppliers.add);
 app.get('/suppliers/edit/:Id', suppliers.get);
 app.post('/suppliers/update/:Id', suppliers.update);
@@ -207,17 +213,17 @@ app.get('/suppliers/delete/:Id', suppliers.delete);
 
 //these are the logout
 // to show the user??
-app.get('/user',  usrs.usser);
+app.get('/user',checkUser,  usrs.usser);
 app.get('/user/add',  usrs.usser);
 app.get('/user/edit/:Id', usrs.get);
 app.get('/user/edit/:Id', usrs.update);
 app.post('/user/update/:Id',  usrs.update);
 app.post('/user/add', usrs.add);
-app.get('/user/delete/:Id',usrs.delete);
-app.get('/user/admin/:Id',usrs.admin);
-app.get('/user/notAdmin/:Id',usrs.notAdmin); 
-app.get('/usersEdit',usrs.get);
-app.post('/usersEdit',usrs.update);
+app.get('/user/delete/:Id',checkUser,usrs.delete);
+app.get('/user/admin/:Id',checkUser,usrs.admin);
+app.get('/user/notAdmin/:Id',checkUser,usrs.notAdmin);
+app.get('/user/edit/',usrs.get); 
+
 
 //configure the port number using and environment number
 var portNumber = process.env.CRUD_PORT_NR || 3001;
