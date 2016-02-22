@@ -91,7 +91,7 @@ exports.add = function (req, res, next) {
 		        	if (err)
 		        		console.log("Error inserting : %s ", err);
 
-		        	res.redirect('/User');
+		        	res.redirect('/?status=user_created');
 		        });
 		    });
 		});
@@ -108,6 +108,7 @@ exports.add = function (req, res, next) {
             var data = {
                 username: input.username,
                 password: input.password,
+                //role : input.key    
                 role:  "Admin" //input.key
                 
             };
@@ -122,14 +123,14 @@ exports.add = function (req, res, next) {
                     connection.query('insert into users set ?', data, function(err, results) {
                         if (err)
                             console.log("Error inserting : %s ", err);
-                        if(role == Admin){  //if(input.key == Admin){                      
-                        req.session.user = username;
-			    		req.session.role =  user.role;
-                        res.redirect('/User');
-                        }
-                       // else{
-                       //     res.redirect('/admin_signup');
-                       //    }
+         //                if(input.key == Admin){ //if(role == Admin){                     
+         //                req.session.user = username;
+			    		//req.session.role =  user.role;
+                        res.redirect('/?status=user_created');
+                   //     }
+         //                else{
+         //                   res.redirect('/admin_signup');
+         //                  }
                     });
                 });
             });
@@ -142,7 +143,7 @@ exports.add = function (req, res, next) {
         var data = JSON.parse(JSON.stringify(req.body));
         var id = req.params.Id;
         req.getConnection(function(err, connection) {
-            connection.query('UPDATE Users SET role = "admin" WHERE ID = ?', id, function(err, rows) {
+            connection.query('UPDATE users SET role = "Admin" WHERE Id = ?', id, function(err, rows) {
                 if (err) {
                     console.log("Error Updating : %s ", err);
                 }
@@ -156,7 +157,7 @@ exports.notAdmin = function(req, res, next) {
         var data = JSON.parse(JSON.stringify(req.body));
         var id = req.params.Id;
         req.getConnection(function(err, connection) {
-            connection.query('UPDATE Users SET role = "View" WHERE ID = ?', id, function(err, rows) {
+            connection.query('UPDATE users SET role = "View" WHERE Id = ?', id, function(err, rows) {
                 if (err) {
                     console.log("Error Updating : %s ", err);
                 }
@@ -167,7 +168,6 @@ exports.notAdmin = function(req, res, next) {
     };
 
 
-
 exports.get = function(req, res, next){
 	var Id = req.params.Id;
 	req.getConnection(function(err, connection){
@@ -175,7 +175,9 @@ exports.get = function(req, res, next){
 			if(err){
 				console.log("Error Selecting : %s ",err );
 			}
-			res.render('usersEdit', {page_title:"Edit Customers - Node.js", data : rows[0]});      
+			res.render('usersEdit', {page_title:"Edit User - Node.js", 
+			data : rows[0]
+		   });      
 		}); 
 	});
 };
@@ -190,7 +192,7 @@ exports.update = function(req, res, next){
 			if (err){
 				console.log("Error Updating : %s ",err );
 			}
-			res.redirect('/User');
+			res.redirect('/home');
 		});
 
 	});

@@ -87,9 +87,9 @@ var checkUser = function(req, res, next){
 
 
 app.post('/home', loggin.login);
-// app.get('/home', function (req, res) {
-//     res.render('User', {user:req.session.user, role:req.session.role });
-// });
+app.get('/home', function (req, res) {
+    res.render('home', {user:req.session.user, role:req.session.role });
+});
 
 //This is my landing page
 app.get('/', function(req, res) {
@@ -213,7 +213,11 @@ app.get('/user/edit/:Id', usrs.get);
 app.get('/user/edit/:Id', usrs.update);
 app.post('/user/update/:Id',  usrs.update);
 app.post('/user/add', usrs.add);
-app.get('/user/delete/:Id',usrs.delete);  
+app.get('/user/delete/:Id',usrs.delete);
+app.get('/user/admin/:Id',usrs.admin);
+app.get('/user/notAdmin/:Id',usrs.notAdmin); 
+app.get('/usersEdit',usrs.get);
+app.post('/usersEdit',usrs.update);
 
 //configure the port number using and environment number
 var portNumber = process.env.CRUD_PORT_NR || 3001;

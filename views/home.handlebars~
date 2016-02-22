@@ -1,4 +1,4 @@
-<h1> Logged in as: {{user}} [{{role}}] <td><a href="/user/edit/{{Id}}" class ="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a></td></h1>
+<h1> Logged in as: {{user}} [{{role}}]</h1>
 {{Home}}
 
 
@@ -8,7 +8,7 @@
              <div id="carousel-example-generic" class="carousel slide">
                  <h2 class="brand-before">
 
-                 <small>Welcome to</small>
+                 <small>Welcome ,,,,,to</small>
                  </h2>Nelisa's Cash Store<div id="slide-container">
              </div>
        </div>

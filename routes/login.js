@@ -26,7 +26,7 @@ exports.login = function(req, res, next){
 			    		req.session.user = username;
 			    		req.session.role =  user.role;
 			    		console.log(req.session.role);
-			    		return res.redirect('/USer');
+			    		return res.redirect('/home');
 			    		console.log(pass);
 			    		//console.log(Admin);
 			    	} else {
