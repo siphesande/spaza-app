@@ -73,7 +73,7 @@ exports.delete = function(req, res, next){
 	});
 }
 exports.mostPopulerPrd =function (req, res, next){
-    var id = req.params.Id;
+   
     req.getConnection(function(err, connection){
 
         connection.query('SELECT Products.product_name, Products.Id,Categories.category_name, SUM( Sales.qty ) AS qty FROM Sales INNER JOIN Products ON Sales.product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Products.product_name ORDER BY qty DESC LIMIT 1 ',[], function(err, results){
@@ -87,7 +87,7 @@ exports.mostPopulerPrd =function (req, res, next){
 }
 
 exports.leastPopulerPrd =function (req, res, next){
-    var id = req.params.Id;
+   
     req.getConnection(function(err, connection){
         connection.query('SELECT Products.product_name, Products.Id,Categories.category_name, SUM( Sales.qty ) AS qty FROM Sales INNER JOIN Products ON Sales.product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Products.product_name ORDER BY qty ASC LIMIT 1 ',[], function(err, results){
             if (err) return next(err);
@@ -134,6 +134,6 @@ exports.Profits = function(req, res, next){
 		});
 	});
 };
-//(Purchase_price*Purchases.Qty)
+
 
 

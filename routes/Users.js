@@ -56,11 +56,11 @@ exports.add = function (req, res, next) {
 	                if (err)
                             console.log("Error inserting : %s ", err);
 
-
+                     //if (input.username === users[0].username){
                     if(input.password !== input.password_confirm){
                       
 
-                       res.render('/sign_up',{msg: "Username already taken, try again!"});
+                       res.redirect('/signup');
                         }
                   else{
                         
@@ -94,19 +94,18 @@ exports.add = function (req, res, next) {
                 bcrypt.hash(input.password, salt, function(err, hash) {
                     // Store hashed password in my Database. 
                     data.password = hash;
-                    connection.query('insert into users set ?', data, function(err, results) {
+                    connection.query('insert into users set ?', data, function(err, users) {
                         if (err)
                             console.log("Error inserting : %s ", err);
-         //                if(input.key == Admin){ //if(role == Admin){                     
-         //                req.session.user = username;
-			    		//req.session.role =  user.role;
-			    		//alert('user_created');
+                        if(input.username !== users.username){ //if(role == Admin){                     
+                       //alert('user_created');
                         res.redirect('/?status=user_created');
 
-                       // }
-                       //  else{
-                       //     res.redirect('/admin_signup');
-                       //    }
+                       }
+                        else{
+                           res.redirect('/admin_signup');
+
+                          }
                     });
                 });
             });

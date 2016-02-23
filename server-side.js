@@ -56,6 +56,9 @@ app.use(session({
 
 secret : 'a4f8071f-c873-4447-8ee2', resave : true,   saveUninitialized: true, cookie: { maxAge:2628000000 }}));
 
+app.use(function(req, res){
+  res.sendStatus(404);
+})
 
 
 app.use(function(req, res, next){
