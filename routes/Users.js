@@ -8,7 +8,7 @@ exports.usser = function (req, res, next) {
 		console.log(req.session.role);
 		console.log("user" + user);
 		
-  		var input = JSON.parse(JSON.stringify(req.body));
+  		//var input = JSON.parse(JSON.stringify(req.body));
   		
 		if(error){
 			return next(error);
@@ -24,7 +24,7 @@ exports.usser = function (req, res, next) {
 	   });
 };
 
-// add the user to database
+// add the user(VIEW) to database
 exports.add = function (req, res, next) {
 
 	req.getConnection(function(err, connection){
@@ -37,10 +37,11 @@ exports.add = function (req, res, next) {
 		var data = {
 			username : input.username,
 			password : input.password,
+			//password_confirm: input.password_confirm,
             role : 'View'
 
 		};
-		    password_confirm: input.password_confirm
+		    password_confirm :input.password_confirm
 
         bcrypt.genSalt(10, function(err, salt) {
 			bcrypt.hash(input.password, salt, function(err, hash) {
@@ -51,17 +52,16 @@ exports.add = function (req, res, next) {
 		        console.log(hash.length)
 
 		        data.password = hash;
-		        connection.query('insert into users set ?', data, function(err, users) {
+		        
+		        connection.query('insert into users set ?', [data], function(err, users) {
 	                user = users[0]; 
 	                if (err)
                             console.log("Error inserting : %s ", err);
-
-                     //if (input.username === users[0].username){
-                    if(input.password !== input.password_confirm){
-                      
-
-                       res.redirect('/signup');
-                        }
+                    
+                    if (input.username === user.username){
+                  
+                      res.redirect('/signup');
+                 }
                   else{
                         
                         res.redirect('/?status=user_created');
@@ -94,18 +94,19 @@ exports.add = function (req, res, next) {
                 bcrypt.hash(input.password, salt, function(err, hash) {
                     // Store hashed password in my Database. 
                     data.password = hash;
+
                     connection.query('insert into users set ?', data, function(err, users) {
                         if (err)
                             console.log("Error inserting : %s ", err);
-                        if(input.username !== users.username){ //if(role == Admin){                     
+                       // if(input.username !== users.username){ //if(role == Admin){                     
                        //alert('user_created');
                         res.redirect('/?status=user_created');
 
-                       }
-                        else{
-                           res.redirect('/admin_signup');
+                       // }
+                       //  else{
+                       //     res.redirect('/admin_signup');
 
-                          }
+                       //    }
                     });
                 });
             });
@@ -152,6 +153,9 @@ exports.get = function(req, res, next){
 			}
 			res.render('usersEdit', {
 			page_title:"Edit User - Node.js", 
+			user:req.session.user,
+		    role:req.session.role,
+		    //Id :req.session.Id,
 			data : rows[0]
 		   });      
 		}); 

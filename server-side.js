@@ -56,9 +56,7 @@ app.use(session({
 
 secret : 'a4f8071f-c873-4447-8ee2', resave : true,   saveUninitialized: true, cookie: { maxAge:2628000000 }}));
 
-app.use(function(req, res){
-  res.sendStatus(404);
-})
+
 
 
 app.use(function(req, res, next){
@@ -72,8 +70,11 @@ app.use(function(req, res, next){
 
 
 app.post('/home', loggin.login);
+app.post('/home',function(req, res){
+   res.render("home");
+})
 app.get('/home', function (req, res) {
-    res.render('home', {user:req.session.user, role:req.session.role });
+    res.render('home', {user:req.session.user, role:req.session.role,Id:req.session.Id });
 });
 
 //This is my landing page
@@ -91,20 +92,21 @@ app.get('/login', function (req, res) {
 app.get('/signup', function(req, res){
   res.render('signup', {layout: false})
 });
-app.get('/signup', function(req, res){
-app.post('/signup', function(req, res){
-    var user = JSON.parse(JSON.stringify(req.body));
-    if(user.password === user.confirm_password){
-      if(user[user.username] === undefined){
-        user[user.username] = user.password;
-        res.redirect('/home');
-      }
 
-    }
+// app.get('/signup', function(req, res){
+// app.post('/signup', function(req, res){
+//     var user = JSON.parse(JSON.stringify(req.body));
+//     if(user.password === user.confirm_password){
+//       if(user[user.username] === undefined){
+//         user[user.username] = user.password;
+//         res.redirect('/home');
+//       }
+
+//     }
     
-    });
-  res.render('signup');
-});
+//     });
+//   res.render('signup');
+// });
 app.get('/signup', register.get);
 app.post('/signup', register.add);
   
@@ -119,20 +121,20 @@ app.get('/admin_signup', function(req, res){
   res.render('admin_signup', {layout: false})
 });
 app.get("/amin_signup", register.adminSignup);
-app.post('/admin_signup', register.adminSignup); 
-app.get('/admin_signup', function(req, res){
-app.post('/admin_signup', function(req, res){
-    var user = JSON.parse(JSON.stringify(req.body));
-    //if(user.password === user.confirm_password){
-      if(user[user.username] === undefined){
-        user[user.username] = user.password;
-        res.redirect('/home');
-      }
-     //}
+app.post('/admin_signup',register.adminSignup); 
+//app.get('/admin_signup', function(req, res){
+// app.post('/admin_signup', function(req, res){
+//     var user = JSON.parse(JSON.stringify(req.body));
+//     //if(user.password === user.confirm_password){
+//       if(user[user.username] === undefined){
+//         user[user.username] = user.password;
+//         res.redirect('/home');
+//       }
+//      //}
     
-    });
-    res.render('admin_signup');
-});
+//     });
+//     res.render('admin_signup');
+// });
 app.get('/logout', function(req, res){
   delete req.session.user;
   res.redirect('/');
@@ -226,6 +228,10 @@ app.get('/user/delete/:Id',checkUser,usrs.delete);
 app.get('/user/admin/:Id',checkUser,usrs.admin);
 app.get('/user/notAdmin/:Id',checkUser,usrs.notAdmin);
 app.get('/user/edit/',usrs.get); 
+
+app.use(function(req, res){
+  res.sendStatus(404);
+})
 
 
 //configure the port number using and environment number
