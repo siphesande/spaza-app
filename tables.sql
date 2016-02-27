@@ -7,7 +7,7 @@ CREATE TABLE Categories (
     #CONSTRAINT Categories_unique UNIQUE (catagory_name)
 )ENGINE=InnoDB;
 
-
+#crete table of Products/items
 DROP TABLE IF EXISTS `Products`;
 CREATE TABLE Products (
     Id int not null auto_increment,

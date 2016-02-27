@@ -41,7 +41,7 @@ exports.add = function (req, res, next) {
             role : 'View'
 
 		};
-		    password_confirm :input.password_confirm
+		    //password_confirm :input.password_confirm
 
         bcrypt.genSalt(10, function(err, salt) {
 			bcrypt.hash(input.password, salt, function(err, hash) {

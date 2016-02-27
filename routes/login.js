@@ -15,7 +15,7 @@ exports.login = function(req, res, next){
 			     console.log("also user" + user);
 
 			    bcrypt.compare(input.password, users[0].password, function(err, pass){
-			  	// bcrypt.compare(input.Admin, users.Admin, function(err, admin){
+			  	
 			    	if (err) {
 			    		console.log(err);
 			    	}
