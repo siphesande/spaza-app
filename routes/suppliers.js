@@ -5,7 +5,7 @@ exports.show = function (req, res, next) {
                if (err) return next(err);
     		       res.render( 'suppliers', {
 				   no_suppliers : results.length === 0,
-				   //products : results,
+				   
 				   suppliers: results
     		      });
 
@@ -18,7 +18,7 @@ exports.home =function(req, res){
 exports.showAdd = function(req, res){
 	res.render('addSupply');
 }
-
+// Add my Suppliers From browser to the data bases
 exports.add = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
@@ -56,7 +56,7 @@ exports.update = function(req, res, next){
 
        });
 }
-
+//dele from the list of my suppliers
 exports.delete = function(req, res, next){
 	var Id= req.params.Id;
 	    req.getConnection(function(err, connection){

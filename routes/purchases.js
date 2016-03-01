@@ -21,11 +21,7 @@ exports.show =function (req, res, next){
 }
 
 
-exports.showAdd = function (req, res){
-	res.render('add');
-
-};
-
+// Add the the Purcheses
 exports.add = function (req, res, next) {
     req.getConnection(function(err, connection){
          if (err)return next(err);
@@ -36,7 +32,7 @@ exports.add = function (req, res, next) {
                     Purchase_date: input.Purchase_date,
                     Purchase_price: input.Purchase_price,
                     Supplier_Id : input.Supplier_Id
-                    //sold :input.Qty
+                
          };
          console.log(data);
          connection.query('insert into Purchases set ?', data, function(err, results) {
@@ -137,6 +133,8 @@ exports.get = function(req, res, next){
 // 	     });
 // 	 });
 // };
+
+//Update my Purchase list
 exports.update = function(req, res,next){
 
  	var data = JSON.parse(JSON.stringify(req.body));
