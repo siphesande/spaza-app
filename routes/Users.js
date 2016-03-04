@@ -58,10 +58,10 @@ exports.add = function (req, res, next) {
 	                if (err)
                             console.log("Error inserting : %s ", err);
                     
-                    if (input.username === user.username){
+                    //if (input.username === user.username){
                   
-                      res.redirect('/signup');
-                 }
+                      //res.redirect('/signup');
+                 //}
                   else{
                         
                         res.redirect('/?status=user_created');
