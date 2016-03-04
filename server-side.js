@@ -184,7 +184,7 @@ app.get('/products/EarningsPro', products.EarningsPro);
 app.get('/products/Profits', products.Profits)
 
 // sales.js
-app.get('/sales', sales.show); 
+app.get('/sales',checkUser, sales.show); 
 app.post('/sales/add',sales.add);
 app.get('/sales/edit/:Id', sales.getSales);
 app.post('/sales/update/:Id', sales.update);
@@ -197,9 +197,9 @@ app.post('/categories/add', categories.add);
 app.get('/categories/edit/:Id', categories.get);
 app.post('/categories/update/:Id',categories.update);
 app.get('/categories/delete/:Id', categories.delete);
-app.get('/categories/mostPopulerCat', categories.mostPopulerCat);
-app.get('/categories/leastPopulerCat', categories.leastPopulerCat);
-app.get('/categories/EarningsCateg', categories.EarningsCateg);
+app.get('/categories/mostPopulerCat',checkUser, categories.mostPopulerCat);
+app.get('/categories/leastPopulerCat',checkUser, categories.leastPopulerCat);
+app.get('/categories/EarningsCateg',checkUser, categories.EarningsCateg);
 
 //purchases.js
 app.get('/purchases',checkUser, purchases.show);
