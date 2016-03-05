@@ -24,7 +24,7 @@ create table Suppliers (
      primary key(Id),
      CONSTRAINT uc_supplier_name  UNIQUE (supplier_name)
 )ENGINE=InnoDB;
-
+#creting the Purchases table
 DROP TABLE IF EXISTS `Purchases`;
 CREATE TABLE Purchases (
     Id int not null auto_increment,   
@@ -49,6 +49,9 @@ CREATE TABLE  Sales (
     primary key(Id)
 )ENGINE=InnoDB;
 
+
+
+-- creating User for logging
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE  users(
 Id int NOT NULL auto_increment primary key,
