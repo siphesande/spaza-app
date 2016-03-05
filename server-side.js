@@ -235,7 +235,7 @@ app.use(function(req, res){
 
 
 //configure the port number using and environment number
-var portNumber = process.env.CRUD_PORT_NR || 3001;
+var portNumber = process.env.CRUD_PORT_NR || 3002;
 
 //start everything up
 app.listen(portNumber, function (){

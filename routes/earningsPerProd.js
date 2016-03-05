@@ -1,4 +1,7 @@
+"use strict"
+
 exports.EarnProduct = function(req, res, next){
+
  	req.getConnection(function(error, connection){
   			if(error){
   				return next(error);
