@@ -235,6 +235,7 @@ app.use(function(req, res){
 
 
 //configure the port number using and environment number
+//The app starts a server and listens on port 3002 for connections
 var portNumber = process.env.CRUD_PORT_NR || 3002;
 
 //start everything up
