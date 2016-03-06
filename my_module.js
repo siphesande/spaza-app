@@ -3,5 +3,5 @@ exports.high = function(){
 };
 
 exports.low = function(){
- return "low";
+  return "low";
 }

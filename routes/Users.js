@@ -1,3 +1,4 @@
+"use strict"
 var bcrypt = require('bcrypt');
 //var bcrypt = require('bcrypt-nodejs');
 exports.usser = function (req, res, next) {
@@ -20,7 +21,7 @@ exports.usser = function (req, res, next) {
 					Admin : Administrator,
 					action : user
 				});
-			});
+		    });
 	   });
 };
 
@@ -63,7 +64,7 @@ exports.add = function (req, res, next) {
                   
                  //      res.redirect('/signup');
                  // }
-                  else{
+                    else{
                         
                         res.redirect('/?status=user_created');
                     }
@@ -101,19 +102,19 @@ exports.add = function (req, res, next) {
                             console.log("Error inserting : %s ", err);
                        // if(input.username !== users.username){ //if(role == Admin){                     
                        //alert('user_created');
-                        res.redirect('/?status=user_created');
+                           res.redirect('/?status=user_created');
 
                        // }
                        //  else{
                        //     res.redirect('/admin_signup');
 
                        //    }
-                    });
-                });
-            });
-        });
+                       });
+                  });
+              });
+          });
 
-    };
+};
 //updating a user
  exports.admin = function(req, res, next) {
 
@@ -124,11 +125,11 @@ exports.add = function (req, res, next) {
                 if (err) {
                     console.log("Error Updating : %s ", err);
                 }
-                res.redirect('/User');
-            });
+                   res.redirect('/User');
+               });
 
         });
-    };
+ };
 exports.notAdmin = function(req, res, next) {
 
         var data = JSON.parse(JSON.stringify(req.body));

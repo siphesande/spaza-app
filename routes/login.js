@@ -23,7 +23,7 @@ exports.login = function(req, res, next){
 			    	}
 
 			    	console.log(pass);
-
+                  //the user is recognised it will redirect us to the home page.
 			    	if (pass) {
 			    		req.session.user = username;
 			    		req.session.role =  user.role;

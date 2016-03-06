@@ -1,3 +1,4 @@
+'use strict'
 exports.EarningsCateg = function(req, res, next){
 	req.getConnection(function(error, connection){
 		if(error){
@@ -10,7 +11,7 @@ exports.EarningsCateg = function(req, res, next){
 			}
 			console.log(results);
 			res.render('EarningsCatego', {
-				EarningsPerCatego : results
+			EarningsPerCatego : results
 			});
 		});
 	});		
