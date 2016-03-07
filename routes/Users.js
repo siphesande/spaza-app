@@ -55,8 +55,8 @@ exports.add = function (req, res, next) {
 		        data.password = hash;
 		        
 		        connection.query('insert into users set ?', [data], function(err, users) {
-	                user = users[0]; 
-	                console.log(user);
+	               // user = users[0]; 
+	                //console.log(user);
 	                if (err)
                             console.log("Error inserting : %s ", err);
                     

@@ -145,26 +145,38 @@ var contains = function(str, part){
    return str.indexOf(part) !== -1;
 };
 
-var checkUser = function(req, res, next){
-  console.log("path : " + req.path);
-  if (req.session.user){
+var checkUser = function (req, res, next) {
 
-    var pathNeedsAdminRights = contains(req.path, "add") || 
-          contains(req.path, "edit") || 
-          contains("delete");
 
-    if(pathNeedsAdminRights && req.session.role !== "Admin"){
-      //why is there are error
-      res.send(500, "ACCESS DENIED");
+        console.log(req.path);
+        if (req.session.user){
+             next(); 
+        }
+        else{
+             res.redirect("/")
+        }
+
     }
+// var checkUser = function(req, res, next){
+//   console.log("path : " + req.path);
+//   if (req.session.user){
 
-    return next();
-  }
+//     var pathNeedsAdminRights = contains(req.path, "add") || 
+//           contains(req.path, "edit") || 
+//           contains("delete");
+
+//     if(pathNeedsAdminRights && req.session.role !== "Admin"){
+//       //why is there are error
+//       res.send(500, "ACCESS DENIED");
+//     }
+
+//     return next();
+//   }
 
 
-  // the user is not logged in redirect them to the login page
-  res.redirect('/');
-};
+//   // the user is not logged in redirect them to the login page
+//   res.redirect('/');
+// };
 
 
 //setup the handlers
