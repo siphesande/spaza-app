@@ -170,7 +170,7 @@ var checkUser = function (req, res, next) {
 //setup the handlers
 app.get('/',function(req,res){res.render('index');});
 //products.js
-app.get('/products',checkUser, products.show);//show products to the screen
+app.get('/products', products.show);//show products to the screen
 app.get('/products/edit/:Id', products.get);
 app.post('/products/update/:Id', products.update);
 app.get('/products/add', products.showAdd);
