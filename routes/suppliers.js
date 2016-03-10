@@ -13,14 +13,11 @@ exports.show = function (req, res, next) {
             });
 	});
 };
-exports.home =function(req, res){
-	res.render('home');
-}
-exports.showAdd = function(req, res){
-	res.render('addSupply');
-}
+
+
 // Add my Suppliers From browser to the data bases
 exports.add = function (req, res, next) {
+	   'use strict'
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
 		var input = JSON.parse(JSON.stringify(req.body));
@@ -46,7 +43,7 @@ exports.get = function(req, res, next){
 }
 
 exports.update = function(req, res, next){
-
+     'use strict'
 	var data = JSON.parse(JSON.stringify(req.body));
     var Id = req.params.Id;
         req.getConnection(function(err, connection){
@@ -59,6 +56,7 @@ exports.update = function(req, res, next){
 }
 //dele from the list of my suppliers
 exports.delete = function(req, res, next){
+	  'use strict'
 	var Id= req.params.Id;
 	    req.getConnection(function(err, connection){
 		connection.query('DELETE FROM Suppliers WHERE Id = ?', [Id], function(err,rows){
