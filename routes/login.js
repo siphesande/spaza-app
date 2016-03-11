@@ -2,6 +2,29 @@
 
 var bcrypt = require('bcrypt');
 //var bcrypt = require('bcrypt-nodejs');
+exports.validator = function(req, res) {
+
+  // validate the input
+  req.checkBody('username', 'Username is required').notEmpty();
+  req.checkBody('password', 'Password is required').notEmpty();
+  // req.checkBody('display', 'DisplayName is required').notEmpty();
+  // req.checkBody('email', 'Email is required').notEmpty();
+  // req.checkBody('email', 'Email does not appear to be valid').isEmail();
+
+  // check the validation object for errors
+  var errors = req.validationErrors();
+
+  console.log(errors);  
+
+  if (errors) {
+    res.redirect('/login', { flash: { type: 'alert-danger', messages: errors }});
+  }
+  else {
+    res.render('login', { flash: { type: 'alert-success', messages: [ { msg: 'No errors!' }]}});
+  }
+
+};
+
 exports.login = function(req, res, next){
   		req.getConnection(function(error, connection){
   			

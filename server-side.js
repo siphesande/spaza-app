@@ -10,6 +10,7 @@ var express = require('express'),
     cookieSession =require('cookie-session'),
     //bcrypt = require('bcrypt-nodejs'),
     bcrypt = require('bcrypt'),
+    validator = require("express-validator"),
     request = require('request'),
     //These are my routes:
     products = require('./routes/products'),
@@ -65,11 +66,8 @@ app.use(function(req, res, next){
   next();
 });
 
- 
-
-
-
 app.post('/home', loggin.login);
+app.get('/login', loggin.validator);
 app.post('/home',function(req, res){
    res.render("home");
 })
@@ -93,20 +91,7 @@ app.get('/signup', function(req, res){
   res.render('signup', {layout: false})
 });
 
-// app.get('/signup', function(req, res){
-// app.post('/signup', function(req, res){
-//     var user = JSON.parse(JSON.stringify(req.body));
-//     if(user.password === user.confirm_password){
-//       if(user[user.username] === undefined){
-//         user[user.username] = user.password;
-//         res.redirect('/home');
-//       }
-
-//     }
-    
-//     });
-//   res.render('signup');
-// });
+app.get('/user', register.registerUser); 
 app.get('/signup', register.get);
 app.post('/signup', register.add);
   
@@ -218,6 +203,7 @@ app.get('/suppliers/delete/:Id', suppliers.delete);
 
 //these are the logout
 // to show the user??
+
 app.get('/user',checkUser,  usrs.usser);
 app.get('/user/add',  usrs.usser);
 app.get('/user/edit/:Id', usrs.get);
@@ -227,7 +213,8 @@ app.post('/user/add', usrs.add);
 app.get('/user/delete/:Id',checkUser,usrs.delete);
 app.get('/user/admin/:Id',checkUser,usrs.admin);
 app.get('/user/notAdmin/:Id',checkUser,usrs.notAdmin);
-app.get('/user/edit/',usrs.get); 
+app.get('/user/edit/',usrs.get);
+
 
 app.use(function(req, res){
   res.sendStatus(404);
@@ -236,7 +223,7 @@ app.use(function(req, res){
 
 //configure the port number using and environment number
 //The app starts a server and listens on port 3002 for connections
-var portNumber = process.env.CRUD_PORT_NR || 3002;
+var portNumber = process.env.CRUD_PORT_NR || 3001;
 
 //start everything up
 app.listen(portNumber, function (){

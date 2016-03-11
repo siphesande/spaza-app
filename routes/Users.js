@@ -24,7 +24,26 @@ exports.usser = function (req, res, next) {
 		    });
 	   });
 };
+exports.registerUser = function(req, res) {
 
+  // validate the input
+  req.checkBody('username', 'Username is required').notEmpty();
+  req.checkBody('password', 'Password is required').notEmpty();
+  req.checkBody('confirm_password', 'confirm_password is required').notEmpty();
+  
+  // check the validation object for errors
+  var errors = req.validationErrors();
+
+  console.log(errors);  
+
+  if (errors) {
+     res.redirect('/', { flash: { type: 'alert-danger', messages: errors }});
+  }
+  else {
+    res.render('signup', { flash: { type: 'alert-success', messages: [ { msg: 'No errors!' }]}});
+  }
+
+};
 // add the user(VIEW) to database
 exports.add = function (req, res, next) {
 
@@ -56,14 +75,14 @@ exports.add = function (req, res, next) {
 		        
 		        connection.query('insert into users set ?', [data], function(err, users) {
 	               // user = users[0]; 
-	                //console.log(user);
+	               //  console.log(user);
 	                if (err)
                             console.log("Error inserting : %s ", err);
                     
-                 //    if (input.username === user.username){
+                    // if (input.username === user.username){
                   
-                 //      res.redirect('/signup');
-                 // }
+                    //   res.redirect('/signup');
+                 //}
                     else{
                         
                         res.redirect('/?status=user_created');
@@ -100,7 +119,7 @@ exports.add = function (req, res, next) {
                     connection.query('insert into users set ?', data, function(err, users) {
                         if (err)
                             console.log("Error inserting : %s ", err);
-                       // if(input.username !== users.username){ //if(role == Admin){                     
+                       // if(input.username === users.username){ //if(role == Admin){                     
                        //alert('user_created');
                            res.redirect('/?status=user_created');
 
