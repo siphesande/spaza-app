@@ -4,7 +4,7 @@ var itemsSold  = require("./categoryTotals");
 //this.leastPopularCategory = function(filepath){
    exports.leastPopularCategory = function(filepath){
   //var newItemsSold = new itemsSold(filepath);
-    //var categoryMap = newItemsSold.categoryTotals(filepath);
+    // finding the mininmum item
     var categoryMap = itemsSold.categoryTotals(filepath);
         var leastPopularCat = {};
         var min = 328;

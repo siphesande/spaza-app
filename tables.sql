@@ -58,4 +58,4 @@ Id int NOT NULL auto_increment primary key,
 username VARCHAR(30) NOT NULL,
 password VARCHAR(100) NOT NULL,
 role VARCHAR(15) NOT NULL
-);
+)ENGINE=InnoDB;
