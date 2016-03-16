@@ -9,6 +9,28 @@
   <!--  // <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
    // <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
   <style>
+ .add-on .input-group-btn > .btn {
+  border-left-width:0;left:-2px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+/* stop the glowing blue shadow */
+.add-on .form-control:focus {
+ box-shadow:none;
+ -webkit-box-shadow:none; 
+ border-color:#cccccc; 
+}
+.form-control{width:20%}
+.navbar-nav > li > a {
+  border-right: 1px solid #ddd;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+.navbar-nav:last-child{ border-right:0}
+
+
+
+  
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
       width: 70%;
@@ -35,19 +57,15 @@
 
 </head>
 
-<div class="row">  <!-- search bar -->
-  <div class="col-lg-6">
-    <div class="input-group">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-      <input type="text" class="form-control" placeholder="Search for...">
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
- 
-</div><!-- /.row -->
 
 <body>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+
+
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -111,11 +129,10 @@
 
        <ul class="nav navbar-nav navbar-right">
        <li><a href ="/user">Users</a></a></li>
-        <!-- <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
-        <li><a href="/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-        
-      </ul>
+       <li><a href="/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>
+
+
 
 
       </ul>
