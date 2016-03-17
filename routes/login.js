@@ -1,5 +1,3 @@
-"use strict"
-
 var bcrypt = require('bcrypt');
 //var bcrypt = require('bcrypt-nodejs');
 exports.validator = function(req, res) {
