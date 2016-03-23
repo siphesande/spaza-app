@@ -1,7 +1,8 @@
-'use strict';
+
 
 var express = require('express'),
     exphbs  = require('express-handlebars'),
+    morgan = require('morgan'),
     mysql = require('mysql'),//node-mysql module
     myConnection = require('express-myconnection'),//Connect/Express middleware that auto provides mysql connections 
     bodyParser = require('body-parser'),
@@ -12,6 +13,7 @@ var express = require('express'),
     bcrypt = require('bcrypt'),
     validator = require("express-validator"),
     request = require('request'),
+    morgan = require('morgan'),
     //These are my routes:
     products = require('./routes/products'),
     sales = require('./routes/sales'),
@@ -38,6 +40,7 @@ function errorHandler(err, req, res, next) {
     error: err 
     });
 }
+app.use(morgan('dev'));
 app.use(errorHandler);
 //setup template handlebars as the template engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -218,7 +221,26 @@ app.get('/user/edit/',usrs.get);
 
 app.use(function(req, res){
   res.sendStatus(404);
-})
+});
+
+// create search 
+app.get('/searchPrd',function(req,res){
+res.render('searchPrd');
+
+});
+
+app.get('/search',function(req,res){
+connection.query('SELECT product_name from Products where product_name like "%'+req.query.key+'%"', function(err, rows, fields) {
+    if (err) throw err;
+    var data=[];
+    for(i=0;i<rows.length;i++)
+      {
+        data.push(rows[i].product_name);
+      }
+      res.end(JSON.stringify(data));
+  });
+});
+
 
 
 //configure the port number using and environment number
