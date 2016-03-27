@@ -9,7 +9,6 @@ var express = require('express'),
     cookieParser = require('cookie-parser'), 
     session = require('express-session'),
     cookieSession =require('cookie-session'),
-    //bcrypt = require('bcrypt-nodejs'),
     bcrypt = require('bcrypt'),
     validator = require("express-validator"),
     request = require('request'),
@@ -43,6 +42,7 @@ function errorHandler(err, req, res, next) {
 app.use(morgan('dev'));
 app.use(errorHandler);
 //setup template handlebars as the template engine
+app.set('views',__dirname + '/views');
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
@@ -59,7 +59,18 @@ app.use(bodyParser.json());
 app.use(session({ 
 
 secret : 'a4f8071f-c873-4447-8ee2', resave : true,   saveUninitialized: true, cookie: { maxAge:2628000000 }}));
-
+function auth (req, res, next){
+    console.log(req.headers);
+    if (!req.session.user){
+      var authHeader = req.headers.authorization;
+      if (!authHeader) {
+        var err = new Error('You are not authenticated!');
+        err.status = 401;
+        next(err);
+        return;
+      }
+    }
+}
 
 
 
@@ -156,7 +167,7 @@ var checkUser = function (req, res, next) {
 
 
 //setup the handlers
-app.get('/',function(req,res){res.render('index');});
+//app.get('/',function(req,res){res.render('index');});
 //products.js
 app.get('/products', products.show);//show products to the screen
 app.get('/products/edit/:Id', products.get);
@@ -219,17 +230,20 @@ app.get('/user/notAdmin/:Id',checkUser,usrs.notAdmin);
 app.get('/user/edit/',usrs.get);
 
 
-app.use(function(req, res){
-  res.sendStatus(404);
-});
 
 // create search 
 app.get('/searchPrd',function(req,res){
-res.render('searchPrd');
+res.render('searchPrd'
+
+  ,{
+         layout :false,
+     });
 
 });
 
 app.get('/search',function(req,res){
+  req.getConnection(function(err, connection){
+    if (err) return err;
 connection.query('SELECT product_name from Products where product_name like "%'+req.query.key+'%"', function(err, rows, fields) {
     if (err) throw err;
     var data=[];
@@ -240,12 +254,15 @@ connection.query('SELECT product_name from Products where product_name like "%'+
       res.end(JSON.stringify(data));
   });
 });
+});
 
-
+app.use(function(req, res){
+  res.sendStatus(404);
+});
 
 //configure the port number using and environment number
-//The app starts a server and listens on port 3002 for connections
-var portNumber = process.env.CRUD_PORT_NR || 3001;
+//The app starts a server and listens on port 3001 for connections
+var portNumber = process.env.CRUD_PORT_NR || 3003;
 
 //start everything up
 app.listen(portNumber, function (){
