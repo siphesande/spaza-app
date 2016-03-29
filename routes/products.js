@@ -79,6 +79,9 @@ exports.mostPopulerPrd =function (req, res, next){
         connection.query('SELECT Products.product_name, Products.Id,Categories.category_name, SUM( Sales.qty ) AS qty FROM Sales INNER JOIN Products ON Sales.product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Products.product_name ORDER BY qty DESC LIMIT 1 ',[], function(err, results){
              if (err) return next(err);
              res.render('mostPopulerPrd',{
+             user:req.session.user,
+             role:req.session.role,
+             Id:req.session.Id,
              most : results
              });
 
