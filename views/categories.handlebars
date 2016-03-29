@@ -15,19 +15,25 @@
 
 
 
-<!-- <form action="/categories/add" method="POST">
-	Category:<input type="text" name="category_name" value="{{category_name}}">
-  
-	<input type="submit" class="btn btn-success" id="enter" onclick="myFunction()">   -->
-	<!--<select name="Category_Id">
-		{{#categories}}
-     <option value="{{Id}}">{{category_name}}</option>
-      {{/categories}}
-   </select>  
+
+<!--  Creating a search bar -->
 
 
-	<input type="submit">-->
-</form>
+<div id="tfheader">
+    <form id="tfnewsearch" method="get" action="http://www.google.com">
+          <!--   <input type="text" class="tftextinput " name="q"  placeholder="search ..." size="50" maxlength="120"> -->
+          
+          <input type="text" class="typeahead tt-query" name="typeahead"  placeholder="search ..." size="50" maxlength="120" autocomplete="off" spellcheck="false"> 
+          
+            <!-- <input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Type your Query"> -->
+            <button type="button" class="btn btn-primary btn-xs">search</button> 
+            <!-- <input type="submit" value="search" class="tfbutton">-->
+    </form> 
+      <div class="tfclear"></div>
+  </div>
+
+
+<!-- Categories Table -->
 
 <h2>Categories</h2>
 <table class = "table" id = "Categories">

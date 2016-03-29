@@ -1,3 +1,4 @@
+
 <form action="products/add" method="POST" class="form-inline" >
   <div class="form-group form-group-sm">
 
@@ -21,35 +22,19 @@
 <input type ="submit" class="btn btn-success" id="enter" onclick="myFunction()">  
 
 </form>
-<div class ="well">
-  
-    <a href="/home" class ="btn btn-primary"><span class="glyphicon glyphicon-home"></span> Back to home</a>
+<!-- HTML for SEARCH BAR -->
 
-</div> 
-
-
-
-
-
-
-
-
+  <div id="tfheader">
+    <form id="tfnewsearch" method="get" action="http://www.google.com">
+            <input type="text" class="tftextinput " name="q"  placeholder="search ..." size="50" maxlength="120">
+          
+         <button type="button" class="btn btn-primary btn-xs">search</button> 
+            <!-- <input type="submit" value="search" class="tfbutton">-->
+    </form> 
+      <div class="tfclear"></div>
+  </div>
 
 
-
-<!--<h2>Add Product</h2>
-
-<form action="/products/add" method="POST">
-	Description: <input type="text" name="product_name" value="{{product_name}}">
-	
-	<select name="Category_Id">
-		{{#categories}}
-     <option value="{{Id}}">{{category_name}}</option>
-      {{/categories}}
-   </select>
-   <input type="submit" class="btn btn-success" id="enter" onclick="myFunction()">  
-
-	<!--<input type="submit">-->
 
 
 <h2>Products</h2>

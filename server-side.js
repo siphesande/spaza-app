@@ -1,4 +1,4 @@
-
+ 
 
 var express = require('express'),
     exphbs  = require('express-handlebars'),
@@ -21,6 +21,7 @@ var express = require('express'),
     purchases =  require('./routes/purchases'),
     loggin = require('./routes/login'),
     register = require('./routes/Users'),
+    search  = require('./routes/search'),
     usrs = require('./routes/Users');
     
 var app = express();
@@ -140,7 +141,7 @@ var checkUser = function (req, res, next) {
              next(); 
         }
         else{
-             res.redirect("/")
+             res.redirect("/");
         }
 
     }
@@ -172,7 +173,7 @@ var checkUser = function (req, res, next) {
 app.get('/products', products.show);//show products to the screen
 app.get('/products/edit/:Id', products.get);
 app.post('/products/update/:Id', products.update);
-app.get('/products/add', products.showAdd);
+
 app.post('/products/add', products.add);
 app.get('/products/mostPopulerPrd', products.mostPopulerPrd);
 app.get('/products/leastPopulerPrd', products.leastPopulerPrd);
@@ -191,7 +192,7 @@ app.get('/sales/delete/:Id', sales.delete);
 
 // to get,add,update and delete categories
 app.get('/categories', checkUser,categories.show);
-app.get('/categories/add', categories.showAdd);
+
 app.post('/categories/add', categories.add);
 app.get('/categories/edit/:Id', categories.get);
 app.post('/categories/update/:Id',categories.update);
@@ -229,40 +230,15 @@ app.get('/user/admin/:Id',checkUser,usrs.admin);
 app.get('/user/notAdmin/:Id',checkUser,usrs.notAdmin);
 app.get('/user/edit/',usrs.get);
 
+app.get('/searchPrd', search.searchProducts);
 
 
-// create search 
-app.get('/searchPrd',function(req,res){
-res.render('searchPrd'
 
-  ,{
-         layout :false,
-     });
 
-});
-
-app.get('/search',function(req,res){
-  req.getConnection(function(err, connection){
-    if (err) return err;
-connection.query('SELECT product_name from Products where product_name like "%'+req.query.key+'%"', function(err, rows, fields) {
-    if (err) throw err;
-    var data=[];
-    for(i=0;i<rows.length;i++)
-      {
-        data.push(rows[i].product_name);
-      }
-      res.end(JSON.stringify(data));
-  });
-});
-});
-
-app.use(function(req, res){
-  res.sendStatus(404);
-});
 
 //configure the port number using and environment number
 //The app starts a server and listens on port 3001 for connections
-var portNumber = process.env.CRUD_PORT_NR || 3003;
+var portNumber = process.env.CRUD_PORT_NR || 3000;
 
 //start everything up
 app.listen(portNumber, function (){
