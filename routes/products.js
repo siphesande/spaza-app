@@ -6,17 +6,17 @@ exports.show = function (req, res, next) {
         	if (err) return next(err);
 			res.render( 'products', {
 			    no_products :results.length === 0,
+			    user: req.session.user,
+			    role: req.session.role,
+			    Id: req.session.Id,
 				products : results,
-				 categories: categories
+				categories: categories
 			    });
 	        });
 		});
 	});
 }
 
-exports.showAdd = function(req, res){
-	res.render('add');
-}
 
 exports.add = function (req, res, next) {
 	req.getConnection(function(err, connection){
@@ -92,6 +92,9 @@ exports.leastPopulerPrd =function (req, res, next){
         connection.query('SELECT Products.product_name, Products.Id,Categories.category_name, SUM( Sales.qty ) AS qty FROM Sales INNER JOIN Products ON Sales.product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Products.product_name ORDER BY qty ASC LIMIT 1 ',[], function(err, results){
             if (err) return next(err);
             res.render('leastPopulerPrd',{
+            user: req.session.user,
+            role: req.session.role,
+            Id: req.session.Id,
             least : results
             });
 
@@ -111,7 +114,10 @@ exports.EarningsPro = function(req, res, next){
 			}
 			console.log(results);
 			res.render('Earnings', {
-			EarningsPerProd : results
+			EarningsPerProd : results,
+			user: req.session.user,
+			role: req.session.role,
+			Id: req.session.Id
 			});
 		});
 	});
@@ -128,7 +134,10 @@ exports.Profits = function(req, res, next){
 			}
 			console.log(results);
 			res.render('ProfitsProduct', {
-			ProfitsProduct : results
+			ProfitsProduct : results,
+			user:req.session.user,
+			role:req.session.role,
+			Id: req.session.Id
 
 			});
 		});

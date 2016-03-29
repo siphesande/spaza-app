@@ -10,6 +10,9 @@ exports.show =function (req, res, next){
             	      if (err) return next(err);
             	      res.render('purchases', {
             	      no_purchases : purchases.length === 0,
+                      user: req.session.user,
+                      role: req.session.role,
+                      Id: req.session.Id,
             	      suppliers : suppliers,
             	      products : products,
                       purchases : purchases

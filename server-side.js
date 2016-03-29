@@ -106,7 +106,7 @@ app.get('/signup', function(req, res){
   res.render('signup', {layout: false})
 });
 
-app.get('/user', register.registerUser); 
+//app.get('/user', register.registerUser); 
 app.get('/signup', register.get);
 app.post('/signup', register.add);
   

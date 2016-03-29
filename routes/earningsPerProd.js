@@ -10,6 +10,9 @@ exports.EarnProduct = function(req, res, next){
 			    if (error) return next(error);
 			    console.log(results);
 			    res.render( 'EarniPerProducts', {
+			    user: req.session.user,
+			    role: req.session.role,
+			    Id: req.session.Id,
 				EarnProduct : results,
 		    });
 

@@ -6,6 +6,9 @@ exports.show = function (req, res, next) {
                if (err) return next(err);
     		       res.render( 'suppliers', {
 				   no_suppliers : results.length === 0,
+				   user: req.session.user,
+				   role: req.session.role,
+				   Id: req.session.Id,
 				   
 				   suppliers: results
     		      });

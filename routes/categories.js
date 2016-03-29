@@ -6,6 +6,9 @@ exports.show = function (req, res, next) {
                if (err) return next(err);
     		   res.render( 'categories', {
 			   no_categories : results.length === 0,
+			   user: req.session.user,
+			   role: req.session.role,
+			   Id: req.session.Id,
 			   categories: results
     		   });
            });
