@@ -230,9 +230,8 @@ app.get('/user/admin/:Id',checkUser,usrs.admin);
 app.get('/user/notAdmin/:Id',checkUser,usrs.notAdmin);
 app.get('/user/edit/',usrs.get);
 
-app.get('/searchPrd', search.searchProducts);
-
-
+app.get('/products/search', search.searchProducts);
+app.post('/products/search',search.searchProducts);
 
 
 

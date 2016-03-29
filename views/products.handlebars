@@ -25,8 +25,9 @@
 <!-- HTML for SEARCH BAR -->
 
   <div id="tfheader">
-    <form id="tfnewsearch" method="get" action="http://www.google.com">
-            <input type="text" class="tftextinput " name="q"  placeholder="search ..." size="50" maxlength="120">
+    <form id="tfnewsearch" method="get" action="products/search">
+
+            <input type="text" class="tftextinput " name="key" value="{{key}}" placeholder="search ..." size="50" maxlength="120">
           
          <button type="button" class="btn btn-primary btn-xs">search</button> 
            
@@ -35,6 +36,7 @@
 
   </div>
 
+    {{data}}
 
 
 
