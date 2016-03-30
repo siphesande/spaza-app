@@ -46,7 +46,7 @@ app.use(errorHandler);
 app.set('views',__dirname + '/views');
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
-
+app.use(cookieParser('12345-67890-09876-54321'));//secret key
 app.use(express.static(__dirname + '/public'));
 
 //setup middleware
@@ -129,9 +129,9 @@ app.get('/logout', function(req, res){
   
 });
 
-var contains = function(str, part){
-   return str.indexOf(part) !== -1;
-};
+// var contains = function(str, part){
+//    return str.indexOf(part) !== -1;
+// };
 
 var checkUser = function (req, res, next) {
 
