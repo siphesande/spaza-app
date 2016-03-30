@@ -49,11 +49,17 @@ exports.login = function(req, res, next){
 			    		req.session.user = username;
 			    		req.session.role =  user.role;
 			    		console.log(req.session.role);
+			    		req.flash('info', 'Welcome!');
 			    		return res.redirect('/home');
 			    		console.log(pass);
-			    		
-			    	} else {
+			    	}
+			    	else if(password === undefined){
 			    		 res.redirect('/');
+			    	
+			    	} else {
+			    		 req.flash('info', 'Incorrect username or Password!');
+			    		 res.redirect('/');
+
 			    	
 			    	};
 				//});

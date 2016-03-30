@@ -13,6 +13,8 @@ var express = require('express'),
     validator = require("express-validator"),
     request = require('request'),
     morgan = require('morgan'),
+    flash = require('express-flash'),
+
     //These are my routes:
     products = require('./routes/products'),
     sales = require('./routes/sales'),
@@ -74,7 +76,7 @@ function auth (req, res, next){
 }
 
 
-
+app.use(flash());
 app.use(function(req, res, next){
   console.log('middleware!');
   //proceed to the next middleware component
@@ -87,7 +89,11 @@ app.post('/home',function(req, res){
    res.render("home");
 })
 app.get('/home', function (req, res) {
-    res.render('home', {user:req.session.user, role:req.session.role,Id:req.session.Id });
+
+    res.render('home', {user:req.session.user, 
+      role:req.session.role,
+      Id:req.session.Id 
+    });
 });
 
 //This is my landing page
@@ -200,6 +206,7 @@ app.get('/categories/delete/:Id', categories.delete);
 app.get('/categories/mostPopulerCat',checkUser, categories.mostPopulerCat);
 app.get('/categories/leastPopulerCat',checkUser, categories.leastPopulerCat);
 app.get('/categories/EarningsCateg',checkUser, categories.EarningsCateg);
+app.post('/categories/CategorySearching',search.searchCategories);
 
 //purchases.js
 app.get('/purchases',checkUser, purchases.show);
