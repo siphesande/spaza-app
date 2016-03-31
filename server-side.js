@@ -21,7 +21,7 @@ var express = require('express'),
     categories = require('./routes/categories'),
     suppliers = require('./routes/suppliers'),
     purchases =  require('./routes/purchases'),
-    loggin = require('./routes/login'),
+    auth = require('./routes/login'),
     register = require('./routes/Users'),
     search  = require('./routes/search'),
     usrs = require('./routes/Users');
@@ -83,8 +83,8 @@ app.use(function(req, res, next){
   next();
 });
 
-app.post('/home', loggin.login);
-app.get('/login', loggin.validator);
+app.post('/home', auth.login);
+app.get('/login', auth.validator);
 app.post('/home',function(req, res){
    res.render("home");
 })
@@ -185,20 +185,22 @@ app.get('/products/mostPopulerPrd', products.mostPopulerPrd);
 app.get('/products/leastPopulerPrd', products.leastPopulerPrd);
 //this should be a post but this is only an illustration of CRUD - not on good practices
 app.get('/products/delete/:Id', products.delete);
-
 app.get('/products/EarningsPro', products.EarningsPro);
-app.get('/products/Profits', products.Profits)
+app.get('/products/Profits', products.Profits);
+app.get('/products/search', search.searchProducts);
+app.post('/products/search',search.searchProducts);
 
-// sales.js
+
+
 app.get('/sales',checkUser, sales.show); 
 app.post('/sales/add',sales.add);
 app.get('/sales/edit/:Id', sales.getSales);
 app.post('/sales/update/:Id', sales.update);
 app.get('/sales/delete/:Id', sales.delete);
+app.post('/sales/salesSearching', search.searchSales);
 
 // to get,add,update and delete categories
 app.get('/categories', checkUser,categories.show);
-
 app.post('/categories/add', categories.add);
 app.get('/categories/edit/:Id', categories.get);
 app.post('/categories/update/:Id',categories.update);
@@ -222,9 +224,8 @@ app.post('/suppliers/add',suppliers.add);
 app.get('/suppliers/edit/:Id', suppliers.get);
 app.post('/suppliers/update/:Id', suppliers.update);
 app.get('/suppliers/delete/:Id', suppliers.delete);
+app.post('/suppliers/searchSuppliers', search.searchSuppliers);
 
-//these are the logout
-// to show the user??
 
 app.get('/user',checkUser,  usrs.usser);
 app.get('/user/add',  usrs.usser);
@@ -237,8 +238,6 @@ app.get('/user/admin/:Id',checkUser,usrs.admin);
 app.get('/user/notAdmin/:Id',checkUser,usrs.notAdmin);
 app.get('/user/edit/',usrs.get);
 
-app.get('/products/search', search.searchProducts);
-app.post('/products/search',search.searchProducts);
 
 
 

@@ -1,0 +1,43 @@
+<!-- HTML for SEARCH BAR -->
+<div id="tfheader">
+    <form id="tfnewsearch" role="search" method="post" action="/sales/salesSearching">
+
+    <input type="text" class="tftextinput " name="searchVar" placeholder="search ..." size="50" maxlength="120">
+          
+    <button type="submit" class="btn btn-primary btn-xs">search</button> 
+         
+    </form> 
+  <div class="tfclear"></div>
+</div>
+
+ <h2>Sales</h2>
+<table class ="table" id = "Sales">
+	<tr>
+     <th>Product Id</th>
+     <th>Product Name</th>
+     <th>Sales Price</th>
+     <th>Quantity</th>
+     <th>Sales Date</th>
+   </tr>
+{{#search_sales}}
+<tr>
+  <th>{{Id}}</th>
+  <th>{{product_name}}</th>
+  <th>{{Sales_price}}</th>
+  <th>{{Qty}}</th>
+  <th>{{Sales_date}}</th>
+
+
+  <td ><a href="/sales/edit/{{Id}}" class ="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+ <td ><a href="/sales/delete/{{Id}}" class="btn btn-danger">
+    <span class="glyphicon glyphicon-remove"></span> Delete 
+    </a></td >
+</tr>
+{{/search_sales}}
+
+{{#no_sales}}
+  <p>No sale available yet. Add some above.</p>
+{{/no_sales}}
+
+</table>
+<a class="btn btn-primary" href="/home" role="button">Back to Home</a>

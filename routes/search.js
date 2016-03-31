@@ -34,27 +34,34 @@ exports.searchCategories = function(req, res, next){
   })
 }
 
-// exports.searchProducts = function(req,res){
-//   var input = JSON.parse(JSON.stringify(req.body));
-//   var key = input.key;
-     
-//    req.getConnection(function(err, connection){
-       
-//        if (err) return err;
-//        connection.query('SELECT product_name from Products where product_name like "%'+ key +'%"', function(err, rows, fields) {
-//           if (err) throw err;
-//           // var data=[];
-//           // for(i=0;i<rows.length;i++)
-//           // {
-//           // data.push(rows[i].product_name);
-//           // }
-//           // JSON.stringify(data);
-//           res.render('products',{
-//           data: rows
+exports.searchSales = function(req, res, next){
+  req.getConnection(function(error, connection){
+    if (error) throw next (error);
+    var searchVar = req.body.searchVar;
+        searchVar = "%" + searchVar + "%";
+        connection.query('SELECT Sales.Id,Sales.Qty,Products.product_name,Sales.Sales_price,Sales.Sales_date FROM Products INNER JOIN Sales ON Products.Id = Sales.Product_Id WHERE product_name LIKE ?',searchVar,function(err, results){ 
+          if (err) throw next (err);
+          res.render('salesSearching',{
+            search_sales : results
+          });
+      });
 
-//           });
-//        });
-//   });
-// }
+  });
 
+};
+
+exports.searchSuppliers = function(req, res, next){
+  req.getConnection(function(err, connection){
+    if (err) return err;
+    var searchVar = req.body.searchVar;
+        searchVar = "%" + searchVar + "%";
+    connection.query('SELECT * FROM Suppliers WHERE supplier_name LIKE ?', searchVar, function(error, results){
+        if (error) throw error;
+        res.render('suppliersSearching',{
+          search_suppliers: results
+        });
+    }); 
+
+  });
+}
 
