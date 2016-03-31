@@ -53,7 +53,7 @@ exports.login = function(req, res, next){
 			    		return res.redirect('/home');
 			    		console.log(pass);
 			    	}
-			    	else if(password === undefined){
+			    	else if(password === undefined || user === undefined){
 			    		 res.redirect('/');
 			    	
 			    	} else {

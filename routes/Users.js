@@ -111,7 +111,7 @@ exports.add = function (req, res, next) {
                 
             };
 
-            Admin = 'Admin';
+            //Admin = 'Admin';
 
             //bcrypt the password ===
             bcrypt.genSalt(10, function(err, salt) {
