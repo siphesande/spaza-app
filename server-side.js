@@ -238,12 +238,35 @@ app.get('/user/admin/:Id',checkUser,usrs.admin);
 app.get('/user/notAdmin/:Id',checkUser,usrs.notAdmin);
 app.get('/user/edit/',usrs.get);
 
+app.get('/searchPrd',function(req,res){
+    res.render('searchPrd',{
 
+       layout :false
 
+    });
+});
+
+app.get('/search',function(req,res){
+ req.getConnection(function(err, connection){ 
+  if (err) throw err;
+connection.query('SELECT product_name from Products where product_name like "%'+req.query.key+'%"', function(err, rows, fields) {
+    if (err) throw err;
+    var data=[];
+    for(i=0;i<rows.length;i++)
+      {
+        data.push(rows[i].product_name);
+      }
+       res.end(JSON.stringify(data));
+      //JSON.stringify(data);
+      //res.render("index.html");
+   });
+    // res.render("searchPrd");
+  });
+});
 
 //configure the port number using and environment number
-//The app starts a server and listens on port 3001 for connections
-var portNumber = process.env.CRUD_PORT_NR || 3000;
+//The app starts a server and listens on port 3000 for connections
+var portNumber = process.env.CRUD_PORT_NR || 3002;
 
 //start everything up
 app.listen(portNumber, function (){
