@@ -5,10 +5,7 @@ exports.validator = function(req, res) {
   // validate the input
   req.checkBody('username', 'Username is required').notEmpty();
   req.checkBody('password', 'Password is required').notEmpty();
-  // req.checkBody('display', 'DisplayName is required').notEmpty();
-  // req.checkBody('email', 'Email is required').notEmpty();
-  // req.checkBody('email', 'Email does not appear to be valid').isEmail();
-
+  
   // check the validation object for errors
   var errors = req.validationErrors();
 

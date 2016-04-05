@@ -103,7 +103,7 @@ app.get('/', function(req, res) {
     });
 });
 
-app.get('/file',usrs.usser);
+
 
 app.get('/login', function (req, res) {
   res.render('login');
@@ -208,7 +208,7 @@ app.get('/categories/delete/:Id', categories.delete);
 app.get('/categories/mostPopulerCat',checkUser, categories.mostPopulerCat);
 app.get('/categories/leastPopulerCat',checkUser, categories.leastPopulerCat);
 app.get('/categories/EarningsCateg',checkUser, categories.EarningsCateg);
-app.post('/categories/CategorySearching',search.searchCategories);
+// app.post('/categories/CategorySearching',search.searchCategories);
 
 //purchases.js
 app.get('/purchases',checkUser, purchases.show);
@@ -239,11 +239,11 @@ app.get('/user/notAdmin/:Id',checkUser,usrs.notAdmin);
 app.get('/user/edit/',usrs.get);
 
 app.get('/searchPrd',function(req,res){
-    res.render('searchPrd',{
+    res.render('searchPrd')//,{
 
-       layout :false
+       //layout :false
 
-    });
+    //});
 });
 
 app.get('/search',function(req,res){
@@ -257,10 +257,9 @@ connection.query('SELECT product_name from Products where product_name like "%'+
         data.push(rows[i].product_name);
       }
        res.end(JSON.stringify(data));
-      //JSON.stringify(data);
-      //res.render("index.html");
+      
    });
-    // res.render("searchPrd");
+ 
   });
 });
 

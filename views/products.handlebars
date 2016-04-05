@@ -22,7 +22,7 @@
 <input type ="submit" class="btn btn-success" id="enter" onclick="myFunction()">  
 
 </form>
-<!-- HTML for SEARCH BAR -->
+<!-- HTML for SEARCH BAR USING FORMS -->
 
   <div id="tfheader">
     <form id="tfnewsearch" role="search" method="post" action="/products/search">
@@ -35,9 +35,24 @@
     </form> 
       <div class="tfclear"></div>
 
-  </div>
  
+<!-- < create a search Ajax search> -->
+<script type="text/javascript">
+//We will initialize the typeahead in JQuery function
+$(document).ready(function(){
+    $('input.typeahead').typeahead({
+        name: 'typeahead',
+        remote: 'http://localhost:3002/search?key=%QUERY',
+        limit: 10
+    });
+});
+</script>
 
+<div class="bs-example">
+        <input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Search using AJAX">
+    </div>
+
+ </div>
  
    
 
