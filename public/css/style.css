@@ -79,6 +79,14 @@
 .tt-suggestion p {
   margin: 0;
 }
-
-
+/*styling my forms*/
+.searchBar{
+  float: right;
+}
+.form-line{
+  float: right;
+}
+.bs-example{
+  float: right;
+}
 

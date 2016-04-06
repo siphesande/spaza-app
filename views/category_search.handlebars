@@ -1,14 +1,17 @@
 
-        <tr>
-            <th>Categories</th>
-            <th class="text-center">Action</th>
+        <tr> 
+            <th>Category Id</th>
+            <th>Categories Search</th>
+            
         </tr>
 
-{{#each products}}
-            <tr>
-                
-                <td>{{category_name}}</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="/categories/edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="/categories/delete/{{Id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-            </tr>
-            {{/each}}
+{{#categories}}
+<tr>
+  <td>{{Id}}</td> 
+  <td>{{category_name}}</td>
+  <td><a href="/categories/edit/{{Id}}" class ="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+  <td><a href="/categories/delete/{{Id}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete </a></td>
+</tr>
+
+{{/categories}}
  

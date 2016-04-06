@@ -37,8 +37,7 @@ var dbOptions = {
 
 function errorHandler(err, req, res, next) {
   res.status(500);
-  res.render('error', 
-     { 
+  res.render('error', { 
     error: err 
     });
 }
@@ -208,6 +207,10 @@ app.get('/categories/delete/:Id', categories.delete);
 app.get('/categories/mostPopulerCat',checkUser, categories.mostPopulerCat);
 app.get('/categories/leastPopulerCat',checkUser, categories.leastPopulerCat);
 app.get('/categories/EarningsCateg',checkUser, categories.EarningsCateg);
+app.get('/categories/search/:searchValue',search.searchCategories);
+app.get('/categories/search',search.searchCategories);
+
+
 // app.post('/categories/CategorySearching',search.searchCategories);
 
 //purchases.js
@@ -245,6 +248,7 @@ app.get('/searchPrd',function(req,res){
 
     //});
 });
+
 
 app.get('/search',function(req,res){
  req.getConnection(function(err, connection){ 

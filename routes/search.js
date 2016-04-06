@@ -19,36 +19,23 @@ exports.searchProducts = function(req, res, next){
 };
 
 
-// exports.searchCategories = function(req, res, next){
-//   req.getConnection(function(error, connection){
-//     if(error) return next(error);
-//     var searchVar = req.body.searchVar;
-//         searchVar = "%" + searchVar + "%";
-//         connection.query('SELECT * FROM Categories WHERE category_name LIKE ?',searchVar,function(err, results){
-//           if (err) throw (err);
-//           res.render('CategorySearching', {
-//             search_categories : results
-//           })
-//         })
 
-//   })
-// }
-exports.seachCategories = function(req, res, next){
+exports.searchCategories = function(req, res, next){
     req.getConnection(function(err, connection){
         if(err) return next(err);
         
         var searchValue = "%" + req.params.searchValue + "%";        
-        var searchResults = function(err, results){
-            if (err) return next(err);
-            
+        
+         connection.query('SELECT category_name, Id FROM Categories where category_name Like ?',[searchValue], function(err, results){   
+             if (err) return next(err); 
             res.render('category_search', {
                 username : req.session.user,
-                products : results,
+                categories : results,
                 layout : false
             });            
-        };
+        });
 
-        connection.query('SELECT category_name FROM Categories where category_name Like ?',[searchValue], searchResults);
+        
         
     })
 };
