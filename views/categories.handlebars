@@ -2,17 +2,15 @@
 
 <h2>Add Category</h2>
   
-<form action="categories/add" method="POST" class="form-inline" >
+<form>
       
 <div class="form-group form-group-sm">
     <label for="text" class="control-label col-xs-3">Categories:</label>
-      <div class="col-xs-3">   
+      <div class="col-xs-9">   
           <input type="text" step="any" name="category_name" value ="{{category_name}}" class="form-control" placeholder="Enter category name" required>
      </div>
 </div>
-
-  
-  <input type="submit" class="btn btn-success" id="enter" onclick="myFunction()">  
+ <input type="submit" class="btn btn-success" id="enter" onclick="myFunction()">  
 </form>
 
 
@@ -24,7 +22,7 @@
 <!-- <div class="form-group">
   <input type="text" class"form-control"id="searchBar" type="text" name="searchValue" placeholder="Search"></input>
 </div> -->
-<form>
+<form ="categories/search" method="GET" class="form-inline" >
   <input class="searchBar" id="category_search" type="text" name="Name" placeholder="Search"></input>
 </form>
 

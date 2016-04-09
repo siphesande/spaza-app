@@ -5,8 +5,13 @@
             var searchValue = $("#category_search").val();
             $.get("/categories/search/" + searchValue, function(results){
                 $("#categories").html(results)
-                alert("Load was performed,");
-            })
+                alert("Load was performed,")
+            });
+
+                if(searchValue.length === 0){
+                  location.reload();
+                  
+            };
         })
 
     });

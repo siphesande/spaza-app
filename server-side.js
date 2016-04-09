@@ -208,7 +208,7 @@ app.get('/categories/mostPopulerCat',checkUser, categories.mostPopulerCat);
 app.get('/categories/leastPopulerCat',checkUser, categories.leastPopulerCat);
 app.get('/categories/EarningsCateg',checkUser, categories.EarningsCateg);
 app.get('/categories/search/:searchValue',search.searchCategories);
-app.get('/categories/search',search.searchCategories);
+//app.get('/categories/search',search.searchCategories);
 
 
 // app.post('/categories/CategorySearching',search.searchCategories);
