@@ -45,7 +45,7 @@ exports.searchSales = function(req, res, next){
     if (error) throw next (error);
     var searchVar = req.body.searchVar;
         searchVar = "%" + searchVar + "%";
-        connection.query('SELECT Sales.Id,Sales.Qty,Products.product_name,Sales.Sales_price,Sales.Sales_date FROM Products INNER JOIN Sales ON Products.Id = Sales.Product_Id WHERE product_name LIKE ?',searchVar,function(err, results){ 
+        connection.query('SELECT Sales.Id,Qty,product_name,Sales_price,Sales_date FROM Products INNER JOIN Sales ON Products.Id = Sales.Product_Id WHERE product_name LIKE ?',searchVar,function(err, results){ 
           if (err) throw next (err);
           res.render('salesSearching',{
             search_sales : results
