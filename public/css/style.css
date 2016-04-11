@@ -90,3 +90,13 @@
   float: right;
 }
 
+/*from home page*/
+#welcoming{
+  float:center;
+
+}
+.well-sm{
+  background-color: #ccffff;
+  color: #99ff33;
+
+}

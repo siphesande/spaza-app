@@ -113,16 +113,14 @@ background:#3594D2;
      
        
           <input type="password" required="required" autocomplete="off" name="password" placeholder="Password " class="password"/> 
-          <!--  <input type="text" name="username" value="" onFocus="field_focus(this, 'username');" onblur="field_blur(this, 'username');" class="text" />
-  
-          <input type="password" name="password" value="" onFocus="field_focus(this, 'password');" onblur="field_blur(this, 'password');" class="password" />
-   -->
+         
+   
 
          <div><button type="submit" class="btn">Login</button></div>
-        <a href="/signup"><div id="btn2">Sign Up</div></a> <!-- End Btn2 -->
-         <p>{{info}}</p>
+        <a href="/signup"><div id="btn2">Sign Up</div></a> 
+         <h1 style="color:red"><strong>{{messages.info}}</strong></h1>
       </div> 
-  
+ 
 </form>
 
 <p>Forgot your password? <u style="color:#f1c40f;">Click Here!</u></p>
@@ -135,28 +133,3 @@ background:#3594D2;
 
 
 
-<!-- <html>
-
-<head>
-  <title></title>
- <link href="/css/login.css" rel="stylesheet">
-</head>
-
-<body>
-  <div id="logo"> 
- <h1><i>Nelisa's Spaza Shop</i></h1>
-</div> 
-
- <section class="Nelisa-login">
-  
-  <form  method="post" action="/home">  
-    <div id="fade-box">
-      <input type="text" name="username" value="" placeholder="Username or Email" required autofocus>
-      <input type="password" name="password" value="" placeholder="Password" required autofocus>	
-        <p class="submit"><input type="submit" name="commit" value="Login"></p>
-   <a href="signup"><strong>Dont Have Account??</strong>Sign Up</a> 
-   </div>     
-</form>
- </section>
-</body>
-</html> -->

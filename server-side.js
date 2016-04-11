@@ -1,4 +1,4 @@
- 
+//grab the things we need 
 
 var express = require('express'),
     exphbs  = require('express-handlebars'),
@@ -134,9 +134,7 @@ app.get('/logout', function(req, res){
   
 });
 
-// var contains = function(str, part){
-//    return str.indexOf(part) !== -1;
-// };
+
 
 var checkUser = function (req, res, next) {
 
@@ -172,8 +170,7 @@ var checkUser = function (req, res, next) {
 // };
 
 
-//setup the handlers
-//app.get('/',function(req,res){res.render('index');});
+
 //products.js
 app.get('/products', products.show);//show products to the screen
 app.get('/products/edit/:Id', products.get);
@@ -249,7 +246,7 @@ app.get('/searchPrd',function(req,res){
     //});
 });
 
-
+//twitter type ahead ajax search
 app.get('/search',function(req,res){
  req.getConnection(function(err, connection){ 
   if (err) throw err;
@@ -268,7 +265,7 @@ connection.query('SELECT product_name from Products where product_name like "%'+
 });
 
 //configure the port number using and environment number
-//The app starts a server and listens on port 3000 for connections
+//The app starts a server and listens on port 3002 for connections
 var portNumber = process.env.CRUD_PORT_NR || 3002;
 
 //start everything up

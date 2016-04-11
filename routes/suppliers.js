@@ -57,7 +57,7 @@ exports.update = function(req, res, next){
 
        });
 }
-//dele from the list of my suppliers
+//delete from the list of my suppliers
 exports.delete = function(req, res, next){
 	  'use strict'
 	var Id= req.params.Id;

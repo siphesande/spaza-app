@@ -22,8 +22,6 @@ exports.show =function (req, res, next){
 	      });
     });
 }
-
-
 // Add the the Purcheses
 exports.add = function (req, res, next) {
     req.getConnection(function(err, connection){
@@ -51,7 +49,7 @@ exports.get = function(req, res, next){
      //return res.send("......");
     req.getConnection(function(err, connection){
         if (err){
-            //console.log(err)
+          
             return next(err);
         }
         var purchaseId = Number(req.params.Id);
@@ -113,29 +111,6 @@ exports.get = function(req, res, next){
         });
     });
 };
-
-
-// exports.get = function (req,res, next){
-// 	 var id = req.params.Id;
-// 	 req.getConnection(function(err,connection){
-
-// 		   connection.query('SELECT * FROM Purchases WHERE id = ?',[id], function (err,rows){
-// 			     connection.query('SELECT * FROM Suppliers', [], function(err, results) {
-//               connection.query('SELECT * from Products' ,[], function(err, products){
-//                   if (err) return next(err);
-// 			            res.render('editPurchases' ,{page_title:"Edit Customers - Node.js", 
-//                   data : rows[0],
-//                   suppliers : results,
-//                   products :products
-
-//                   });
-//                  // var product = products.length >  ? purchases[0] : {};
-//                  //var productList = function(products)
-//               });
-//            });
-// 	     });
-// 	 });
-// };
 
 //Update my Purchase list
 exports.update = function(req, res,next){

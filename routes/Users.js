@@ -27,26 +27,7 @@ exports.usser = function (req, res, next) {
 		    });
 	   });
 };
-// exports.registerUser = function(req, res) {
 
-//   // validate the input
-//   req.checkBody('username', 'Username is required').notEmpty();
-//   req.checkBody('password', 'Password is required').notEmpty();
-//   req.checkBody('confirm_password', 'confirm_password is required').notEmpty();
-  
-//   // check the validation object for errors
-//   var errors = req.validationErrors();
-
-//   console.log(errors);  
-
-//   if (errors) {
-//      res.redirect('/', { flash: { type: 'alert-danger', messages: errors }});
-//   }
-//   else {
-//     res.render('signup', { flash: { type: 'alert-success', messages: [ { msg: 'No errors!' }]}});
-//   }
-
-// };
 // add the user(VIEW) to database
 exports.add = function (req, res, next) {
 

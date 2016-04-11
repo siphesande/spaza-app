@@ -40,7 +40,6 @@ exports.searchCategories = function(req, res, next){
     })
 };
 
-
 exports.searchSales = function(req, res, next){
   req.getConnection(function(error, connection){
     if (error) throw next (error);

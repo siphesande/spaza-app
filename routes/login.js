@@ -33,6 +33,10 @@ exports.login = function(req, res, next){
 			connection.query('SELECT  * FROM users WHERE username = ?', username, function(error, users) {
 			     var user = users[0];
 			     console.log("also user" + user);
+			     if(user === undefined){
+			     	req.flash("info", 'invalid username!');
+			     	return res.redirect('/');
+			     };
 
 			    bcrypt.compare(input.password, users[0].password, function(err, pass){
 			  	
@@ -59,7 +63,7 @@ exports.login = function(req, res, next){
 
 			    	
 			    	};
-				//});
+			
 			  	});
 			  });
 		    });

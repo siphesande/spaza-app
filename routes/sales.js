@@ -17,8 +17,6 @@ exports.show =function (req, res, next){
         });
 	});
 };
-
-
 exports.add = function (req, res, next) {
     req.getConnection(function(err, connection){
          if (err){
@@ -79,8 +77,7 @@ exports.getSales = function(req, res, next){
                            var context = {
                             products : productList,
                             sale: sales.length > 0 ? sales[0] : {},
-                           //sale: sale,
-                            //suppliers: suppList
+                           
                         };
                         //console.log(context);
                         res.render('editSales', context);
@@ -90,28 +87,6 @@ exports.getSales = function(req, res, next){
     });
 }
 
-
-
-
-
-
-
-
-// exports.getSales = function (req,res, next){
-// 	var id = req.params.Id;
-// 	req.getConnection(function(err,connection){
-// 		connection.query('SELECT * FROM Sales WHERE id = ?',[id], function (err,rows){
-//             connection.query('SELECT * from Products',[], function(err, product){
-// 			    if (err) return next(err);
-// 			    res.render('editSales',{page_title:"Edit Sales - Node.js", 
-//                 data : rows[0],
-//                 product : product
- 
-//                });
-//             });
-// 	    });
-// 	});
-// };
 exports.update = function(req, res,next){
     var data = JSON.parse(JSON.stringify(req.body));
  	var id = req.params.Id;
