@@ -266,7 +266,7 @@ connection.query('SELECT product_name from Products where product_name like "%'+
 
 //configure the port number using and environment number
 //The app starts a server and listens on port 3002 for connections
-var portNumber = process.env.CRUD_PORT_NR || 3002;
+var portNumber = process.env.CRUD_PORT_NR || 8080;
 
 //start everything up
 app.listen(portNumber, function (){
