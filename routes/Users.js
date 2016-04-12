@@ -1,5 +1,5 @@
 "use strict"
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 //var bcrypt = require('bcrypt-nodejs');
 exports.usser = function (req, res, next) {
 	req.getConnection(function(error, connection){
