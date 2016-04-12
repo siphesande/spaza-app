@@ -6,7 +6,7 @@
 $(document).ready(function(){
     $('input.typeahead').typeahead({
         name: 'typeahead',
-        remote: 'http://localhost:3002/search?key=%QUERY',
+        remote: 'http://localhost:8080/search?key=%QUERY',
         limit: 10
     });
 });
