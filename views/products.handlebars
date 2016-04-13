@@ -23,8 +23,8 @@
 
 </form>
 <!-- HTML for SEARCH BAR USING FORMS -->
-<!-- 
-  <div id="tfheader">
+
+<!--   <div id="tfheader">
     <form id="tfnewsearch" role="search" method="post" action="/products/search">
 
             <input type="text" class="tftextinput " name="searchVar" placeholder="search ..." size="50" maxlength="120">
@@ -33,31 +33,25 @@
          
           
     </form> 
-      <div class="tfclear"></div>
- -->
+      <div class="tfclear"></div> -->
+
  
 <!-- < create a search Ajax search> -->
-<script type="text/javascript">
-//We will initialize the typeahead in JQuery function
-$(document).ready(function(){
-    $('input.typeahead').typeahead({
-        name: 'typeahead',
-        remote: 'http://localhost:3002/search?key=%QUERY',
-        limit: 10
-    });
-});
-</script>
+<div class="well well-sm"> 
 
-<div class="bs-example">
-        <input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Search using AJAX">
-    </div>
+<form class="form-inline" >
+  <input class="searchBar" id="search" type="text" name="searchValue" placeholder="Search"></input>
+</form>
 
- </div>
+</div> 
+<!-- <div class="form-group">
+    <input type="text" class="form-control" name="searchVal" value="{{searchVal}}" id="productSearchBar" placeholder="Search Products">
+  </div> -->
  
    
 
 <h2>Products</h2>
-<table class = "table" id = "Products List">
+<table class = "table" id = "searchProduct">
 
 <tr>
      <th>Product Id</th>
@@ -74,9 +68,10 @@ $(document).ready(function(){
 <tr>
 {{/products}}
 
-{{#no_products}}
-  <p>No products available yet. Add some above.</p>
-{{/no_products}}
+
 
 </table>
 <a class="btn btn-primary" href="/home" role="button">Back to Home</a>
+
+<script src="/js/jquery.js"></script>
+<script src="/js/search.js"></script>

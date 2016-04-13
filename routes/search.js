@@ -1,17 +1,32 @@
-
+// exports.searchProducts = function(req, res, next){
+ 
+//   req.getConnection(function(err, connection) {
+//     var searchVal = '%'+ req.params.searchVal +'%';
+//     connection.query('SELECT product_name, Id FROM Products where product_name Like ?', [searchVal], function(err, result){
+//       if(err) return console.log(err);
+//       res.render('searchPrd',{
+//         products : result,
+       
+//         layout : false
+//       });
+//     });
+//   });
+// };
 exports.searchProducts = function(req, res, next){
   req.getConnection(function(error, connection){
     if(error) return next(error);
-        var searchVar = req.body.searchVar;
-        //var searchVar = req.query.searchVar;
-        searchVar = "%" + searchVar + "%";
-        console.log(searchVar);
+       var searchValue = "%" + req.params.searchValue + "%"; 
+        console.log(searchValue);
 
-        //connection.query('SELECT * FROM Products WHERE product_name LIKE ?',[searchVar], function(error, results) {
-          connection.query('SELECT Products.Id, Products.product_name,Categories.category_name FROM Products INNER JOIN Categories ON Categories.Id = Products.Category_Id WHERE product_name LIKE ?',[searchVar], function(error, results) {
-          if (error) return console(error);
+      
+          connection.query('SELECT Products.Id, Products.product_name,Categories.category_name FROM Products INNER JOIN Categories ON Categories.Id = Products.Category_Id WHERE product_name LIKE ?',[searchValue], function(error, results) {
+          if (error) return next(error);
+          console.log(results);
             res.render( 'search', {
-            products_search : results
+              username :req.session.user,
+              products : results,
+              layout :false
+
                    
             });
         }); 

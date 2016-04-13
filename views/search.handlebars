@@ -1,30 +1,29 @@
+ <!-- <thead>
+            <tr>
+                <th>Product Id</th>
+                <th>Product Name</th>
+           <th>Category Name</th>
+              </tr>
+            </thead>
+            {{#products}}
+              <tr>
+                <td>{{Id}}</td>
+                <td>{{product_name}}</td>
+                <td>{{category_name}}</td>
+              </tr>
+            {{/products}}  -->
 
-
-<!-- HTML for SEARCH BAR -->
-<div id="tfheader">
-    <form id="tfnewsearch" role="search" method="post" action="/products/search">
-
-            <input type="text" class="tftextinput " name="searchVar" placeholder="search ..." size="50" maxlength="120">
-          
-         <button type="submit" class="btn btn-primary btn-xs">search</button> 
-         
-          
-    </form> 
-          <div class="tfclear"></div>
-
-  </div>
- 
 
 
 <h2>Products</h2>
-<table class = "table" id = "Products List">
+
 
 <tr>
      <th>Product Id</th>
      <th>Product Name</th>
      <th>Category Name</th>
 </tr>
-{{# products_search}}
+{{#products}}
   <tr>
   <td>{{Id}}</td>
   <td>{{product_name}}</td>
@@ -32,10 +31,11 @@
  <td> <a href="/products/edit/{{Id}}" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
  <td> <a href="/products/delete/{{Id}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
 <tr>
-{{/ products_search}}
+{{/products}}
 
 
 
-</table>
+
 <a class="btn btn-primary" href="/products" role="button">Back to Products</a>
 <a class="btn btn-primary" href="/home" role="button">Back to Home</a>
+

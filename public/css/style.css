@@ -30,8 +30,8 @@
 
 }
 
-// typehead plugin
-.bs-example{
+ /*typehead plugin*/
+/*.bs-example{
   font-family: sans-serif;
   position: relative;
   margin: 50px;
@@ -78,9 +78,9 @@
 }
 .tt-suggestion p {
   margin: 0;
-}
-/*styling my forms*/
-.searchBar{
+}*/
+/*styling my forms the search ones
+*/.searchBar{
   float: right;
 }
 .form-line{

@@ -183,8 +183,9 @@ app.get('/products/leastPopulerPrd', products.leastPopulerPrd);
 app.get('/products/delete/:Id', products.delete);
 app.get('/products/EarningsPro', products.EarningsPro);
 app.get('/products/Profits', products.Profits);
-app.get('/products/search', search.searchProducts);
-app.post('/products/search',search.searchProducts);
+app.get('/products/search/:searchValue', search.searchProducts);
+//app.post('/products/search',search.searchProducts);
+//app.get('/products/search/:searchVal', search.searchProducts);
 
 
 
@@ -238,35 +239,10 @@ app.get('/user/admin/:Id',checkUser,usrs.admin);
 app.get('/user/notAdmin/:Id',checkUser,usrs.notAdmin);
 app.get('/user/edit/',usrs.get);
 
-app.get('/searchPrd',function(req,res){
-    res.render('searchPrd')//,{
-
-       //layout :false
-
-    //});
-});
-
-//twitter type ahead ajax search
-app.get('/search',function(req,res){
- req.getConnection(function(err, connection){ 
-  if (err) throw err;
-connection.query('SELECT product_name from Products where product_name like "%'+req.query.key+'%"', function(err, rows, fields) {
-    if (err) throw err;
-    var data=[];
-    for(i=0;i<rows.length;i++)
-      {
-        data.push(rows[i].product_name);
-      }
-       res.end(JSON.stringify(data));
-      
-   });
- 
-  });
-});
 
 //configure the port number using and environment number
-//The app starts a server and listens on port 3002 for connections
-var portNumber = process.env.CRUD_PORT_NR || 3002;
+//The app starts a server and listens on port 8080 for connections
+var portNumber = process.env.CRUD_PORT_NR || 8080;
 
 //start everything up
 app.listen(portNumber, function (){
