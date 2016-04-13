@@ -175,17 +175,13 @@ var checkUser = function (req, res, next) {
 app.get('/products', products.show);//show products to the screen
 app.get('/products/edit/:Id', products.get);
 app.post('/products/update/:Id', products.update);
-
 app.post('/products/add', products.add);
 app.get('/products/mostPopulerPrd', products.mostPopulerPrd);
 app.get('/products/leastPopulerPrd', products.leastPopulerPrd);
-//this should be a post but this is only an illustration of CRUD - not on good practices
 app.get('/products/delete/:Id', products.delete);
 app.get('/products/EarningsPro', products.EarningsPro);
 app.get('/products/Profits', products.Profits);
 app.get('/products/search/:searchValue', search.searchProducts);
-//app.post('/products/search',search.searchProducts);
-//app.get('/products/search/:searchVal', search.searchProducts);
 
 
 
@@ -206,10 +202,7 @@ app.get('/categories/mostPopulerCat',checkUser, categories.mostPopulerCat);
 app.get('/categories/leastPopulerCat',checkUser, categories.leastPopulerCat);
 app.get('/categories/EarningsCateg',checkUser, categories.EarningsCateg);
 app.get('/categories/search/:searchValue',search.searchCategories);
-//app.get('/categories/search',search.searchCategories);
 
-
-// app.post('/categories/CategorySearching',search.searchCategories);
 
 //purchases.js
 app.get('/purchases',checkUser, purchases.show);
@@ -241,11 +234,9 @@ app.get('/user/edit/',usrs.get);
 
 
 //configure the port number using and environment number
-<<<<<<< HEAD
+
 //The app starts a server and listens on port 8080 for connections
-=======
-//The app starts a server and listens on port 3002 for connections
->>>>>>> e3bbdd4661ffe909c61d2abc3c0fc6ef7b150e92
+
 var portNumber = process.env.CRUD_PORT_NR || 8080;
 
 //start everything up
