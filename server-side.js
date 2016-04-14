@@ -29,7 +29,7 @@ var express = require('express'),
 var app = express();
 var dbOptions = {
       host: 'localhost',
-      user: 'root',
+      user: 'spaza_app',
       password: '08386354',
       port: 3306,
       database: 'spaza_app'
@@ -122,11 +122,9 @@ app.post('/signup/add', register.add);
 app.get('/signup/delete/:id', register.delete);
 
 //signup as Adiministrator
-app.get('/admin_signup', function(req, res){
-  res.render('admin_signup', {layout: false})
-});
-app.get("/amin_signup", register.adminSignup);
-app.post('/admin_signup',register.adminSignup); 
+
+//app.get("/amin_signup",checkUser, register.adminSignup);
+//app.post('/admin_signup',checkUser, register.adminSignup); 
 
 app.get('/logout', function(req, res){
   delete req.session.user;
@@ -172,65 +170,65 @@ var checkUser = function (req, res, next) {
 
 
 //products.js
-app.get('/products', products.show);//show products to the screen
-app.get('/products/edit/:Id', products.get);
-app.post('/products/update/:Id', products.update);
-app.post('/products/add', products.add);
-app.get('/products/mostPopulerPrd', products.mostPopulerPrd);
-app.get('/products/leastPopulerPrd', products.leastPopulerPrd);
-app.get('/products/delete/:Id', products.delete);
-app.get('/products/EarningsPro', products.EarningsPro);
-app.get('/products/Profits', products.Profits);
-app.get('/products/search/:searchValue', search.searchProducts);
+app.get('/products',checkUser, products.show);//show products to the screen
+app.get('/products/edit/:Id',checkUser, products.get);
+app.post('/products/update/:Id',checkUser, products.update);
+app.post('/products/add',checkUser, products.add);
+app.get('/products/mostPopulerPrd',checkUser, products.mostPopulerPrd);
+app.get('/products/leastPopulerPrd',checkUser, products.leastPopulerPrd);
+app.get('/products/delete/:Id',checkUser, products.delete);
+app.get('/products/EarningsPro',checkUser, products.EarningsPro);
+app.get('/products/Profits',checkUser, products.Profits);
+app.get('/products/search/:searchValue',checkUser, search.searchProducts);
 
 
 
 app.get('/sales',checkUser, sales.show); 
-app.post('/sales/add',sales.add);
-app.get('/sales/edit/:Id', sales.getSales);
-app.post('/sales/update/:Id', sales.update);
-app.get('/sales/delete/:Id', sales.delete);
-app.post('/sales/salesSearching', search.searchSales);
+app.post('/sales/add',checkUser,sales.add);
+app.get('/sales/edit/:Id',checkUser, sales.getSales);
+app.post('/sales/update/:Id',checkUser, sales.update);
+app.get('/sales/delete/:Id',checkUser, sales.delete);
+app.post('/sales/salesSearching',checkUser, search.searchSales);
 
 // to get,add,update and delete categories
 app.get('/categories', checkUser,categories.show);
-app.post('/categories/add', categories.add);
-app.get('/categories/edit/:Id', categories.get);
-app.post('/categories/update/:Id',categories.update);
+app.post('/categories/add',checkUser, categories.add);
+app.get('/categories/edit/:Id',checkUser, categories.get);
+app.post('/categories/update/:Id',checkUser,categories.update);
 app.get('/categories/delete/:Id', categories.delete);
 app.get('/categories/mostPopulerCat',checkUser, categories.mostPopulerCat);
 app.get('/categories/leastPopulerCat',checkUser, categories.leastPopulerCat);
 app.get('/categories/EarningsCateg',checkUser, categories.EarningsCateg);
-app.get('/categories/search/:searchValue',search.searchCategories);
+app.get('/categories/search/:searchValue',checkUser,search.searchCategories);
 
 
 //purchases.js
 app.get('/purchases',checkUser, purchases.show);
-app.post('/purchases/add',purchases.add);
-app.get('/purchases/edit/:Id', purchases.get);
-app.post('/purchases/update/:Id', purchases.update);
+app.post('/purchases/add',checkUser,purchases.add);
+app.get('/purchases/edit/:Id',checkUser, purchases.get);
+app.post('/purchases/update/:Id',checkUser, purchases.update);
 //app.get('/purchases/updete/:Id')
-app.get('/purchases/delete/:Id', purchases.delete);
+app.get('/purchases/delete/:Id',checkUser, purchases.delete);
 
 //suppliers.js
-app.get('/suppliers',checkUser, suppliers.show);
-app.post('/suppliers/add',suppliers.add);
-app.get('/suppliers/edit/:Id', suppliers.get);
-app.post('/suppliers/update/:Id', suppliers.update);
-app.get('/suppliers/delete/:Id', suppliers.delete);
-app.post('/suppliers/searchSuppliers', search.searchSuppliers);
+app.get('/suppliers',checkUser,checkUser, suppliers.show);
+app.post('/suppliers/add',checkUser,suppliers.add);
+app.get('/suppliers/edit/:Id',checkUser, suppliers.get);
+app.post('/suppliers/update/:Id',checkUser, suppliers.update);
+app.get('/suppliers/delete/:Id',checkUser, suppliers.delete);
+app.post('/suppliers/searchSuppliers',checkUser, search.searchSuppliers);
 
 
 app.get('/user',checkUser,  usrs.usser);
-app.get('/user/add',  usrs.usser);
-app.get('/user/edit/:Id', usrs.get);
-app.get('/user/edit/:Id', usrs.update);
-app.post('/user/update/:Id',  usrs.update);
-app.post('/user/add', usrs.add);
+app.get('/user/add', checkUser, usrs.usser);
+app.get('/user/edit/:Id',checkUser, usrs.get);
+app.get('/user/edit/:Id',checkUser, usrs.update);
+app.post('/user/update/:Id',checkUser,  usrs.update);
+app.post('/user/add',checkUser, usrs.add);
 app.get('/user/delete/:Id',checkUser,usrs.delete);
 app.get('/user/admin/:Id',checkUser,usrs.admin);
 app.get('/user/notAdmin/:Id',checkUser,usrs.notAdmin);
-app.get('/user/edit/',usrs.get);
+app.get('/user/edit/',checkUser,usrs.get);
 
 
 //configure the port number using and environment number
