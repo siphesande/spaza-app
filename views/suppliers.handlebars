@@ -36,18 +36,21 @@
 <tr>
   <th>{{Id}}</th>
   <th>{{supplier_name}}</th>
+
+  {{#if ../Admin}}
   <td><a href="/suppliers/edit/{{Id}}" class ="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a>
   </td>
   <td><a href="/suppliers/delete/{{Id}}" class="btn btn-danger">
      <span class="glyphicon glyphicon-remove"></span> Delete 
      </a>
    </td>
+   {{/if}}
 </tr>
 {{/suppliers}}
 
-<!-- {{#no_suppliers}}
+{{#no_suppliers}}
   <p>No products available yet. Add some above.</p>
-{{/no_suppliers}} -->
+{{/no_suppliers}}
 
 </table>
 

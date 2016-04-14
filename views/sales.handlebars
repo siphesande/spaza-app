@@ -69,12 +69,14 @@
   <th>{{Sales_price}}</th>
   <th>{{Qty}}</th>
   <th>{{Sales_date}}</th>
-
+{{#if ../Admin}}
 
   <td ><a href="/sales/edit/{{Id}}" class ="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
  <td ><a href="/sales/delete/{{Id}}" class="btn btn-danger">
     <span class="glyphicon glyphicon-remove"></span> Delete 
     </a></td >
+
+{{/if}}
 </tr>
 {{/sales}}
 

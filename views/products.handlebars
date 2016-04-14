@@ -45,9 +45,12 @@
   <td>{{Id}}</td>
   <td>{{product_name}}</td>
   <td>{{category_name}}</td>
+
+  {{#if ../Admin}}
  <td> <a href="/products/edit/{{Id}}" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
  <td> <a href="/products/delete/{{Id}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
 <tr>
+  {{/if}}
 {{/products}}
 
 

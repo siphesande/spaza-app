@@ -1,6 +1,9 @@
 'use strict'
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
+         var Administrator = req.session.role === "Admin";
+		 var user = req.session.role !== "Admin";
+
 		if (err) return next(err);
 		    connection.query('SELECT * from Categories', [], function(err, results) {
                if (err) return next(err);
@@ -9,9 +12,11 @@ exports.show = function (req, res, next) {
 			   user: req.session.user,
 			   role: req.session.role,
 			   Id: req.session.Id,
-			   categories: results
+			   categories: results,
+			   Admin : Administrator,
+			   action : user
     		   });
-           });
+        });
 	});
 	
 }

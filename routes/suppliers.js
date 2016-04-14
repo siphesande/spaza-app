@@ -1,6 +1,8 @@
 "use strict"
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
+		var Administrator = req.session.role === "Admin";
+		var user = req.session.role !== "Admin";
 		if (err) return next(err);
 		    connection.query('SELECT * from Suppliers', [], function(err, results) {
                if (err) return next(err);
@@ -9,8 +11,9 @@ exports.show = function (req, res, next) {
 				   user: req.session.user,
 				   role: req.session.role,
 				   Id: req.session.Id,
-				   
-				   suppliers: results
+				   suppliers: results,
+				   Admin : Administrator,
+				   action : user
     		      });
 
             });

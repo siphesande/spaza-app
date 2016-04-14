@@ -4,6 +4,8 @@ exports.show =function (req, res, next){
 
     req.getConnection(function(err, connection){
         if (err) return next(err);
+        var Administrator = req.session.role === "Admin";
+        var user = req.session.role !== "Admin";
 		    connection.query('SELECT * from Suppliers',[], function(err, suppliers){
             connection.query('SELECT * from Products' ,[], function(err, products){
                 connection.query('SELECT Purchases.Id,Suppliers.supplier_name, Products.product_name, DATE_FORMAT(Purchases.Purchase_date, "%d/%m/%Y") as Purchase_date , Purchases.Qty, Purchases.Purchase_price FROM Purchases INNER JOIN Products ON Purchases.Product_Id = Products.Id INNER JOIN Suppliers ON Purchases.Supplier_Id = Suppliers.Id ORDER BY Id DESC' ,[], function(err, purchases){
@@ -15,7 +17,9 @@ exports.show =function (req, res, next){
                       Id: req.session.Id,
             	      suppliers : suppliers,
             	      products : products,
-                      purchases : purchases
+                      purchases : purchases,
+                      Admin : Administrator,
+                      action : user
             	      });
                   });
               });

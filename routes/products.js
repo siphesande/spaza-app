@@ -1,5 +1,10 @@
+
+
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
+       var Administrator = req.session.role === "Admin";
+		var user = req.session.role !== "Admin";
+
 		if (err) return next(err);
 	    connection.query('SELECT Products.Id, Products.product_name, Categories.category_name FROM Products INNER JOIN Categories ON Categories.Id = Products.Category_Id ORDER BY Id LIMIT 0 , 30', [], function(err, results) {
 			connection.query('SELECT * FROM Categories', [], function(err, categories) {
@@ -10,7 +15,9 @@ exports.show = function (req, res, next) {
 			    role: req.session.role,
 			    Id: req.session.Id,
 				products : results,
-				categories: categories
+				categories: categories,
+				Admin : Administrator,
+				action : user
 			    });
 	        });
 		});
@@ -127,6 +134,9 @@ exports.EarningsPro = function(req, res, next){
 };
 exports.Profits = function(req, res, next){
 	req.getConnection(function(error, connection){
+        var Administrator = req.session.role === "Admin";
+		var user = req.session.role !== "Admin";
+
 		if(error){
 			return next(error);
 
@@ -140,7 +150,9 @@ exports.Profits = function(req, res, next){
 			ProfitsProduct : results,
 			user:req.session.user,
 			role:req.session.role,
-			Id: req.session.Id
+			Id: req.session.Id,
+			Admin : Administrator,
+            action : user
 
 			});
 		});

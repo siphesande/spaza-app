@@ -8,8 +8,10 @@
         <tr>
             <td>{{product_name}}</td>
             <td>{{profit}}</td> 
+            {{#if ../Admin}}
             <td><button><a href="/Profitables/edit/{{Id}}">Edit</a></button></td>
             <td><button><a href="/Profitables/delete/{{Id}}">Delete</a></button></td>
+            {{/if}}
         </tr>
 {{/ProfitsProduct}}
 </table>

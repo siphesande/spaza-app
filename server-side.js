@@ -29,7 +29,7 @@ var express = require('express'),
 var app = express();
 var dbOptions = {
       host: 'localhost',
-      user: 'spaza_app',
+      user: 'root',
       password: '08386354',
       port: 3306,
       database: 'spaza_app'
@@ -146,6 +146,15 @@ var checkUser = function (req, res, next) {
         }
 
     }
+
+var checkAdmin = function (req,res,next){
+    if(req.session.role === "Admin"){
+       next();
+    }
+    else{
+      res.redirect("/");
+    }
+}
 // var checkUser = function(req, res, next){
 //   console.log("path : " + req.path);
 //   if (req.session.user){
@@ -173,10 +182,10 @@ var checkUser = function (req, res, next) {
 app.get('/products',checkUser, products.show);//show products to the screen
 app.get('/products/edit/:Id',checkUser, products.get);
 app.post('/products/update/:Id',checkUser, products.update);
-app.post('/products/add',checkUser, products.add);
+app.post('/products/add',checkAdmin, products.add);
 app.get('/products/mostPopulerPrd',checkUser, products.mostPopulerPrd);
 app.get('/products/leastPopulerPrd',checkUser, products.leastPopulerPrd);
-app.get('/products/delete/:Id',checkUser, products.delete);
+app.get('/products/delete/:Id',checkAdmin, products.delete);
 app.get('/products/EarningsPro',checkUser, products.EarningsPro);
 app.get('/products/Profits',checkUser, products.Profits);
 app.get('/products/search/:searchValue',checkUser, search.searchProducts);
