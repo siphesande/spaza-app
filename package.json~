@@ -1,14 +1,37 @@
 {
   "name": "spaza-app",
   "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "insert into Sales (product_id,price,qty) select Products.product_id as id,",
+  "main": "server-side.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server-side.js"
   },
-  "author": "",
+  "author": "Malgas Siphesande",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "express": "~4.13.3"
-  }
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "express": "~4.13.3",
+    "express-handlebars": "~2.0.1",
+    "morgan": "^1.7.0",
+    "mysql": "~2.9.0",
+    "express-session": "*",
+    "cookie-parser": "*",
+    "express-validator": "*",
+    "request": "*",
+    "cookie-session": "*",
+    "express-flash": "*",
+    "express-myconnection": "*"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siphesande/spaza-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/siphesande/spaza-app/issues"
+  },
+  "homepage": "https://github.com/siphesande/spaza-app#readme"
 }
+
