@@ -12,17 +12,18 @@
   "dependencies": {
     "bcryptjs": "*",
     "body-parser": "*",
+    "connection-provider": "avermeulen/connection-provider",
+    "cookie-parser": "*",
+    "cookie-session": "*",
     "express": "~4.13.3",
+    "express-flash": "*",
     "express-handlebars": "~2.0.1",
+    "express-myconnection": "*",
+    "express-session": "*",
+    "express-validator": "*",
     "morgan": "^1.7.0",
     "mysql": "~2.9.0",
-    "express-session": "*",
-    "cookie-parser": "*",
-    "express-validator": "*",
-    "request": "*",
-    "cookie-session": "*",
-    "express-flash": "*",
-    "express-myconnection": "*"
+    "request": "*"
   },
   "devDependencies": {},
   "repository": {
@@ -34,4 +35,3 @@
   },
   "homepage": "https://github.com/siphesande/spaza-app#readme"
 }
-
