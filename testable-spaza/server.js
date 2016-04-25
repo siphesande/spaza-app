@@ -6,7 +6,7 @@ var morgan = require("morgan");
 var mysql = require("mysql");
 
 
-    
+
 var ProductsDataService = require('./products-data-service');
 var app = express();
 
@@ -15,7 +15,7 @@ var dbOptions = {
 	user:'root',
 	password:'password',
 	port:3000,
-	database: 'db_name'
+	database: 'spaza-app'
 };
 
 var setupCallback = function(connection){
@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json());
 //app.use(cookieParser());
-app.use(session({ 
+app.use(session({
 
 secret : 'a4f8071f-c873-4447-8ee2', resave : true,   saveUninitialized: true, cookie: { maxAge:2628000000 }}));
 
