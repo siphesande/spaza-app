@@ -1,6 +1,9 @@
 var Promise = require("bluebird");
 var express = require("express");
 var connectionProvider = require('connection-provider');
+var cookieParser = require("cookie-parser");
+var bodyParser = require("body-parser");
+var session = require('express-session');
 var exphbs = require("express-handlebars");
 var morgan = require("morgan");
 var mysql = require("mysql");
@@ -23,6 +26,13 @@ var setupCallback = function(connection){
 		productDataService : new ProductsDataServisce(connection)
 	}
 };
+
+function errorHandler(err, req, res, next){
+	res.status(500);
+	res.render("error", {
+		error: err
+	})
+}
 app.use(connectionProvider(dbOptions, setupCallback));
 
 app.use(morgan('dev'));

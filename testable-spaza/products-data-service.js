@@ -1,5 +1,3 @@
-
-
 var Promise = require("bluebird");
 exports.getProduct = function (req, res, next) {
         req.getServices()
