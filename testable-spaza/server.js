@@ -1,4 +1,4 @@
-
+var Promise = require("bluebird");
 var express = require("express");
 var connectionProvider = require('connection-provider');
 var exphbs = require("express-handlebars");
