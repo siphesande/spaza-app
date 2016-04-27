@@ -1,18 +1,21 @@
-exports.getProduct = function(req, res, next){
-	req.getServices()
-	    .then(function(services){
-	    	var Id = req.params.Id;
-	    	var productsDataService = services.productDataService;
-            productsDataService.getProduct(Id, function(err, product) {
-                if (products && products.length > 0){
-                    res.render('products', {products : product});
-                }
-                else{
-                    res.render('products', {error : 'Product not found.'})
-                }
+
+
+var Promise = require("bluebird");
+exports.getProduct = function (req, res, next) {
+        req.getServices()
+        .then(function(services){
+
+                var productDataService = services.productDataService;
+                Promise.join(productDataService.Products() , productDataService.Categories(),
+                          function(products,categories){
+                          res.render('products', {
+                          products: products,
+                          categories: categories
+
+                });
             })
-        .catch(err){
-            res.render('products', {error : err});
-        };
-    });
-};
+            .catch(function(err){
+              next(err);
+            });
+        });
+    };
