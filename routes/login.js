@@ -1,15 +1,15 @@
 var bcrypt = require('bcryptjs');
-//var bcrypt = require('bcrypt-nodejs');
+
 exports.validator = function(req, res) {
 
   // validate the input
   req.checkBody('username', 'Username is required').notEmpty();
   req.checkBody('password', 'Password is required').notEmpty();
-  
+
   // check the validation object for errors
   var errors = req.validationErrors();
 
-  console.log(errors);  
+  console.log(errors);
 
   if (errors) {
     res.redirect('/login', { flash: { type: 'alert-danger', messages: errors }});
@@ -22,7 +22,7 @@ exports.validator = function(req, res) {
 
 exports.login = function(req, res, next){
   		req.getConnection(function(error, connection){
-  			
+
   			var input = JSON.parse(JSON.stringify(req.body));
 			var username = input.username;
 			var password = input.password;
@@ -39,7 +39,7 @@ exports.login = function(req, res, next){
 			     };
 
 			    bcrypt.compare(input.password, users[0].password, function(err, pass){
-			  	
+
 			    	if (err) {
 			    		console.log(err);
 			    	}
@@ -56,16 +56,15 @@ exports.login = function(req, res, next){
 			    	}
 			    	else if(password === undefined || user === undefined){
 			    		 res.redirect('/');
-			    	
+
 			    	} else {
 			    		 req.flash('info', 'Incorrect username or Password!');
 			    		 res.redirect('/');
 
-			    	
+
 			    	};
-			
+
 			  	});
 			  });
 		    });
   		};
-

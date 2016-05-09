@@ -1,9 +1,9 @@
 exports.show =function (req, res, next){
-    req.getConnection(function(err, connection){ 
+    req.getConnection(function(err, connection){
         var Administrator = req.session.role === "Admin";
         var user = req.session.role !== "Admin";
         if (err) return next(err);
-		//connection.query('SELECT Qty AS AmtSold ,Sales_date, Sales_price,  product_name from Sales s INNER JOIN Products p ON s.Product_Id = p.Id ORDER BY Sales_date DESC',[], function(err, results){
+
         connection.query('SELECT Sales.Id,Products.product_name,Sales.Qty,DATE_FORMAT(Sales.Sales_date, "%d/%m/%Y") as Sales_date,Sales.qty,Sales.Sales_price FROM Sales INNER JOIN Products ON Sales.Product_Id = Products.Id ORDER BY Sales.Sales_date DESC',[],function(err, results){
             connection.query('SELECT * from Products',[], function(err, products){
             	if (err) return next(err);
@@ -33,7 +33,7 @@ exports.add = function (req, res, next) {
              Qty :input.Qty,
              Sales_date:input.Sales_date,
              Sales_price:input.Sales_price
-             //sold :input.Qty
+
          };
          connection.query('insert into Sales set ?', data, function(err, results) {
             if (err) return next(err);
@@ -44,49 +44,45 @@ exports.add = function (req, res, next) {
 };
 
 exports.getSales = function(req, res, next){
-     //return res.send("......");
+
     req.getConnection(function(err, connection){
         if (err){
-            //console.log(err)
+
             return next(err);
         }
         var salesId = Number(req.params.Id);
-        //var salesId = Number(req.params.sale_Id);
-        //console.log( 'salesId : ' + salesId);
 
-        //var salesql = 'SELECT * from sales p where p.Id = ?'; 
         var saleSql = 'SELECT * FROM Sales WHERE Id = ?';
          connection.query(saleSql, [salesId], function(err, sales, fields) {
                     if (err){
-                       // console.log(err)
+
                         return next(err);
                     }
-      
+
                      connection.query('SELECT * FROM Products', [], function(err, products, fields) {
                         if (err)
                             return next(err);
-                        //console.log(product)
+
                         var sale = sales.length > 0 ? sales[0] : {};
                         var productList = products.map(function(product){
-                             //console.log(product.Id);
-                            //console.log(sale);
+
                             var result = {
                                 Id : product.Id,
                                 Name : product.product_name,
                                 selectedProduct : product.Id === sale.Product_Id
                             };
-                            //console.log("**** : " + result.selected);
+
                             return result;
-                        }); 
+                        });
                            var context = {
                             products : productList,
                             sale: sales.length > 0 ? sales[0] : {},
-                           
+
                         };
-                        //console.log(context);
+
                         res.render('editSales', context);
                     });
-            //});
+
         });
     });
 }
@@ -116,7 +112,7 @@ exports.delete = function(req, res, next){
  exports.mostPopurPrd =function (req, res, next){
      req.getConnection(function(err, connection){
           if (err) return next(err);
-          //connection.query('SELECT Qty AS AmtSold ,Sales_date, Sales_price, product_name from Sales s INNER JOIN Products p ON s.Product_Id = p.Id ORDER BY Sales_date DESC',[], function(err, results){
+          
           connection.query('SELECT * from Products',[], function(err, most){
                if (err) return next(err);
                res.render('mostPopurPrd',{
@@ -126,12 +122,3 @@ exports.delete = function(req, res, next){
            });
       });
 }
-
-
-
-
-
-
-
-
-
