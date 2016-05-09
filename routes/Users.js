@@ -8,7 +8,7 @@ exports.usser = function (req, res, next) {
 		console.log(req.session.role);
 		console.log("user" + user);
 
-  		//var input = JSON.parse(JSON.stringify(req.body));
+
 
 		if(error){
 			return next(error);
