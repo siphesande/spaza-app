@@ -1,0 +1,17 @@
+
+        <tr> 
+            <th>Category Id</th>
+            <th>Categories Search</th>
+            
+        </tr>
+
+{{#categories}}
+<tr>
+  <td>{{Id}}</td> 
+  <td>{{category_name}}</td>
+  <td><a href="/categories/edit/{{Id}}" class ="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+  <td><a href="/categories/delete/{{Id}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete </a></td>
+</tr>
+
+{{/categories}}
+ 

@@ -1,6 +1,5 @@
 "use strict"
 var bcrypt = require('bcryptjs');
-//var bcrypt = require('bcrypt-nodejs');
 exports.usser = function (req, res, next) {
 	req.getConnection(function(error, connection){
 		var Administrator = req.session.role === "Admin";
@@ -8,9 +7,9 @@ exports.usser = function (req, res, next) {
 
 		console.log(req.session.role);
 		console.log("user" + user);
-		
+
   		//var input = JSON.parse(JSON.stringify(req.body));
-  		
+
 		if(error){
 			return next(error);
 		}
@@ -33,11 +32,11 @@ exports.add = function (req, res, next) {
 
 	req.getConnection(function(err, connection){
 
-		if (err){ 
+		if (err){
 			return next(err);
 		}
 		var input = JSON.parse(JSON.stringify(req.body));
-		
+
 		var data = {
 			username : input.username,
 			password : input.password,
@@ -49,26 +48,26 @@ exports.add = function (req, res, next) {
 
         bcrypt.genSalt(10, function(err, salt) {
 			bcrypt.hash(input.password, salt, function(err, hash) {
-		        // Store hash in your password DB. 
+		        // Store hash in your password DB.
 
 		        console.log("hash details...")
 		        console.log(hash)
 		        console.log(hash.length)
 
 		        data.password = hash;
-		        
+
 		        connection.query('insert into users set ?', [data], function(err, users) {
-	               // user = users[0]; 
+	               // user = users[0];
 	               //  console.log(user);
 	                if (err)
                             console.log("Error inserting : %s ", err);
-                    
+
                     // if (input.username === user.username){
-                  
+
                     //   res.redirect('/signup');
                  //}
                     else{
-                        
+
                         res.redirect('/?status=user_created');
                     }
 		        });
@@ -78,7 +77,7 @@ exports.add = function (req, res, next) {
 };
 
  exports.adminSignup = function(req, res, next) {
- 	
+
         req.getConnection(function(err, connection) {
             if (err) {
                 return next(err);
@@ -87,9 +86,9 @@ exports.add = function (req, res, next) {
             var data = {
                 username: input.username,
                 password: input.password,
-                //role : input.key    
+                //role : input.key
                 role:  "Admin" //input.key
-                
+
             };
 
             //Admin = 'Admin';
@@ -97,13 +96,13 @@ exports.add = function (req, res, next) {
             //bcrypt the password ===
             bcrypt.genSalt(10, function(err, salt) {
                 bcrypt.hash(input.password, salt, function(err, hash) {
-                    // Store hashed password in my Database. 
+                    // Store hashed password in my Database.
                     data.password = hash;
 
                     connection.query('insert into users set ?', data, function(err, users) {
                         if (err)
                             console.log("Error inserting : %s ", err);
-                       // if(input.username === users.username){ //if(role == Admin){                     
+                       // if(input.username === users.username){ //if(role == Admin){
                        //alert('user_created');
                            res.redirect('/?status=user_created');
 
@@ -157,13 +156,13 @@ exports.get = function(req, res, next){
 				console.log("Error Selecting : %s ",err );
 			}
 			res.render('usersEdit', {
-			page_title:"Edit User - Node.js", 
+			page_title:"Edit User - Node.js",
 			user:req.session.user,
 		    role:req.session.role,
 		    //Id :req.session.Id,
 			data : rows[0]
-		   });      
-		}); 
+		   });
+		});
 	});
 };
 // here I want to update my users
@@ -194,5 +193,5 @@ exports.delete = function(req, res, next){
 		     res.redirect('/User');
 		 });
 
-	});	
+	});
 };
