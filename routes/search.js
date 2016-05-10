@@ -1,17 +1,4 @@
-// exports.searchProducts = function(req, res, next){
- 
-//   req.getConnection(function(err, connection) {
-//     var searchVal = '%'+ req.params.searchVal +'%';
-//     connection.query('SELECT product_name, Id FROM Products where product_name Like ?', [searchVal], function(err, result){
-//       if(err) return console.log(err);
-//       res.render('searchPrd',{
-//         products : result,
-       
-//         layout : false
-//       });
-//     });
-//   });
-// };
+
 exports.searchProducts = function(req, res, next){
   req.getConnection(function(error, connection){
     if(error) return next(error);

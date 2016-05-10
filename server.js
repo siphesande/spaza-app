@@ -1,16 +1,16 @@
-//grab the things I need
+//grab the things I need 
 
 var express = require('express'),
     exphbs  = require('express-handlebars'),
     morgan = require('morgan'),
     mysql = require('mysql'),//node-mysql module
-    myConnection = require('express-myconnection'),//Connect/Express middleware that auto provides mysql connections
+    myConnection = require('express-myconnection'),//Connect/Express middleware that auto provides mysql connections 
     bodyParser = require('body-parser'),
-    cookieParser = require('cookie-parser'),
+    cookieParser = require('cookie-parser'), 
     session = require('express-session'),
     cookieSession =require('cookie-session'),
     bcrypt = require('bcryptjs'),
-    validator = require("express-validator"),
+    
     request = require('request'),
     morgan = require('morgan'),
     flash = require('express-flash'),
@@ -25,7 +25,7 @@ var express = require('express'),
     register = require('./routes/Users'),
     search  = require('./routes/search'),
     usrs = require('./routes/Users');
-
+    
 var app = express();
 var dbOptions = {
       host: 'localhost',
@@ -37,8 +37,8 @@ var dbOptions = {
 
 function errorHandler(err, req, res, next) {
   res.status(500);
-  res.render('error', {
-    error: err
+  res.render('error', { 
+    error: err 
     });
 }
 app.use(morgan('dev'));
@@ -52,78 +52,34 @@ app.use(express.static(__dirname + '/public'));
 
 //setup middleware
 app.use(myConnection(mysql, dbOptions, 'single'));//Connect/Express middleware provides a consistent API for MySQL connections during request/response life cycle
-// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
-// parse application/json
-
 app.use(bodyParser.json());
 //app.use(cookieParser());
-app.use(session({
+app.use(session({ 
 
-secret : 'a4f8071f-c873-4447-8ee2', resave : true,   saveUninitialized: true, cookie: { maxAge:2628000000 }}));
+   secret : 'a4f8071f-c873-4447-8ee2', 
+   resave : true,   saveUninitialized: true, 
+   cookie: { maxAge:2628000000 }}));
+
+
+
 app.use(flash());
 app.use(function(req, res, next){
-  console.log('middleware!');
+console.log('middleware!');
   //proceed to the next middleware component
   next();
+  
 });
-
-app.post('/home', auth.login);
-app.get('/login', auth.validator);
-app.post('/home',function(req, res){
-   res.render("home");
-})
-app.get('/home', function (req, res) {
-
-    res.render('home', {user:req.session.user,
-      role:req.session.role,
-      Id:req.session.Id
-    });
-});
-
-//This is my landing page
-app.get('/', function(req, res) {
-    res.render('login', {
-      layout: false,
-    });
-});
-
-app.get('/login', function (req, res) {
-  res.render('login');
-});
-
-app.get('/signup', function(req, res){
-  res.render('signup', {layout: false})
-});
-
-//app.get('/user', register.registerUser);
-app.get('/signup', register.get);
-app.post('/signup', register.add);
-
-//app.get('/signup/edit/:id', register.get);
-app.post('/signup/update/:id', register.update);
-app.post('/signup/add', register.add);
-app.get('/signup/delete/:id', register.delete);
-
-//signup as Adiministrator
-//app.get("/amin_signup",checkUser, register.adminSignup);
-//app.post('/admin_signup',checkUser, register.adminSignup);
-
-app.get('/logout', function(req, res){
-  delete req.session.user;
-  res.redirect('/');
-
-});
-
 var checkUser = function (req, res, next) {
-      console.log(req.path);
-        if (req.session.user){
-             next();
+    console.log(req.path);
+    if (req.session.role === 'Admin' || req.session.role === 'View' ){
+        next(); 
+    }
+    else{
+         res.redirect("/");
         }
-        else{
-             res.redirect("/");
-        }
-}
+
+    }
 
 var checkAdmin = function (req,res,next){
     if(req.session.role === "Admin"){
@@ -134,7 +90,52 @@ var checkAdmin = function (req,res,next){
     }
 }
 
-//products.js
+app.post('/home',auth.login);
+app.get('/home',checkUser,function (req, res) {
+
+      res.render('home', {
+      user:req.session.user, 
+      role:req.session.role,
+      Id:req.session.Id 
+    });
+});
+
+//This is my landing page
+app.get('/', function(req, res) {
+  delete req.session.user;
+    res.render('login', {
+      layout: false,
+    });
+});
+
+
+
+app.get('/login', function (req, res) {
+  res.render('login');
+});
+app.get('/signup', function(req, res){
+  res.render('signup', {layout: false})
+});
+
+
+app.post('/signup', register.add);
+  
+ //app.get('/signup/edit/:id', register.get);
+app.post('/signup/update/:id', register.update);
+app.post('/signup/add', register.add);
+
+app.get('/signup/delete/:id', register.delete);
+
+//signup as Adiministrator
+//app.get("/amin_signup",checkUser, register.adminSignup);
+//app.post('/admin_signup',checkUser, register.adminSignup); 
+
+app.get('/logout', function(req, res){
+  delete req.session.user;
+  res.redirect('/');
+  
+});
+
 app.get('/products',checkUser, products.show);//show products to the screen
 app.get('/products/edit/:Id',checkUser, products.get);
 app.post('/products/update/:Id',checkUser, products.update);
@@ -147,25 +148,27 @@ app.get('/products/Profits',checkUser, products.Profits);
 app.get('/products/search/:searchValue',checkUser, search.searchProducts);
 
 
-app.get('/sales',checkUser, sales.show);
+
+app.get('/sales',checkUser, sales.show); 
 app.post('/sales/add',checkUser,sales.add);
 app.get('/sales/edit/:Id',checkUser, sales.getSales);
 app.post('/sales/update/:Id',checkUser, sales.update);
 app.get('/sales/delete/:Id',checkUser, sales.delete);
 app.post('/sales/salesSearching',checkUser, search.searchSales);
 
-// to get,add,update and delete categories
+
 app.get('/categories', checkUser,categories.show);
 app.post('/categories/add',checkUser, categories.add);
 app.get('/categories/edit/:Id',checkUser, categories.get);
 app.post('/categories/update/:Id',checkUser,categories.update);
-app.get('/categories/delete/:Id',checkUser, categories.delete);
+app.get('/categories/delete/:Id', categories.delete);
 app.get('/categories/mostPopulerCat',checkUser, categories.mostPopulerCat);
 app.get('/categories/leastPopulerCat',checkUser, categories.leastPopulerCat);
 app.get('/categories/EarningsCateg',checkUser, categories.EarningsCateg);
 app.get('/categories/search/:searchValue',checkUser,search.searchCategories);
 
-//purchases.js
+
+
 app.get('/purchases',checkUser, purchases.show);
 app.post('/purchases/add',checkUser,purchases.add);
 app.get('/purchases/edit/:Id',checkUser, purchases.get);
@@ -173,7 +176,7 @@ app.post('/purchases/update/:Id',checkUser, purchases.update);
 //app.get('/purchases/updete/:Id')
 app.get('/purchases/delete/:Id',checkUser, purchases.delete);
 
-//suppliers.js
+
 app.get('/suppliers',checkUser,checkUser, suppliers.show);
 app.post('/suppliers/add',checkUser,suppliers.add);
 app.get('/suppliers/edit/:Id',checkUser, suppliers.get);
@@ -184,14 +187,13 @@ app.post('/suppliers/searchSuppliers',checkUser, search.searchSuppliers);
 
 app.get('/user',checkUser,  usrs.usser);
 app.get('/user/add', checkUser, usrs.usser);
-app.get('/user/edit/:Id',checkUser, usrs.get);
 app.get('/user/edit/:Id',checkUser, usrs.update);
 app.post('/user/update/:Id',checkUser,  usrs.update);
 app.post('/user/add',checkUser, usrs.add);
 app.get('/user/delete/:Id',checkUser,usrs.delete);
 app.get('/user/admin/:Id',checkUser,usrs.admin);
 app.get('/user/notAdmin/:Id',checkUser,usrs.notAdmin);
-app.get('/user/edit/',checkUser,usrs.get);
+
 
 
 //configure the port number using and environment number
