@@ -203,7 +203,7 @@ app.get('/user/notAdmin/:Id',checkUser,usrs.notAdmin);
 //configure the port number using and environment number
 //The app starts a server and listens on port 3001 for connections
 
-var portNumber = process.env.CRUD_PORT_NR || 3001;
+var portNumber = process.env.CRUD_PORT_NR || 8080;
 
 //start everything up
 app.listen(portNumber, function (){
