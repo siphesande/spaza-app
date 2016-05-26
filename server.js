@@ -2,7 +2,7 @@
 
 var express = require('express'),
     exphbs  = require('express-handlebars'),
-    //morgan = require('morgan'),
+    morgan = require('morgan'),
     mysql = require('mysql'),//node-mysql module
     myConnection = require('express-myconnection'),//Connect/Express middleware that auto provides mysql connections 
     bodyParser = require('body-parser'),
@@ -41,7 +41,7 @@ function errorHandler(err, req, res, next) {
     error: err 
     });
 }
-//app.use(morgan('dev'));
+app.use(morgan('dev'));
 app.use(errorHandler);
 //setup template handlebars as the template engine
 app.set('views',__dirname + '/views');
