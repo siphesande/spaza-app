@@ -30,7 +30,7 @@ var app = express();
 var dbOptions = {
       host: 'localhost',
       user: 'root',
-      password: '08386354',
+      password: 'S.malgas91',
       port: 3306,
       database: 'spaza_app'
 };
