@@ -2,7 +2,7 @@
 
 var express = require('express'),
     exphbs  = require('express-handlebars'),
-    morgan = require('morgan'),
+    //morgan = require('morgan'),
     mysql = require('mysql'),//node-mysql module
     myConnection = require('express-myconnection'),//Connect/Express middleware that auto provides mysql connections 
     bodyParser = require('body-parser'),
@@ -41,7 +41,7 @@ function errorHandler(err, req, res, next) {
     error: err 
     });
 }
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 app.use(errorHandler);
 //setup template handlebars as the template engine
 app.set('views',__dirname + '/views');
@@ -58,7 +58,7 @@ app.use(bodyParser.json());
 app.use(session({ 
 
    secret : 'a4f8071f-c873-4447-8ee2', 
-   resave : true,   saveUninitialized: true, 
+   resave : true, saveUninitialized: true, 
    cookie: { maxAge:2628000000 }}));
 
 
@@ -71,12 +71,16 @@ console.log('middleware!');
   
 });
 var checkUser = function (req, res, next) {
-    console.log(req.path);
-    if (req.session.role === 'Admin' || req.session.role === 'View' ){
+   // console.log(req.path);
+    if (req.session.user){
+       console.log(req.session.user)
+    // if (req.session.role === 'Admin' || req.session.role === 'View' ){
         next(); 
     }
     else{
+         req.flash("info", 'You need to login first!!');
          res.redirect("/");
+
         }
 
     }
@@ -171,13 +175,13 @@ app.get('/categories/search/:searchValue',checkUser,search.searchCategories);
 
 app.get('/purchases',checkUser, purchases.show);
 app.post('/purchases/add',checkUser,purchases.add);
-app.get('/purchases/edit/:Id',checkUser, purchases.get);
-app.post('/purchases/update/:Id',checkUser, purchases.update);
+app.get('/purchases/edit/:Id',checkUser,purchases.get);
+app.post('/purchases/update/:Id',checkUser,purchases.update);
 //app.get('/purchases/updete/:Id')
-app.get('/purchases/delete/:Id',checkUser, purchases.delete);
+app.get('/purchases/delete/:Id',checkUser,purchases.delete);
 
 
-app.get('/suppliers',checkUser,checkUser, suppliers.show);
+app.get('/suppliers',checkUser,suppliers.show);
 app.post('/suppliers/add',checkUser,suppliers.add);
 app.get('/suppliers/edit/:Id',checkUser, suppliers.get);
 app.post('/suppliers/update/:Id',checkUser, suppliers.update);
@@ -185,7 +189,7 @@ app.get('/suppliers/delete/:Id',checkUser, suppliers.delete);
 app.post('/suppliers/searchSuppliers',checkUser, search.searchSuppliers);
 
 
-app.get('/user',checkUser,  usrs.usser);
+app.get('/user',checkUser,usrs.usser);
 app.get('/user/add', checkUser, usrs.usser);
 app.get('/user/edit/:Id',checkUser, usrs.update);
 app.post('/user/update/:Id',checkUser,  usrs.update);

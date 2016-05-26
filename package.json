@@ -12,7 +12,7 @@
   "dependencies": {
     "bcryptjs": "*",
     "body-parser": "*",
-    "connection-provider": "avermeulen/connection-provider",
+    "connection-provider": "github:avermeulen/connection-provider",
     "cookie-parser": "*",
     "cookie-session": "*",
     "express": "~4.13.3",

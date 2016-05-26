@@ -1,4 +1,4 @@
-'use strict'
+
 
 exports.show =function (req, res, next){
 

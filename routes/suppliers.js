@@ -1,4 +1,4 @@
-"use strict"
+
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		var Administrator = req.session.role === "Admin";
