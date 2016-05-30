@@ -2,7 +2,7 @@
   "name": "spaza-app",
   "version": "0.0.0",
   "description": "insert into Sales (product_id,price,qty) select Products.product_id as id,",
-  "main": "server-side.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server-side.js"
