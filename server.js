@@ -1,16 +1,16 @@
-//grab the things I need 
-
+//grab the things I need
+"use strict"
 var express = require('express'),
     exphbs  = require('express-handlebars'),
     morgan = require('morgan'),
     mysql = require('mysql'),//node-mysql module
-    myConnection = require('express-myconnection'),//Connect/Express middleware that auto provides mysql connections 
+    myConnection = require('express-myconnection'),//Connect/Express middleware that auto provides mysql connections
     bodyParser = require('body-parser'),
-    cookieParser = require('cookie-parser'), 
+    cookieParser = require('cookie-parser'),
     session = require('express-session'),
     cookieSession =require('cookie-session'),
     bcrypt = require('bcryptjs'),
-    
+
     request = require('request'),
     morgan = require('morgan'),
     flash = require('express-flash'),
@@ -25,7 +25,7 @@ var express = require('express'),
     register = require('./routes/Users'),
     search  = require('./routes/search'),
     usrs = require('./routes/Users');
-    
+
 var app = express();
 var dbOptions = {
       host: 'localhost',
@@ -37,8 +37,8 @@ var dbOptions = {
 
 function errorHandler(err, req, res, next) {
   res.status(500);
-  res.render('error', { 
-    error: err 
+  res.render('error', {
+    error: err
     });
 }
 app.use(morgan('dev'));
@@ -55,10 +55,10 @@ app.use(myConnection(mysql, dbOptions, 'single'));//Connect/Express middleware p
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 //app.use(cookieParser());
-app.use(session({ 
+app.use(session({
 
-   secret : 'a4f8071f-c873-4447-8ee2', 
-   resave : true, saveUninitialized: true, 
+   secret : 'a4f8071f-c873-4447-8ee2',
+   resave : true, saveUninitialized: true,
    cookie: { maxAge:2628000000 }}));
 
 
@@ -68,14 +68,14 @@ app.use(function(req, res, next){
 console.log('middleware!');
   //proceed to the next middleware component
   next();
-  
+
 });
 var checkUser = function (req, res, next) {
    // console.log(req.path);
     if (req.session.user){
        console.log(req.session.user)
     // if (req.session.role === 'Admin' || req.session.role === 'View' ){
-        next(); 
+        next();
     }
     else{
          req.flash("info", 'You need to login first!!');
@@ -98,9 +98,9 @@ app.post('/home',auth.login);
 app.get('/home',checkUser,function (req, res) {
 
       res.render('home', {
-      user:req.session.user, 
+      user:req.session.user,
       role:req.session.role,
-      Id:req.session.Id 
+      Id:req.session.Id
     });
 });
 
@@ -123,7 +123,7 @@ app.get('/signup', function(req, res){
 
 
 app.post('/signup', register.add);
-  
+
  //app.get('/signup/edit/:id', register.get);
 app.post('/signup/update/:id', register.update);
 app.post('/signup/add', register.add);
@@ -132,12 +132,12 @@ app.get('/signup/delete/:id', register.delete);
 
 //signup as Adiministrator
 //app.get("/amin_signup",checkUser, register.adminSignup);
-//app.post('/admin_signup',checkUser, register.adminSignup); 
+//app.post('/admin_signup',checkUser, register.adminSignup);
 
 app.get('/logout', function(req, res){
   delete req.session.user;
   res.redirect('/');
-  
+
 });
 
 app.get('/products',checkUser, products.show);//show products to the screen
@@ -153,7 +153,7 @@ app.get('/products/search/:searchValue',checkUser, search.searchProducts);
 
 
 
-app.get('/sales',checkUser, sales.show); 
+app.get('/sales',checkUser, sales.show);
 app.post('/sales/add',checkUser,sales.add);
 app.get('/sales/edit/:Id',checkUser, sales.getSales);
 app.post('/sales/update/:Id',checkUser, sales.update);
